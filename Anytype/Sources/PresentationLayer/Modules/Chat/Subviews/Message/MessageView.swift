@@ -6,11 +6,15 @@ struct MessageView: View {
     
     private enum Constants {
         static let attachmentsPadding: CGFloat = 4
+        static let messageHorizontalPadding: CGFloat = 12
+        static let coordinateSpace = "MessageViewCoordinateSpace"
         static let emoji = ["👍🏻", "️️❤️", "😂"]
     }
     
     private let data: MessageViewData
     private weak var output: (any MessageModuleOutput)?
+    
+    @State private var bubbleCenterOffsetY: CGFloat = 0
     
     @Environment(\.messageYourBackgroundColor) private var messageYourBackgroundColor
     
@@ -23,14 +27,30 @@ struct MessageView: View {
     }
     
     var body: some View {
+        MessageReplyActionView(
+            isEnabled: FeatureFlags.swipeToReply && data.canReply,
+            contentHorizontalPadding: Constants.messageHorizontalPadding,
+            centerOffsetY: $bubbleCenterOffsetY,
+            content: {
+                alignedСontent
+            },
+            action: {
+                output?.didSelectReplyTo(message: data)
+            }
+        )
+        .id(data.id)
+    }
+    
+    private var alignedСontent: some View {
         HStack(alignment: .bottom, spacing: 6) {
             leadingView
             content
             trailingView
         }
-        .padding(.horizontal, 12)
+        .padding(.horizontal, Constants.messageHorizontalPadding)
         .padding(.bottom, data.nextSpacing.height)
-        .id(data.id)
+        .fixTappableArea()
+        .coordinateSpace(name: Constants.coordinateSpace)
     }
     
     private var content: some View {
@@ -95,6 +115,9 @@ struct MessageView: View {
         .contextMenu {
             contextMenu
         }
+        .readFrame(space: .named(Constants.coordinateSpace)) {
+            bubbleCenterOffsetY = $0.midY
+        }
     }
     
     @ViewBuilder
@@ -146,21 +169,14 @@ struct MessageView: View {
     }
     
     private var infoView: some View {
-        Text(infoText)
-            .anytypeFontStyle(.caption2Regular)
-            .lineLimit(1)
+        Text(messageBottomInfo: data)
             .foregroundColor(messageTimeColor)
+            .lineLimit(1)
     }
     
     private var infoForSpacing: Text {
-        Text(infoText)
-            .anytypeFontStyle(.caption2Regular)
+        Text(messageBottomInfo: data)
             .foregroundColor(.clear)
-    }
-    
-    private var infoText: String {
-        let editText = data.message.modifiedAtDate != nil ? Loc.Message.edited + " " : ""
-        return "  " + editText + data.createDate
     }
     
     @ViewBuilder
@@ -220,7 +236,6 @@ struct MessageView: View {
         }
     }
     
-    @ViewBuilder
     private var horizontalBubbleSpacing: some View {
         Spacer(minLength: 26)
     }
@@ -302,7 +317,7 @@ struct MessageView: View {
     }
     
     private var messageTimeColor: Color {
-        return data.position.isRight ? Color.Background.Chat.whiteTransparent : Color.Control.transparentActive
+        return data.position.isRight ? Color.Background.Chat.whiteTransparent : Color.Control.transparentSecondary
     }
 }
 

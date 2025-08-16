@@ -2,7 +2,18 @@ import Foundation
 import SwiftUI
 import Services
 
-struct SpaceSettingsCoordinatorView: View {
+struct SpaceSettingsCoordinator: View {
+    let spaceId: String
+    
+    var body: some View {
+        SpaceLoadingContainerView(spaceId: spaceId, showBackground: false) {
+            SpaceSettingInternalsCoordinator(workspaceInfo: $0)
+        }
+    }
+}
+
+
+fileprivate struct SpaceSettingInternalsCoordinator: View {
     
     @StateObject private var model: SpaceSettingsCoordinatorViewModel
     @Environment(\.pageNavigation) private var pageNavigation
@@ -37,9 +48,6 @@ struct SpaceSettingsCoordinatorView: View {
             }
             .sheet(item: $model.showSpaceShareData) {
                 SpaceShareCoordinatorView(data: $0)
-            }
-            .sheet(item: $model.showSpaceMembersData) {
-                SpaceMembersView(data: $0)
             }
             .sheet(item: $model.spaceNotificationsSettingsModuleData) {
                 SpaceNotificationsSettingsView(data: $0)

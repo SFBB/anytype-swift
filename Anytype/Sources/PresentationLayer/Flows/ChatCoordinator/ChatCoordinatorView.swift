@@ -11,8 +11,13 @@ struct ChatCoordinatorView: View {
     }
     
     var body: some View {
+        SpaceLoadingContainerView(spaceId: model.spaceId, showBackground: true) { _ in
+            content
+        }
+    }
+    
+    private var content: some View {
         ChatView(spaceId: model.spaceId, chatId: model.chatId, output: model)
-            .attachSpaceLoadingContainer(spaceId: model.spaceId)
             .onAppear {
                 model.pageNavigation = pageNavigation
             }
@@ -43,7 +48,7 @@ struct ChatCoordinatorView: View {
                 model.fileImporterFinished(result: result)
             }
             .safariSheet(url: $model.safariUrl)
-            .fullScreenCover(item: $model.cameraData) {
+            .cameraAccessFullScreenCover(item: $model.cameraData) {
                 SimpleCameraView(data: $0)
             }
             .sheet(item: $model.newLinkedObject) {
@@ -55,8 +60,11 @@ struct ChatCoordinatorView: View {
             .anytypeSheet(isPresented: $model.showDisabledPushNotificationsAlert){
                 DisabledPushNotificationsAlertView()
             }
-            .anytypeSheet(item: $model.inviteLinkData) {
-                InviteLinkCoordinatorView(data: $0)
+            .anytypeSheet(item: $model.inviteLinkData) { data in
+                InviteLinkCoordinatorView(data: data)
+            }
+            .sheet(item: $model.spaceShareData) { data in
+                SpaceShareCoordinatorView(data: data)
             }
             .onChange(of: model.photosItems) { _ in
                 model.photosPickerFinished()

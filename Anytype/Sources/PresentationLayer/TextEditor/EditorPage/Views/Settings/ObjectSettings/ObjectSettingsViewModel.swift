@@ -16,6 +16,7 @@ protocol ObjectSettingsModelOutput: AnyObject, ObjectHeaderRouterProtocol, Objec
     func undoRedoAction(objectId: String)
     func relationsAction(document: some BaseDocumentProtocol)
     func showVersionHistory(document: some BaseDocumentProtocol)
+    func showPublising(document: some BaseDocumentProtocol)
     func openPageAction(screenData: ScreenData)
     func linkToAction(document: some BaseDocumentProtocol, onSelect: @escaping (String) -> ())
     func closeEditorAction()
@@ -99,6 +100,13 @@ final class ObjectSettingsViewModel: ObservableObject, ObjectActionsOutput {
         guard let details = document.details else { return }
         try await conflictManager.resolveConflicts(details: details)
         AnytypeAnalytics.instance().logResetToTypeDefault()
+    }
+    
+    func onTapPublishing() {
+        if let details = document.details {
+            AnytypeAnalytics.instance().logClickShareObject(objectType: details.objectType.analyticsType)
+        }
+        output?.showPublising(document: document)
     }
     
     // MARK: - ObjectActionsOutput

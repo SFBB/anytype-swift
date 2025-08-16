@@ -71,6 +71,9 @@ final class EditorPageController: UIViewController {
         onSyncStatusTap: { [weak viewModel] in
             UISelectionFeedbackGenerator().selectionChanged()
             viewModel?.showSyncStatusInfo()
+        }, onWebBannerTap: { [weak viewModel] in
+            UISelectionFeedbackGenerator().selectionChanged()
+            viewModel?.onPublishingBannerTap()
         }
     )
 
@@ -81,7 +84,7 @@ final class EditorPageController: UIViewController {
     var viewModel: (any EditorPageViewModelProtocol)! {
         didSet {
             viewModel.setupSubscriptions()
-            layout.layoutDetailsPublisher = viewModel.document.layoutDetailsPublisher.receiveOnMain().eraseToAnyPublisher()
+            layout.blockLayoutDetailsPublisher = viewModel.document.blockLayoutDetailsPublisher.receiveOnMain().eraseToAnyPublisher()
         }
     }
     
@@ -304,6 +307,10 @@ extension EditorPageController: EditorPageViewInput {
         navigationBarHelper.updateSyncStatusData(syncStatusData)
     }
     
+    func update(webBannerVisible: Bool) {
+        navigationBarHelper.updateWebBannerVisibility(webBannerVisible)
+    }
+    
     func reconfigure(items: [EditorItem]) {
         guard items.count > 0 else { return }
 
@@ -314,8 +321,7 @@ extension EditorPageController: EditorPageViewInput {
         // probably the new item is a new view model for an existing block. So we have to check by ID.
         // Example: BlockFileViewModel -> BlockImageViewModel when uploading image into file block
         for item in notExistingItems {
-            guard let itemId = item.id else { continue }
-            guard let oldItem = snapshot.itemIdentifiers.first(where: { $0.id == itemId }) else {
+            guard let oldItem = snapshot.itemIdentifiers.first(where: { $0.blockId == item.blockId }) else {
                 continue
             }
             guard let index = snapshot.indexOfItem(oldItem) else { continue }

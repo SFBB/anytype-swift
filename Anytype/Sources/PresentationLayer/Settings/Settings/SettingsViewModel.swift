@@ -69,6 +69,10 @@ final class SettingsViewModel: ObservableObject {
         output?.onFileStorageSelected()
     }
     
+    func onMySitesTap() {
+        output?.onMySitesSelected()
+    }
+    
     func onAboutTap() {
         output?.onAboutSelected()
     }
@@ -83,6 +87,14 @@ final class SettingsViewModel: ObservableObject {
     
     func onMembershipTap() {
         output?.onMembershipSelected()
+    }
+    
+    func onLogoutTap() {
+        output?.onLogoutSelected()
+    }
+    
+    func onDeleteAccountTap() {
+        output?.onDeleteAccountSelected()
     }
     
     func startSubscriptions() async {

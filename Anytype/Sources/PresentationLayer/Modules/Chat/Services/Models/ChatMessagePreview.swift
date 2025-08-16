@@ -2,7 +2,7 @@ import Services
 import Foundation
 
 struct LastMessagePreview: Hashable {
-    let creator: ObjectDetails?
+    let creator: Participant?
     let text: String
     
     let createdAt: Date
@@ -11,7 +11,7 @@ struct LastMessagePreview: Hashable {
     let attachments: [ObjectDetails]
     let localizedAttachmentsText: String
     
-    init(creator: ObjectDetails?, text: String, createdAt: Date, modifiedAt: Date?, attachments: [ObjectDetails]) {
+    init(creator: Participant?, text: String, createdAt: Date, modifiedAt: Date?, attachments: [ObjectDetails]) {
         self.creator = creator
         self.text = text
         self.createdAt = createdAt
@@ -35,6 +35,10 @@ struct ChatMessagePreview: Hashable {
     
     var mentionCounter: Int {
         Int(state?.mentions.counter ?? 0)
+    }
+    
+    var hasCounters: Bool {
+        unreadCounter > 0 || mentionCounter > 0
     }
 }
 

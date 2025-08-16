@@ -15,6 +15,7 @@ struct SpaceView: Identifiable, Equatable, Hashable {
     let readersLimit: Int?
     let writersLimit: Int?
     let chatId: String
+    let spaceOrder: String
     let uxType: SpaceUxType
     let pushNotificationEncryptionKey: String
     let pushNotificationMode: SpacePushNotificationsMode
@@ -34,6 +35,7 @@ extension SpaceView: DetailsModel {
         self.readersLimit = details.readersLimit
         self.writersLimit = details.writersLimit
         self.chatId = details.chatId
+        self.spaceOrder = details.spaceOrder
         self.uxType = details.spaceUxTypeValue ?? .data
         self.pushNotificationEncryptionKey = details.spacePushNotificationEncryptionKey
         self.pushNotificationMode = details.spacePushNotificationModeValue ?? .all
@@ -66,6 +68,10 @@ extension SpaceView {
         name.withPlaceholder
     }
     
+    var isPinned: Bool {
+        spaceOrder.isNotEmpty
+    }
+    
     var isShared: Bool {
         spaceAccessType == .shared
     }
@@ -96,7 +102,11 @@ extension SpaceView {
     }
     
     var canAddChatWidget: Bool {
-        !initialScreenIsChat && isShared
+        !initialScreenIsChat && isShared && hasChat && FeatureFlags.createChatWidget
+    }
+    
+    var hasChat: Bool {
+        chatId.isNotEmpty
     }
     
     func canAddWriters(participants: [Participant]) -> Bool {

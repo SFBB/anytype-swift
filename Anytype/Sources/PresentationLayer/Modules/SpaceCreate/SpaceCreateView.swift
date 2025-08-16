@@ -1,6 +1,8 @@
 import Foundation
 import SwiftUI
 import AnytypeCore
+import DesignKit
+
 
 struct SpaceCreateView: View {
     
@@ -22,6 +24,7 @@ struct SpaceCreateView: View {
                     RoundedTextFieldWithTitle(
                         title: FeatureFlags.spaceUxTypes ? Loc.name : Loc.Settings.spaceName,
                         placeholder: Loc.untitled,
+                        axis: .vertical,
                         text: $model.spaceName
                     )
                     .focused(.constant(true))
@@ -33,9 +36,13 @@ struct SpaceCreateView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                StandardButton(model: StandardButtonModel(text: Loc.create, inProgress: model.createLoadingState, style: .primaryLarge, action: {
-                    model.onTapCreate()
-                }))
+                VStack(spacing: 0) {
+                    ThresholdCounter(usecase: .spaceName, count: model.spaceName.count)
+                    StandardButton(model: StandardButtonModel(text: Loc.create, inProgress: model.createLoadingState, style: .primaryLarge, action: {
+                        model.onTapCreate()
+                    }))
+                    .disabled(model.spaceName.count > ThresholdCounterUsecase.spaceName.threshold)
+                }
                 .padding(.bottom, 10)
             }
             .padding(.horizontal, 20)
@@ -60,7 +67,7 @@ struct SpaceCreateView: View {
                 .frame(width: 96, height: 96)
             Spacer.fixedHeight(6)
             AnytypeText(Loc.changeIcon, style: .uxCalloutMedium)
-                .foregroundColor(.Control.active)
+                .foregroundColor(.Control.secondary)
             Spacer.fixedHeight(20)
         }
         .fixTappableArea()

@@ -3,30 +3,43 @@ import SwiftUI
 @preconcurrency import Combine
 import AnytypeCore
 import AsyncAlgorithms
+import Loc
 
 @MainActor
 final class SpaceHubViewModel: ObservableObject {
     @Published var unreadSpaces: [ParticipantSpaceViewDataWithPreview]?
     @Published var spaces: [ParticipantSpaceViewDataWithPreview]?
+    @Published var searchText: String = ""
     
     var allSpaces: [ParticipantSpaceViewDataWithPreview]? {
         guard let unreadSpaces, let spaces else { return nil }
         return unreadSpaces + spaces
     }
     
+    var filteredUnreadSpaces: [ParticipantSpaceViewDataWithPreview]? {
+        guard !searchText.isEmpty, let unreadSpaces else { return unreadSpaces }
+        return unreadSpaces.filter { space in
+            space.spaceView.name.localizedCaseInsensitiveContains(searchText)
+        }
+    }
+    
+    var filteredSpaces: [ParticipantSpaceViewDataWithPreview]? {
+        guard !searchText.isEmpty, let spaces else { return spaces }
+        return spaces.filter { space in
+            space.spaceView.name.localizedCaseInsensitiveContains(searchText)
+        }
+    }
+    
     @Published var wallpapers: [String: SpaceWallpaperType] = [:]
     
-    @Published var showSettings = false
     @Published var createSpaceAvailable = false
     @Published var notificationsDenied = false
-    @Published var spaceIdToLeave: StringIdentifiable?
-    @Published var spaceIdToDelete: StringIdentifiable?
     @Published var spaceMuteData: SpaceMuteData?
-    
+    @Published var toastBarData: ToastBarData?
+    @Published var showLoading = false
     @Published var profileIcon: Icon?
     
     private weak var output: (any SpaceHubModuleOutput)?
-    private let showOnlyChats: Bool
     
     var showPlusInNavbar: Bool {
         guard let allSpaces else { return false }
@@ -50,9 +63,12 @@ final class SpaceHubViewModel: ObservableObject {
     @Injected(\.workspaceService)
     private var workspaceService: any WorkspaceServiceProtocol
     
-    init(output: (any SpaceHubModuleOutput)?, showOnlyChats: Bool) {
+    init(output: (any SpaceHubModuleOutput)?) {
         self.output = output
-        self.showOnlyChats = showOnlyChats
+    }
+    
+    func onTapSettings() {
+        output?.onSelectAppSettings()
     }
     
     func onTapCreateSpace() {
@@ -63,9 +79,9 @@ final class SpaceHubViewModel: ObservableObject {
         AnytypeAnalytics.instance().logScreenVault(type: "General")
     }
     
-    func onSpaceTap(spaceId: String, presentation: SpacePreferredPresentationMode?) {
+    func onSpaceTap(spaceId: String) {
         if FeatureFlags.spaceLoadingForScreen {
-            output?.onSelectSpace(spaceId: spaceId, preferredPresentation: presentation)
+            output?.onSelectSpace(spaceId: spaceId)
             UISelectionFeedbackGenerator().selectionChanged()
         } else {
             Task {
@@ -75,13 +91,6 @@ final class SpaceHubViewModel: ObservableObject {
         }
     }
     
-    func deleteSpace(spaceId: String) async throws {
-        spaceIdToDelete = spaceId.identifiable
-    }
-    
-    func leaveSpace(spaceId: String) {
-        spaceIdToLeave = spaceId.identifiable
-    }
     
     func copySpaceInfo(spaceView: SpaceView) {
         UIPasteboard.general.string = String(describing: spaceView)
@@ -93,6 +102,33 @@ final class SpaceHubViewModel: ObservableObject {
             spaceId: spaceView.targetSpaceId,
             mode: isUnmutedAll ? .mentions : .all
         )
+    }
+    
+    func pin(spaceView: SpaceView) async throws {
+        guard let spaces else { return }
+        let pinnedSpaces = spaces.filter { $0.spaceView.isPinned }
+        
+        let pinnedSpacesLimit = 6
+        if pinnedSpaces.count >= pinnedSpacesLimit {
+            toastBarData = ToastBarData(Loc.pinLimitReached(pinnedSpacesLimit), type: .failure)
+            UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            return
+        }
+        
+        var newOrder = pinnedSpaces.filter { $0.spaceView.id != spaceView.id }.map(\.spaceView.id)
+        newOrder.insert(spaceView.id, at: 0)
+        
+        try await spaceOrderService.setOrder(spaceViewIdMoved: spaceView.id, newOrder: newOrder)
+        AnytypeAnalytics.instance().logPinSpace()
+    }
+    
+    func unpin(spaceView: SpaceView) async throws {
+        try await spaceOrderService.unsetOrder(spaceViewId: spaceView.id)
+        AnytypeAnalytics.instance().logUnpinSpace()
+    }
+    
+    func openSpaceSettings(spaceId: String) {
+        output?.onOpenSpaceSettings(spaceId: spaceId)
     }
     
     func startSubscriptions() async {
@@ -119,16 +155,48 @@ final class SpaceHubViewModel: ObservableObject {
     // MARK: - Private
     private func subscribeOnSpaces() async {
         for await spaces in await spaceHubSpacesStorage.spacesStream {
-            // todo change chatId check to uxType when fixed
-            let spaces = showOnlyChats ? spaces.filter { $0.space.spaceView.chatId.isNotEmpty } : spaces
-            
-            self.unreadSpaces = spaces
-                .filter { $0.preview.unreadCounter > 0 }
-                .sorted {
-                    ($0.preview.lastMessage?.createdAt ?? Date.distantPast) > ($1.preview.lastMessage?.createdAt ?? Date.distantPast)
-                }
-            self.spaces = spaces.filter { $0.preview.unreadCounter == 0 }
+            if FeatureFlags.pinnedSpaces {
+                self.spaces = spaces.sorted(by: sortSpacesForPinnedFeature)
+                self.unreadSpaces = []
+            } else {
+                self.unreadSpaces = spaces
+                    .filter { $0.preview.unreadCounter > 0 }
+                    .sorted {
+                        ($0.preview.lastMessage?.createdAt ?? Date.distantPast) > ($1.preview.lastMessage?.createdAt ?? Date.distantPast)
+                    }
+                self.spaces = spaces.filter { $0.preview.unreadCounter == 0 }
+            }
             createSpaceAvailable = workspacesStorage.canCreateNewSpace()
+            if FeatureFlags.spaceLoadingForScreen {
+                showLoading = spaces.contains { $0.spaceView.isLoading }
+            }
+        }
+    }
+    
+    private func sortSpacesForPinnedFeature(_ lhs: ParticipantSpaceViewDataWithPreview, _ rhs: ParticipantSpaceViewDataWithPreview) -> Bool {
+        switch (lhs.spaceView.isPinned, rhs.spaceView.isPinned) {
+        case (true, true):
+            return lhs.spaceView.spaceOrder < rhs.spaceView.spaceOrder
+        case (true, false):
+            return true
+        case (false, true):
+            return false
+        case (false, false):
+            let lhsMessageDate = lhs.preview.lastMessage?.createdAt
+            let rhsMessageDate = rhs.preview.lastMessage?.createdAt
+            
+            switch (lhsMessageDate, rhsMessageDate) {
+            case let (date1?, date2?):
+                return date1 > date2
+            case (_?, nil):
+                return true
+            case (nil, _?):
+                return false
+            case (nil, nil):
+                let lhsCreatedDate = lhs.spaceView.createdDate ?? .distantPast
+                let rhsCreatedDate = rhs.spaceView.createdDate ?? .distantPast
+                return lhsCreatedDate > rhsCreatedDate
+            }
         }
     }
     

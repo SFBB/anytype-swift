@@ -14,7 +14,7 @@ struct ObjectActionRow: View {
         label: {
             VStack(spacing: Constants.space) {
                 Image(asset: icon)
-                    .foregroundColor(.Control.active)
+                    .foregroundColor(.Control.secondary)
                     .frame(width: 52, height: 52)
                     .background(Color.Background.highlightedMedium)
                     .cornerRadius(10)
@@ -70,7 +70,7 @@ private extension ObjectAction {
         case .createWidget:
             return Loc.Actions.CreateWidget.title
         case .copyLink:
-            return Loc.Actions.copyLink
+            return Loc.copyLink
         }
     }
 

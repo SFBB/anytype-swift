@@ -42,11 +42,12 @@ struct ChatHeaderView: View {
                 }
             }
         }
-        .task {
-            await model.subscribeOnSpaceView()
+        .background {
+            HomeBlurEffectView(direction: .topToBottom)
+                .ignoresSafeArea()
         }
         .task {
-            await model.subscribeOnChatStatus()
+            await model.startSubscriptions()
         }
         .animation(.default, value: model.showLoading)
     }

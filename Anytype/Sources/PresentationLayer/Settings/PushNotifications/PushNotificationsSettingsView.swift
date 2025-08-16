@@ -48,7 +48,7 @@ struct PushNotificationsSettingsView: View {
             Spacer()
             
             Circle()
-                .fill(enabled ? Color.System.green : Color.System.red)
+                .fill(enabled ? Color.Pure.green : Color.Pure.red)
                 .frame(width: 10, height: 10)
             
             Spacer.fixedWidth(8)
@@ -59,14 +59,14 @@ struct PushNotificationsSettingsView: View {
             if !enabled {
                 Spacer.fixedWidth(8)
                 Image(asset: .X18.webLink)
-                    .foregroundColor(.Control.active)
+                    .foregroundColor(.Control.secondary)
             }
         }
         .frame(height: 52)
         .padding(.horizontal, 4)
         .newDivider()
         .fixTappableArea()
-        .applyIf(!enabled) {
+        .if(!enabled) {
             $0.onTapGesture {
                 model.openSettings()
             }

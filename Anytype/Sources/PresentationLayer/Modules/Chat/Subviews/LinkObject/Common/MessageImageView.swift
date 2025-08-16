@@ -1,12 +1,11 @@
 import SwiftUI
+import Services
 
 struct MessageImageView: View {
     
     let imageId: String
-    
-    init(imageId: String) {
-        self.imageId = imageId
-    }
+    let syncStatus: SyncStatus?
+    let syncError: SyncError?
     
     var body: some View {
         GeometryReader { reader in
@@ -18,7 +17,12 @@ struct MessageImageView: View {
                 case .empty:
                     MessageAttachmentLoadingIndicator()
                 case .success(let image):
-                    image.resizable().scaledToFill()
+                    ZStack {
+                        image.resizable().scaledToFill()
+                            .frame(width: reader.size.width, height: reader.size.height, alignment: .center)
+                            .clipped()
+                        MessageMediaUploadingStatus(syncStatus: syncStatus, syncError: syncError)
+                    }
                 case .failure:
                     MessageAttachmentErrorIndicator()
                 @unknown default:
@@ -26,5 +30,11 @@ struct MessageImageView: View {
                 }
             }
         }
+    }
+}
+
+extension MessageImageView {
+    init(details: MessageAttachmentDetails) {
+        self.init(imageId: details.id, syncStatus: details.syncStatus, syncError: details.syncError)
     }
 }

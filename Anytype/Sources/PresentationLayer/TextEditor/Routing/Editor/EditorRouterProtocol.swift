@@ -19,6 +19,8 @@ protocol EditorRouterProtocol:
     
     func showFilePicker(model: AnytypePicker.ViewModel)
     func showImagePicker(contentType: MediaPickerContentType, onSelect: @escaping (NSItemProvider?) -> Void)
+    func showCamera(onMediaTaken: @escaping (ImagePickerMediaType) -> Void)
+    func showDocumentScanner(completion: @escaping (Result<[UIImage], any Error>) -> Void)
     
     func saveFile(fileURL: URL, type: FileContentType)
     

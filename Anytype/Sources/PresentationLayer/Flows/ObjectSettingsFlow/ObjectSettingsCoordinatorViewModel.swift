@@ -20,6 +20,7 @@ final class ObjectSettingsCoordinatorViewModel:
     @Published var blockObjectSearchData: BlockObjectSearchData?
     @Published var relationsListData: PropertiesListData?
     @Published var versionHistoryData: VersionHistoryData?
+    @Published var publishingData: PublishToWebViewData?
     @Published var dismiss = false
     
     init(objectId: String, spaceId: String, output: (any ObjectSettingsCoordinatorOutput)?) {
@@ -58,6 +59,10 @@ final class ObjectSettingsCoordinatorViewModel:
             isListType: details.isList,
             canRestore: document.permissions.canRestoreVersionHistory
         )
+    }
+    
+    func showPublising(document: some BaseDocumentProtocol) {
+        publishingData = PublishToWebViewData(objectId: document.objectId, spaceId: document.spaceId)
     }
     
     func openPageAction(screenData: ScreenData) {

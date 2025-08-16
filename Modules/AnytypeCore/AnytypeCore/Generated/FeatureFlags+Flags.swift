@@ -26,6 +26,10 @@ public extension FeatureFlags {
         value(for: .homeSpaceLevelChat)
     }
 
+    static var pinnedSpaces: Bool {
+        value(for: .pinnedSpaces)
+    }
+
     static var openMediaFileInPreview: Bool {
         value(for: .openMediaFileInPreview)
     }
@@ -42,20 +46,8 @@ public extension FeatureFlags {
         value(for: .enableStreamSpaceType)
     }
 
-    static var enablePushMessages: Bool {
-        value(for: .enablePushMessages)
-    }
-
     static var aiToolInSet: Bool {
         value(for: .aiToolInSet)
-    }
-
-    static var disableColorfulSeedPhrase: Bool {
-        value(for: .disableColorfulSeedPhrase)
-    }
-
-    static var binWidgetFromLibrary: Bool {
-        value(for: .binWidgetFromLibrary)
     }
 
     static var anyAppBetaTip: Bool {
@@ -98,24 +90,28 @@ public extension FeatureFlags {
         value(for: .doNotWaitCompletionInAnytypePreview)
     }
 
-    static var plusButtonOnWidgets: Bool {
-        value(for: .plusButtonOnWidgets)
+    static var spaceLoadingForScreen: Bool {
+        value(for: .spaceLoadingForScreen)
     }
 
-    static var openWelcomeObject: Bool {
-        value(for: .openWelcomeObject)
+    static var binScreenEmptyAction: Bool {
+        value(for: .binScreenEmptyAction)
     }
 
-    static var openFullscreenObjectsFromSetWidget: Bool {
-        value(for: .openFullscreenObjectsFromSetWidget)
+    static var showChatWidget: Bool {
+        value(for: .showChatWidget)
     }
 
-    static var chatWidget: Bool {
-        value(for: .chatWidget)
+    static var createChatWidget: Bool {
+        value(for: .createChatWidget)
     }
 
     static var muteSpacePossibility: Bool {
         value(for: .muteSpacePossibility)
+    }
+
+    static var addNotificationsSettings: Bool {
+        value(for: .addNotificationsSettings)
     }
 
     static var chatLoadingIndicator: Bool {
@@ -126,16 +122,40 @@ public extension FeatureFlags {
         value(for: .anytypeImageCacher)
     }
 
-    static var spaceLoadingForScreen: Bool {
-        value(for: .spaceLoadingForScreen)
+    static var joinSpaceViaQRCode: Bool {
+        value(for: .joinSpaceViaQRCode)
     }
 
-    static var binScreenEmptyAction: Bool {
-        value(for: .binScreenEmptyAction)
+    static var swipeToReply: Bool {
+        value(for: .swipeToReply)
     }
 
-    static var newHome: Bool {
-        value(for: .newHome)
+    static var supportSimpleEmbedBlocks: Bool {
+        value(for: .supportSimpleEmbedBlocks)
+    }
+
+    static var webPublishing: Bool {
+        value(for: .webPublishing)
+    }
+
+    static var keyboardMenuUndoRedo: Bool {
+        value(for: .keyboardMenuUndoRedo)
+    }
+
+    static var newSharingExtension: Bool {
+        value(for: .newSharingExtension)
+    }
+
+    static var newSpaceMembersFlow: Bool {
+        value(for: .newSpaceMembersFlow)
+    }
+
+    static var removeMessagesFromNotificationsCenter: Bool {
+        value(for: .removeMessagesFromNotificationsCenter)
+    }
+
+    static var mediaCarouselForWidgets: Bool {
+        value(for: .mediaCarouselForWidgets)
     }
 
     static var rainbowViews: Bool {
@@ -202,6 +222,10 @@ public extension FeatureFlags {
         value(for: .showPushMessagesInForeground)
     }
 
+    static var skipOnboardingEmailCollection: Bool {
+        value(for: .skipOnboardingEmailCollection)
+    }
+
     // All toggles
     static let features: [FeatureDescription] = [
         .setKanbanView,
@@ -209,14 +233,12 @@ public extension FeatureFlags {
         .dndOnCollectionsAndSets,
         .hideWebPayments,
         .homeSpaceLevelChat,
+        .pinnedSpaces,
         .openMediaFileInPreview,
         .newPlusMenu,
         .spaceUxTypes,
         .enableStreamSpaceType,
-        .enablePushMessages,
         .aiToolInSet,
-        .disableColorfulSeedPhrase,
-        .binWidgetFromLibrary,
         .anyAppBetaTip,
         .guideUseCaseForDataSpace,
         .disableRestoreLastScreen,
@@ -227,16 +249,23 @@ public extension FeatureFlags {
         .countersOnSpaceHub,
         .simpleSetForTypes,
         .doNotWaitCompletionInAnytypePreview,
-        .plusButtonOnWidgets,
-        .openWelcomeObject,
-        .openFullscreenObjectsFromSetWidget,
-        .chatWidget,
-        .muteSpacePossibility,
-        .chatLoadingIndicator,
-        .anytypeImageCacher,
         .spaceLoadingForScreen,
         .binScreenEmptyAction,
-        .newHome,
+        .showChatWidget,
+        .createChatWidget,
+        .muteSpacePossibility,
+        .addNotificationsSettings,
+        .chatLoadingIndicator,
+        .anytypeImageCacher,
+        .joinSpaceViaQRCode,
+        .swipeToReply,
+        .supportSimpleEmbedBlocks,
+        .webPublishing,
+        .keyboardMenuUndoRedo,
+        .newSharingExtension,
+        .newSpaceMembersFlow,
+        .removeMessagesFromNotificationsCenter,
+        .mediaCarouselForWidgets,
         .rainbowViews,
         .showAlertOnAssert,
         .analytics,
@@ -252,6 +281,7 @@ public extension FeatureFlags {
         .versionHistoryPaginationTest,
         .networkHTTPSRequestsLogger,
         .logMiddlewareRequests,
-        .showPushMessagesInForeground
+        .showPushMessagesInForeground,
+        .skipOnboardingEmailCollection
     ]
 }

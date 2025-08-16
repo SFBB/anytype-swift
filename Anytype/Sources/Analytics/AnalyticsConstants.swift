@@ -71,6 +71,7 @@ enum AnalyticsEventsRouteKind: String {
     case search = "Search"
     case type = "Type"
     case link = "Link"
+    case slashMenu = "SlashMenu"
 }
 
 enum AnalyticsEventsRelationType: String {
@@ -297,6 +298,30 @@ enum ScreenQrAnalyticsType: String {
     case inviteSpace = "InviteSpace"
 }
 
+enum ScreenQrRoute: String {
+    case inviteLink = "InviteLink"
+    case settingsSpace = "SettingsSpace"
+    case spaceProfile = "SpaceProfile"
+}
+
+enum ClickShareSpaceCopyLinkRoute: String {
+    case button = "Button"
+    case menu = "Menu"
+    case spaceProfile = "SpaceProfile"
+    case spaceSettings = "SpaceSettings"
+}
+
+enum ScreenInviteRequestType: String {
+    case approval = "Approval"
+    case withoutApproval = "WithoutApproval"
+}
+
+enum ClickShareSpaceNewLinkType: String {
+    case editor = "Editor"
+    case viewer = "Viewer"
+    case manual = "Manual"
+}
+
 enum ClickMembershipType: String {
     case moreInfo = "MoreInfo"
     case payByCard = "Stripe"
@@ -309,6 +334,13 @@ enum ClickUpgradePlanTooltipType: String {
     case members = "members"
     case editors = "editors"
     case sharedSpaces = "sharedSpaces"
+    case publish = "publish"
+}
+
+enum ClickShareSpaceShareLinkRoute: String {
+    case spaceSettings = "SpaceSettings"
+    case spaceProfile = "SpaceProfile"
+    case membersScreen = "MembersScreen"
 }
 
 enum ClickUpgradePlanTooltipRoute: String {
@@ -316,6 +348,7 @@ enum ClickUpgradePlanTooltipRoute: String {
     case spaceSharing = "ScreenSettingsSpaceShare"
     case confirmInvite = "ScreenInviteConfirm"
     case remoteStorage = "ScreenRemoteStorage"
+    case publish = "ScreenPublish"
 }
 
 enum ChangeObjectTypeRoute: String {
@@ -392,8 +425,7 @@ enum ChatAttachmentType: String {
     case photo = "Photo"
     case file = "File"
     case camera = "Camera"
-    case pages = "Pages"
-    case lists = "Lists"
+    case pagesLists = "PagesLists"
 }
 
 enum ScreenAllowPushType: String {
@@ -412,3 +444,30 @@ enum SentMessageType: String {
     case attachment = "Attachment"
     case mixed = "Mixed"
 }
+
+enum UploadMediaRoute: String {
+    case camera = "Camera"
+    case scan = "Scan"
+    case filePicker = "FilePicker"
+}
+
+enum ScreenSlashMenuRoute: String {
+    case slash = "Slash"
+    case keyboardBar = "KeyboardBar"
+}
+
+enum UndoRedoResultType: String {
+    case `true` = "True"
+    case `false` = "False"
+}
+
+enum ShareObjectOpenPageRoute: String {
+    case menu = "Menu"
+    case notification = "Notification"
+}
+
+enum MediaFileScreenRoute: String {
+    case widget = "Widget"
+    case chat = "Chat"
+}
+

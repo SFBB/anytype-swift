@@ -116,6 +116,15 @@ final class EditorRouter: NSObject, EditorRouterProtocol, ObjectSettingsCoordina
         navigationContext.present(vc)
     }
     
+    func showCamera(onMediaTaken: @escaping (ImagePickerMediaType) -> Void) {
+        output?.showCamera(SimpleCameraData(onMediaTaken: onMediaTaken))
+    }
+    
+    func showDocumentScanner(completion: @escaping (Result<[UIImage], any Error>) -> Void) {
+        let vc = DocumentScannerView(completion: completion).ignoresSafeArea()
+        navigationContext.present(vc, modalPresentationStyle: .overFullScreen)
+    }
+    
     func saveFile(fileURL: URL, type: FileContentType) {
         fileCoordinator.downloadFileAt(fileURL, withType: type, spaceId: document.spaceId)
     }

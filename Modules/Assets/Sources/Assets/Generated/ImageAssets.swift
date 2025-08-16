@@ -550,6 +550,9 @@ extension ImageAsset {
       public static let inactive = ImageAsset.bundle(name: "Chat/SendMessage/inactive")
     }
   }
+  public enum Controls {
+    public static let play = ImageAsset.bundle(name: "Controls/Play")
+  }
   public enum Dialog {
     public static let coffee = ImageAsset.bundle(name: "Dialog/coffee")
     public static let duck = ImageAsset.bundle(name: "Dialog/duck")
@@ -561,6 +564,34 @@ extension ImageAsset {
     public static let update = ImageAsset.bundle(name: "Dialog/update")
     public static let updated = ImageAsset.bundle(name: "Dialog/updated")
   }
+  public enum Embeds {
+    public static let bilibili = ImageAsset.bundle(name: "Embeds/Bilibili")
+    public static let chart = ImageAsset.bundle(name: "Embeds/Chart")
+    public static let codepen = ImageAsset.bundle(name: "Embeds/Codepen")
+    public static let drawio = ImageAsset.bundle(name: "Embeds/Drawio")
+    public static let excalidraw = ImageAsset.bundle(name: "Embeds/Excalidraw")
+    public static let externalImage = ImageAsset.bundle(name: "Embeds/ExternalImage")
+    public static let facebook = ImageAsset.bundle(name: "Embeds/Facebook")
+    public static let figma = ImageAsset.bundle(name: "Embeds/Figma")
+    public static let genericEmbedIcon = ImageAsset.bundle(name: "Embeds/GenericEmbedIcon")
+    public static let githubGist = ImageAsset.bundle(name: "Embeds/GithubGist")
+    public static let googleMaps = ImageAsset.bundle(name: "Embeds/GoogleMaps")
+    public static let graphviz = ImageAsset.bundle(name: "Embeds/Graphviz")
+    public static let instagram = ImageAsset.bundle(name: "Embeds/Instagram")
+    public static let kroki = ImageAsset.bundle(name: "Embeds/Kroki")
+    public static let latex = ImageAsset.bundle(name: "Embeds/Latex")
+    public static let mermaid = ImageAsset.bundle(name: "Embeds/Mermaid")
+    public static let miro = ImageAsset.bundle(name: "Embeds/Miro")
+    public static let openStreetMap = ImageAsset.bundle(name: "Embeds/OpenStreetMap")
+    public static let reddit = ImageAsset.bundle(name: "Embeds/Reddit")
+    public static let sketchfab = ImageAsset.bundle(name: "Embeds/Sketchfab")
+    public static let soundcloud = ImageAsset.bundle(name: "Embeds/Soundcloud")
+    public static let spotify = ImageAsset.bundle(name: "Embeds/Spotify")
+    public static let telegram = ImageAsset.bundle(name: "Embeds/Telegram")
+    public static let twitter = ImageAsset.bundle(name: "Embeds/Twitter")
+    public static let vimeo = ImageAsset.bundle(name: "Embeds/Vimeo")
+    public static let youtube = ImageAsset.bundle(name: "Embeds/Youtube")
+  }
   public enum FileTypes {
     public static let archive = ImageAsset.bundle(name: "FileTypes/Archive")
     public static let audio = ImageAsset.bundle(name: "FileTypes/Audio")
@@ -571,12 +602,20 @@ extension ImageAsset {
     public static let table = ImageAsset.bundle(name: "FileTypes/Table")
     public static let text = ImageAsset.bundle(name: "FileTypes/Text")
     public static let video = ImageAsset.bundle(name: "FileTypes/Video")
+    public enum WithoutIcon {
+      public static let error = ImageAsset.bundle(name: "FileTypes/WithoutIcon/Error")
+    }
   }
   public enum Layout {
     public static let basic = ImageAsset.bundle(name: "Layout/Basic")
     public static let note = ImageAsset.bundle(name: "Layout/Note")
     public static let profile = ImageAsset.bundle(name: "Layout/Profile")
     public static let task = ImageAsset.bundle(name: "Layout/Task")
+  }
+  public enum MessageStatus {
+    public static let failed = ImageAsset.bundle(name: "MessageStatus/Failed")
+    public static let loading = ImageAsset.bundle(name: "MessageStatus/Loading")
+    public static let synced = ImageAsset.bundle(name: "MessageStatus/Synced")
   }
   public enum NavigationBase {
     public static let add = ImageAsset.bundle(name: "NavigationBase/Add")
@@ -615,10 +654,10 @@ extension ImageAsset {
     public static let debug = ImageAsset.bundle(name: "Settings/Debug")
     public static let fileStorage = ImageAsset.bundle(name: "Settings/FileStorage")
     public static let keychainPhrase = ImageAsset.bundle(name: "Settings/KeychainPhrase")
+    public static let logOut = ImageAsset.bundle(name: "Settings/Log Out")
     public static let membership = ImageAsset.bundle(name: "Settings/Membership")
+    public static let mySites = ImageAsset.bundle(name: "Settings/MySites")
     public static let notifications = ImageAsset.bundle(name: "Settings/Notifications")
-    public static let personalization = ImageAsset.bundle(name: "Settings/Personalization")
-    public static let pinCode = ImageAsset.bundle(name: "Settings/PinCode")
     public static let spaces = ImageAsset.bundle(name: "Settings/Spaces")
   }
   public enum System {
@@ -672,6 +711,7 @@ extension ImageAsset {
     public static let plus = ImageAsset.bundle(name: "x18/Plus")
     public static let search = ImageAsset.bundle(name: "x18/Search")
     public static let slashMenuArrow = ImageAsset.bundle(name: "x18/Slash Menu Arrow")
+    public static let tick = ImageAsset.bundle(name: "x18/Tick")
     public static let updateApp = ImageAsset.bundle(name: "x18/Update App")
     public static let webLink = ImageAsset.bundle(name: "x18/Web link")
     public static let redAttention = ImageAsset.bundle(name: "x18/redAttention")
@@ -686,6 +726,7 @@ extension ImageAsset {
   }
   public enum X24 {
     public static let ai = ImageAsset.bundle(name: "x24/AI")
+    public static let addMembers = ImageAsset.bundle(name: "x24/Add Members")
     public static let add = ImageAsset.bundle(name: "x24/Add")
     public enum Arrow {
       public static let down = ImageAsset.bundle(name: "x24/Arrow/Down")
@@ -714,6 +755,7 @@ extension ImageAsset {
       public static let unfavorite = ImageAsset.bundle(name: "x24/Favorite/Unfavorite")
     }
     public static let folder = ImageAsset.bundle(name: "x24/Folder")
+    public static let lock = ImageAsset.bundle(name: "x24/Lock")
     public static let member = ImageAsset.bundle(name: "x24/Member")
     public static let mention = ImageAsset.bundle(name: "x24/Mention")
     public static let more = ImageAsset.bundle(name: "x24/More")
@@ -727,6 +769,7 @@ extension ImageAsset {
     public static let `open` = ImageAsset.bundle(name: "x24/Open")
     public static let phoneNumber = ImageAsset.bundle(name: "x24/Phone Number")
     public static let pin = ImageAsset.bundle(name: "x24/Pin")
+    public static let plusRounded = ImageAsset.bundle(name: "x24/Plus Rounded")
     public static let plus = ImageAsset.bundle(name: "x24/Plus")
     public static let privateSpace = ImageAsset.bundle(name: "x24/Private Space")
     public static let properties = ImageAsset.bundle(name: "x24/Properties")
@@ -751,15 +794,18 @@ extension ImageAsset {
       public static let list = ImageAsset.bundle(name: "x24/View/List")
       public static let table = ImageAsset.bundle(name: "x24/View/Table")
     }
+    public static let web = ImageAsset.bundle(name: "x24/Web")
     public static let allObjects = ImageAsset.bundle(name: "x24/allObjects")
     public static let bin = ImageAsset.bundle(name: "x24/bin")
+    public static let editor = ImageAsset.bundle(name: "x24/editor")
+    public static let exclamation = ImageAsset.bundle(name: "x24/exclamation")
+    public static let viewer = ImageAsset.bundle(name: "x24/viewer")
   }
   public enum X28 {
     public static let sort = ImageAsset.bundle(name: "x28/Sort")
   }
   public enum X32 {
     public static let actions = ImageAsset.bundle(name: "x32/Actions")
-    public static let actions2 = ImageAsset.bundle(name: "x32/Actions2")
     public static let addBelow = ImageAsset.bundle(name: "x32/Add Below")
     public enum AddColumn {
       public static let above = ImageAsset.bundle(name: "x32/Add Column/Above")
@@ -839,12 +885,14 @@ extension ImageAsset {
     public static let plus = ImageAsset.bundle(name: "x32/Plus")
     public static let properties = ImageAsset.bundle(name: "x32/Properties")
     public static let qrCode = ImageAsset.bundle(name: "x32/QRCode")
+    public static let qrCodeJoin = ImageAsset.bundle(name: "x32/QrCodeJoin")
     public static let remove = ImageAsset.bundle(name: "x32/Remove")
     public static let rename = ImageAsset.bundle(name: "x32/Rename")
     public static let replace = ImageAsset.bundle(name: "x32/Replace")
+    public static let reply = ImageAsset.bundle(name: "x32/Reply")
     public static let restore = ImageAsset.bundle(name: "x32/Restore")
     public static let search = ImageAsset.bundle(name: "x32/Search")
-    public static let slashMenu = ImageAsset.bundle(name: "x32/Slash Menu")
+    public static let slashMenu = ImageAsset.bundle(name: "x32/SlashMenu")
     public static let sort = ImageAsset.bundle(name: "x32/Sort")
     public static let style = ImageAsset.bundle(name: "x32/Style")
     public static let tableOfContents = ImageAsset.bundle(name: "x32/Table of Contents")
@@ -862,6 +910,8 @@ extension ImageAsset {
     public static let view = ImageAsset.bundle(name: "x32/View")
     public static let widgets = ImageAsset.bundle(name: "x32/Widgets")
     public static let addFilled = ImageAsset.bundle(name: "x32/add_filled")
+    public static let copyLink = ImageAsset.bundle(name: "x32/copy link")
+    public static let shareLink = ImageAsset.bundle(name: "x32/share link")
   }
   public enum X40 {
     public static let actions = ImageAsset.bundle(name: "x40/Actions")
@@ -871,6 +921,7 @@ extension ImageAsset {
     public static let bookmark = ImageAsset.bundle(name: "x40/Bookmark")
     public static let bulleted = ImageAsset.bundle(name: "x40/Bulleted")
     public static let callout = ImageAsset.bundle(name: "x40/Callout")
+    public static let camera = ImageAsset.bundle(name: "x40/Camera")
     public static let checkbox = ImageAsset.bundle(name: "x40/Checkbox")
     public static let codeSnippet = ImageAsset.bundle(name: "x40/Code Snippet")
     public static let code = ImageAsset.bundle(name: "x40/Code")
@@ -889,6 +940,7 @@ extension ImageAsset {
     public static let other = ImageAsset.bundle(name: "x40/Other")
     public static let picture = ImageAsset.bundle(name: "x40/Picture")
     public static let properties = ImageAsset.bundle(name: "x40/Properties")
+    public static let scanDocuments = ImageAsset.bundle(name: "x40/ScanDocuments")
     public static let simpleTables = ImageAsset.bundle(name: "x40/Simple Tables")
     public static let sorts = ImageAsset.bundle(name: "x40/Sorts")
     public static let strikethrough = ImageAsset.bundle(name: "x40/Strikethrough")

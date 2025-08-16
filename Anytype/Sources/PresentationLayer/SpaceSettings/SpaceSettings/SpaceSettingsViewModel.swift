@@ -68,6 +68,7 @@ final class SpaceSettingsViewModel: ObservableObject {
     @Published var shareInviteLink: URL?
     @Published var qrInviteLink: URL?
     @Published private(set) var inviteLink: URL?
+    @Published var participantsCount: Int = 0
     
     let workspaceInfo: AccountInfo
     private var participantSpaceView: ParticipantSpaceViewData?
@@ -83,6 +84,11 @@ final class SpaceSettingsViewModel: ObservableObject {
     
     func onInfoTap() {
         showInfoView.toggle()
+    }
+    
+    func onCopyTitleTap() {
+        UIPasteboard.general.string = spaceName
+        snackBarData = ToastBarData(Loc.copiedToClipboard(spaceName), type: .success)
     }
     
     func onWallpaperTap() {
@@ -102,7 +108,7 @@ final class SpaceSettingsViewModel: ObservableObject {
         showSpaceDeleteAlert.toggle()
     }
     
-    func onShareTap() {
+    func onMembersTap() {
         output?.onSpaceShareSelected()
     }
     
@@ -114,10 +120,6 @@ final class SpaceSettingsViewModel: ObservableObject {
         showSpaceLeaveAlert.toggle()
     }
     
-    func onMembersTap() {
-        output?.onSpaceMembersSelected()
-    }
-    
     func onMembershipUpgradeTap() {
         AnytypeAnalytics.instance().logClickUpgradePlanTooltip(type: .sharedSpaces, route: .spaceSettings)
         membershipUpgradeReason = .numberOfSharedSpaces
@@ -127,7 +129,8 @@ final class SpaceSettingsViewModel: ObservableObject {
         output?.onNotificationsSelected()
     }
     
-    func onInviteTap() {
+    func onShareTap() {
+        AnytypeAnalytics.instance().logClickShareSpaceShareLink(route: .spaceSettings)
         Task {
             try await generateInviteIfNeeded()
             shareInviteLink = inviteLink
@@ -138,6 +141,16 @@ final class SpaceSettingsViewModel: ObservableObject {
         Task {
             try await generateInviteIfNeeded()
             qrInviteLink = inviteLink
+        }
+    }
+    
+    func onCopyLinkTap() {
+        Task {
+            try await generateInviteIfNeeded()
+            guard let inviteLink else { return }
+            AnytypeAnalytics.instance().logClickShareSpaceCopyLink(route: .spaceSettings)
+            UIPasteboard.general.string = inviteLink.absoluteString
+            snackBarData = ToastBarData(Loc.copiedToClipboard(Loc.link), type: .success)
         }
     }
     
@@ -162,12 +175,13 @@ final class SpaceSettingsViewModel: ObservableObject {
         }
     }
 
-    func onTitleTap() {
+    func onEditTap() {
         editingData = SettingsInfoEditingViewData(
             title: Loc.name,
             placeholder: Loc.untitled,
             initialValue: spaceName,
             font: .bodySemibold,
+            usecase: .spaceName,
             onSave: { [weak self] in
                 guard let self else { return }
                 saveDetails(name: $0, description: spaceDescription)
@@ -175,18 +189,6 @@ final class SpaceSettingsViewModel: ObservableObject {
         )
     }
     
-    func onDescriptionTap() {
-        editingData = SettingsInfoEditingViewData(
-            title: Loc.description,
-            placeholder: Loc.addADescription,
-            initialValue: spaceDescription,
-            font: .previewTitle1Regular,
-            onSave: { [weak self] in
-                guard let self else { return }
-                saveDetails(name: spaceName, description: $0)
-            }
-        )
-    }
     
     func onBinTap() {
         output?.onBinSelected()
@@ -212,6 +214,7 @@ final class SpaceSettingsViewModel: ObservableObject {
     
     private func startJoiningTask() async {
         for await participants in participantsSubscription.participantsPublisher.values {
+            participantsCount = participants.count
             joiningCount = participants.filter { $0.status == .joining }.count
             owner = participants.first { $0.isOwner }
             updateViewState()

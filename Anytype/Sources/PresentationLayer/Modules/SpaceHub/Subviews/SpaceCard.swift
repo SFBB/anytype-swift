@@ -10,8 +10,9 @@ struct SpaceCard: View, @preconcurrency Equatable {
     let onTap: () -> Void
     let onTapCopy: () -> Void
     let onTapMute: () -> Void
-    let onTapLeave: () -> Void
-    let onTapDelete: () async throws -> Void
+    let onTapPin: () async throws -> Void
+    let onTapUnpin: () async throws -> Void
+    let onTapSettings: () -> Void
     
     var body: some View {
         Button {
@@ -35,17 +36,19 @@ struct SpaceCard: View, @preconcurrency Equatable {
             Divider()
         }
         
-        if FeatureFlags.muteSpacePossibility, spaceData.spaceView.isShared {
-            muteButton
-            Divider()
+        if FeatureFlags.pinnedSpaces {
+            if spaceData.spaceView.isPinned {
+                unpinButton
+            } else {
+                pinButton
+            }
         }
         
-        if spaceData.space.canLeave {
-            leaveButton
+        if FeatureFlags.muteSpacePossibility, spaceData.spaceView.isShared {
+            muteButton
         }
-        if spaceData.space.canBeDeleted {
-            deleteButton
-        }
+        
+        settingsButton
     }
     
     private var copyButton: some View {
@@ -68,19 +71,34 @@ struct SpaceCard: View, @preconcurrency Equatable {
         }
     }
     
-    private var leaveButton: some View {
-        Button(role: .destructive) {
-            onTapLeave()
+    private var unpinButton: some View {
+        AsyncButton {
+            try await onTapUnpin()
         } label: {
-            Text(Loc.leaveASpace)
+            Text(Loc.unpin)
+            Spacer()
+            Image(systemName: "pin.slash")
         }
     }
     
-    private var deleteButton: some View {
-        AsyncButton(role: .destructive) {
-            try await onTapDelete()
+    private var pinButton: some View {
+        AsyncButton {
+            try await onTapPin()
         } label: {
-            Text(Loc.delete)
+            Text(Loc.pin)
+            Spacer()
+            Image(systemName: "pin")
+        }
+    }
+    
+    
+    private var settingsButton: some View {
+        Button {
+            onTapSettings()
+        } label: {
+            Text(Loc.SpaceSettings.title)
+            Spacer()
+            Image(systemName: "gearshape")
         }
     }
     

@@ -20,7 +20,7 @@ enum PushNotificationsPermissionStatus: Codable {
 
 protocol PushNotificationsPermissionServiceProtocol: AnyObject, Sendable {
     func authorizationStatus() async -> PushNotificationsPermissionStatus
-    func requestAuthorization() async -> Bool
+    func requestAuthorizationAndRegisterIfNeeded() async -> Bool
     func registerForRemoteNotificationsIfNeeded() async
     func unregisterForRemoteNotifications()
 }
@@ -34,9 +34,12 @@ final class PushNotificationsPermissionService: PushNotificationsPermissionServi
         return settings.authorizationStatus.asPushNotificationsPermissionStatus
     }
     
-    func requestAuthorization() async -> Bool {
+    func requestAuthorizationAndRegisterIfNeeded() async -> Bool {
         do {
             let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
+            if granted {
+                registerForRemoteNotifications()
+            }
             return granted
         } catch {
             anytypeAssertionFailure("Notifications authorization request error", info: ["error": error.localizedDescription])
@@ -44,9 +47,7 @@ final class PushNotificationsPermissionService: PushNotificationsPermissionServi
         }
     }
     
-    func registerForRemoteNotificationsIfNeeded() async {
-        guard FeatureFlags.enablePushMessages else { return }
-        
+    func registerForRemoteNotificationsIfNeeded() async {        
         let status = await authorizationStatus()
         if status == .authorized {
             registerForRemoteNotifications()

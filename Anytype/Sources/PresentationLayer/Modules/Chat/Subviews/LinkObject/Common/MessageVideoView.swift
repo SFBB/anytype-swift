@@ -5,23 +5,38 @@ import Services
 struct MessageVideoView: View {
     
     let url: URL?
+    let syncStatus: SyncStatus?
+    let syncError: SyncError?
     
     @StateObject private var model = MessageLinkVideoViewModel()
     
-    init(url: URL?) {
+    init(url: URL?, syncStatus: SyncStatus? = nil, syncError: SyncError? = nil) {
         self.url = url
+        self.syncStatus = syncStatus
+        self.syncError = syncError
     }
     
     var body: some View {
         GeometryReader { reader in
             ZStack {
                 if let image = model.image {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFill()
-                    Color.black.opacity(0.2)
-                    Image(asset: .X32.video)
-                        .foregroundStyle(Color.white)
+                    ZStack {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: reader.size.width, height: reader.size.height, alignment: .center)
+                            .clipped()
+                        MessageMediaUploadingStatus(
+                            syncStatus: syncStatus,
+                            syncError: syncError
+                        ) {
+                            MessageLoadingStateContainer {
+                                Image(asset: .Controls.play)
+                                    .foregroundStyle(Color.white)
+                            }
+                            .background(.black.opacity(0.5))
+                        }
+                    }
                 } else if model.hasError {
                     MessageAttachmentErrorIndicator()
                 } else {
@@ -57,6 +72,16 @@ private final class MessageLinkVideoViewModel: ObservableObject {
 
 extension MessageVideoView {
     init(details: MessageAttachmentDetails) {
-        self = MessageVideoView(url: ContentUrlBuilder.fileUrl(fileId: details.id))
+        self.init(
+            url: ContentUrlBuilder.fileUrl(fileId: details.id),
+            syncStatus: details.syncStatus,
+            syncError: details.syncError
+        )
     }
+}
+
+
+#Preview {
+    MessageVideoView(url: nil, syncStatus: .syncing, syncError: nil)
+        .frame(width: 100, height: 100)
 }

@@ -10,9 +10,7 @@ struct SpaceHubView: View {
     @State private var offset: CGPoint?
     
     init(output: (any SpaceHubModuleOutput)?) {
-        _model = StateObject(wrappedValue: SpaceHubViewModel(
-            output: output, showOnlyChats: FeatureFlags.newHome ? true : false
-        ))
+        _model = StateObject(wrappedValue: SpaceHubViewModel(output: output))
     }
     
     var body: some View {
@@ -22,17 +20,8 @@ struct SpaceHubView: View {
             .task(item: model.spaceMuteData) { data in
                 await model.pushNotificationSetSpaceMode(data: data)
             }
-            
-            .sheet(isPresented: $model.showSettings) {
-                SettingsCoordinatorView()
-            }
-            .anytypeSheet(item: $model.spaceIdToLeave) {
-                SpaceLeaveAlert(spaceId: $0.value)
-            }
-            .anytypeSheet(item: $model.spaceIdToDelete) {
-                SpaceDeleteAlert(spaceId: $0.value)
-            }
             .homeBottomPanelHidden(true)
+            .snackbar(toastBarData: $model.toastBarData)
     }
     
     var content: some View {
@@ -48,8 +37,12 @@ struct SpaceHubView: View {
     
     private var mainContent: some View {
         VStack(spacing: 0) {
-            if let spaces = model.spaces, let unreadSpaces = model.unreadSpaces, spaces.isNotEmpty || unreadSpaces.isNotEmpty {
+            Spacer.fixedHeight(108) // navbar
+            
+            if let spaces = model.filteredSpaces, let unreadSpaces = model.filteredUnreadSpaces, spaces.isNotEmpty || unreadSpaces.isNotEmpty {
                 scrollView(unread: unreadSpaces, spaces: spaces)
+            } else if model.searchText.isNotEmpty {
+                searchEmptyStateView
             } else if model.spaces.isNotNil {
                 emptyStateView
             } else {
@@ -62,10 +55,18 @@ struct SpaceHubView: View {
         .animation(.default, value: model.spaces)
     }
     
+    private var searchBar: some View {
+        SearchBar(
+            text: $model.searchText,
+            focused: false,
+            placeholder: Loc.search,
+            shouldShowDivider: false
+        ).frame(height: 60)
+    }
+    
     private func scrollView(unread: [ParticipantSpaceViewDataWithPreview], spaces: [ParticipantSpaceViewDataWithPreview]) -> some View {
         OffsetAwareScrollView(showsIndicators: false, offsetChanged: { offset = $0}) {
             VStack(spacing: 0) {
-                Spacer.fixedHeight(68) // navbar
                 HomeUpdateSubmoduleView().padding(8)
                 
                 if #available(iOS 17.0, *) {
@@ -100,7 +101,6 @@ struct SpaceHubView: View {
     
     @ViewBuilder
     private var emptyStateView: some View {
-        Spacer.fixedHeight(44) // navbar
         HomeUpdateSubmoduleView().padding(8)
         EmptyStateView(
             title: Loc.thereAreNoSpacesYet,
@@ -109,6 +109,17 @@ struct SpaceHubView: View {
             buttonData: EmptyStateView.ButtonData(title: Loc.createSpace) {
                 model.onTapCreateSpace()
             }
+        )
+    }
+    
+    @ViewBuilder
+    private var searchEmptyStateView: some View {
+        HomeUpdateSubmoduleView().padding(8)
+        EmptyStateView(
+            title: Loc.noMatchesFound,
+            subtitle: "",
+            style: .withImage,
+            buttonData: nil
         )
     }
     
@@ -129,40 +140,26 @@ struct SpaceHubView: View {
     }
     
     private var navBar: some View {
-        HStack(alignment: .center, spacing: 0) {
-            Button { model.showSettings = true }
-            label: {
-                IconView(icon: model.profileIcon)
-                    .foregroundStyle(Color.Control.active)
-                    .frame(width: 28, height: 28)
-                    .overlay(alignment: .topTrailing) {
-                        if model.notificationsDenied {
-                            attentionDotView
-                        }
-                    }
-                    .padding(.vertical, 8)
-            }
-            
-            Spacer()
-            AnytypeText(FeatureFlags.spaceHubNewTitle ? Loc.myChannels : Loc.mySpaces, style: .uxTitle1Semibold)
-            Spacer()
-            
-            Button { model.onTapCreateSpace() }
-            label: {
-                Image(asset: .X32.addFilled)
-                    .foregroundStyle(Color.Control.active)
-                    .frame(width: 32, height: 32)
-                    .padding(.vertical, 6)
-            }
+        VStack(spacing: 4) {
+            navBarContent
+            searchBar
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
-        .if(applyBlur, if: {
-            $0.background(Material.ultraThinMaterial)
-        }, else: {
-            $0.background(Color.Background.primary)
-        })
-        .frame(height: 44)
+        .frame(height: 108)
+        .background(applyBlur ? AnyShapeStyle(Material.ultraThinMaterial) : AnyShapeStyle(Color.Background.primary))
+    }
+    
+    private var navBarContent: some View {
+        SpaceHubNavBar(
+            profileIcon: model.profileIcon,
+            notificationsDenied: model.notificationsDenied,
+            showLoading: model.showLoading,
+            onTapSettings: {
+                model.onTapSettings()
+            },
+            onTapCreateSpace: {
+                model.onTapCreateSpace()
+            }
+        )
     }
     
     private func spaceCard(_ space: ParticipantSpaceViewDataWithPreview, draggable: Bool) -> some View {
@@ -172,10 +169,7 @@ struct SpaceHubView: View {
             draggable: draggable,
             draggedSpace: $draggedSpace,
             onTap: {
-                model.onSpaceTap(
-                    spaceId: space.spaceView.targetSpaceId,
-                    presentation: FeatureFlags.newHome ? .chat : nil
-                )
+                model.onSpaceTap(spaceId: space.spaceView.targetSpaceId)
             },
             onTapCopy: {
                 model.copySpaceInfo(spaceView: space.spaceView)
@@ -183,11 +177,14 @@ struct SpaceHubView: View {
             onTapMute: {
                 model.muteSpace(spaceView: space.spaceView)
             },
-            onTapLeave: {
-                model.leaveSpace(spaceId: space.spaceView.targetSpaceId)
+            onTapPin: {
+                try await model.pin(spaceView: space.spaceView)
             },
-            onTapDelete: {
-                try await model.deleteSpace(spaceId: space.spaceView.targetSpaceId)
+            onTapUnpin: {
+                try await model.unpin(spaceView: space.spaceView)
+            },
+            onTapSettings: {
+                model.openSpaceSettings(spaceId: space.spaceView.targetSpaceId)
             }
         )
         .equatable()
@@ -202,22 +199,6 @@ struct SpaceHubView: View {
                 )
             )
         }
-    }
-    
-    private var attentionDotView: some View {
-        Circle()
-            .fill(Color.System.red)
-            .frame(width: 8, height: 8)
-            .background(
-                Circle()
-                    .if(applyBlur, if: {
-                        $0.fill(Material.ultraThinMaterial)
-                    }, else: {
-                        $0.fill(Color.Background.primary)
-                    })
-                    .frame(width: 12, height: 12)
-            )
-            .padding(.top, -2)
     }
     
     private var applyBlur: Bool {

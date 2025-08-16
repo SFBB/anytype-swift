@@ -12,10 +12,17 @@ struct SettingsView: View {
     var body: some View {
         VStack(spacing: 0) {
             DragIndicator()
-            TitleView(title: Loc.Settings.title)
-                .onTapGesture(count: 5) {
-                    model.showDebugMenu.toggle()
+            TitleView(title: Loc.Settings.title) {
+                Menu {
+                    Button(Loc.deleteVault) { model.onDeleteAccountTap() }
+                    Button(Loc.logOut, role: .destructive) { model.onLogoutTap() }
+                } label: {
+                    MoreIndicator()
                 }
+            }
+            .onTapGesture(count: 5) {
+                model.showDebugMenu.toggle()
+            }
             
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 0) {
@@ -24,7 +31,7 @@ struct SettingsView: View {
                         model.onChangeIconTap()
                     })
                     
-                    SectionHeaderView(title: Loc.settings)
+                    SectionHeaderView(title: Loc.application)
                     
                     SettingsSectionItemView(
                         name: Loc.appearance,
@@ -32,12 +39,31 @@ struct SettingsView: View {
                         onTap: { model.onAppearanceTap() }
                     )
                     
+                    if FeatureFlags.addNotificationsSettings {
+                        SettingsSectionItemView(
+                            name: Loc.notifications,
+                            imageAsset: .Settings.notifications,
+                            decoration: .arrow(needAttention: model.notificationsDenied),
+                            onTap: { model.onNotificationsTap() }
+                        )
+                    }
+                    
                     SettingsSectionItemView(
-                        name: Loc.notifications,
-                        imageAsset: .Settings.notifications,
-                        decoration: .arrow(needAttention: model.notificationsDenied),
-                        onTap: { model.onNotificationsTap() }
+                        name: Loc.loginKey,
+                        imageAsset: .Settings.keychainPhrase,
+                        onTap: { model.onAccountDataTap() }
                     )
+                    
+                    if model.canShowMemberhip {
+                        SettingsSectionItemView(
+                            name: Loc.membership,
+                            imageAsset: .Settings.membership,
+                            decoration: model.membership.decoration,
+                            onTap: { model.onMembershipTap() }
+                        )
+                    }
+                    
+                    SectionHeaderView(title: Loc.Settings.dataManagement)
                     
                     SettingsSectionItemView(
                         name: Loc.Spaces.title,
@@ -52,19 +78,12 @@ struct SettingsView: View {
                     )
                     
                     SettingsSectionItemView(
-                        name: Loc.Settings.vaultAndAccess,
-                        imageAsset: .Settings.keychainPhrase,
-                        onTap: { model.onAccountDataTap() }
+                        name: Loc.mySites,
+                        imageAsset: .Settings.mySites,
+                        onTap: { model.onMySitesTap() }
                     )
                     
-                    if model.canShowMemberhip {
-                        SettingsSectionItemView(
-                            name: Loc.membership,
-                            imageAsset: .Settings.membership,
-                            decoration: model.membership.decoration,
-                            onTap: { model.onMembershipTap() }
-                        )
-                    }
+                    SectionHeaderView(title: Loc.misc)
                     
                     SettingsSectionItemView(
                         name: Loc.about,
@@ -79,6 +98,13 @@ struct SettingsView: View {
                         onTap: { model.onDebugMenuTap() }
                     )
                     #endif
+                    
+                    SettingsSectionItemView(
+                        name: Loc.logOut,
+                        textColor: .Pure.red,
+                        imageAsset: .Settings.logOut,
+                        onTap: { model.onLogoutTap() }
+                    )
                 }
             }
             .padding(.horizontal, 20)

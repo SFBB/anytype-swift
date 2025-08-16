@@ -10,6 +10,8 @@ struct SpaceCardLabel: View {
     private let dateFormatter = HistoryDateFormatter()
     @Binding var draggedSpace: ParticipantSpaceViewDataWithPreview?
     
+    @Namespace private var namespace
+    
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
             IconView(icon: spaceData.spaceView.objectIconImage)
@@ -22,7 +24,7 @@ struct SpaceCardLabel: View {
                         .foregroundStyle(Color.Text.primary)
                     if isMuted {
                         Spacer.fixedWidth(8)
-                        Image(asset: .X18.muted).foregroundColor(.Control.active)
+                        Image(asset: .X18.muted).foregroundColor(.Control.secondary)
                     }
                     Spacer(minLength: 8)
                     createdDate
@@ -31,20 +33,25 @@ struct SpaceCardLabel: View {
                     info
                     Spacer()
                     unreadCounters
+                    pin
                 }
                 Spacer(minLength: 1)
             }
-            
+            // Fixing the animation when the cell is moved and updated inside
+            // Optimization - create a data model for SpaceCard and map to in in SpaceHubViewModel on background thread
+            .id(spaceData.hashValue)
+            .matchedGeometryEffect(id: "content", in: namespace, properties: .position, anchor: .topLeading)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
         // Optimization for fast sizeThatFits
         .frame(height: 80)
         .background(Color.Background.primary)
-        
-        .if(spaceData.spaceView.isLoading) { $0.redacted(reason: .placeholder) }
+        // Delete this line with FeatureFlags.spaceLoadingForScreen
+        .if(spaceData.spaceView.isLoading && !FeatureFlags.spaceLoadingForScreen) { $0.redacted(reason: .placeholder) }
         .contentShape([.dragPreview, .contextMenuPreview], RoundedRectangle(cornerRadius: 20, style: .continuous))
-        .if(draggable) {
+        
+        .if((!FeatureFlags.pinnedSpaces && draggable) || spaceData.spaceView.isPinned) {
             $0.onDrag {
                 draggedSpace = spaceData
                 return NSItemProvider()
@@ -83,7 +90,7 @@ struct SpaceCardLabel: View {
                 // Show attachements and 1 line of text
                 messageWithAttachements(message)
             } else {
-                Text(message.creator?.name ?? Loc.Chat.newMessages)
+                Text(message.creator?.title ?? Loc.Chat.newMessages)
                     .anytypeStyle(.uxTitle2Medium).lineLimit(1)
             }
         }
@@ -92,7 +99,7 @@ struct SpaceCardLabel: View {
     func messageWithoutAttachements(_ message: LastMessagePreview) -> some View {
         Group {
             if let creator = message.creator {
-                Text(creator.name + ": ").anytypeFontStyle(.uxTitle2Medium) +
+                Text(creator.title + ": ").anytypeFontStyle(.uxTitle2Medium) +
                 Text(message.text).anytypeFontStyle(.uxTitle2Regular)
             } else {
                 Text(message.text).anytypeFontStyle(.uxTitle2Regular)
@@ -104,7 +111,7 @@ struct SpaceCardLabel: View {
     func messageWithAttachements(_ message: LastMessagePreview) -> some View {
         HStack(spacing: 2) {
             if let creator = message.creator {
-                Text(creator.name + ":").anytypeStyle(.uxTitle2Medium).lineLimit(1)
+                Text(creator.title + ":").anytypeStyle(.uxTitle2Medium).lineLimit(1)
                 Spacer.fixedWidth(4)
             }
             
@@ -122,7 +129,7 @@ struct SpaceCardLabel: View {
         if let lastMessage = spaceData.preview.lastMessage {
             Text(dateFormatter.localizedDateString(for: lastMessage.createdAt, showTodayTime: true))
                 .anytypeStyle(.relation2Regular)
-                .foregroundStyle(Color.Control.transparentActive)
+                .foregroundStyle(Color.Control.transparentSecondary)
         }
     }
     
@@ -137,6 +144,15 @@ struct SpaceCardLabel: View {
                     style: isMuted ? .muted : .highlighted
                 )
             }
+        }
+    }
+    
+    @ViewBuilder
+    private var pin: some View {
+        if !spaceData.preview.hasCounters && FeatureFlags.pinnedSpaces && spaceData.spaceView.isPinned {
+            Image(asset: .X24.pin)
+                .foregroundStyle(Color.Control.secondary)
+                .frame(width: 22, height: 22)
         }
     }
     

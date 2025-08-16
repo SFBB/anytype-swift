@@ -274,6 +274,11 @@ actor ChatMessagesStorage: ChatMessagesStorageProtocol {
                     chatState = data.state
                     updates.insert(.state)
                 }
+            case let .chatUpdateMessageSyncStatus(data):
+                guard data.subIds.contains(subId) else { break }
+                if messages.chatUpdateMessageSyncStatus(data) {
+                    updates.insert(.messages)
+                }
             default:
                 break
             }
@@ -391,7 +396,7 @@ actor ChatMessagesStorage: ChatMessagesStorageProtocol {
         await objectIdsSubscriptionService.startSubscription(
             spaceId: spaceId,
             objectIds: Array(attachmentIds),
-            additionalKeys: [.sizeInBytes, .source, .picture]
+            additionalKeys: [.sizeInBytes, .source, .picture, .syncStatus, .syncError]
         ) { [weak self] details in
             await self?.handleAttachmentSubscription(details: details)
         }

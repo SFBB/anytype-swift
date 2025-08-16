@@ -35,7 +35,6 @@ struct MessageTextBuilder: MessageTextBuilderProtocol, Sendable {
         for mark in content.marks.reversed() {
             let nsRange = NSRange(mark.range)
             guard let range = Range(nsRange, in: message) else {
-                anytypeAssertionFailure("Out of range", info: ["range": nsRange.description, "textLenght": content.text.count.description])
                 continue
             }
             
@@ -47,7 +46,7 @@ struct MessageTextBuilder: MessageTextBuilderProtocol, Sendable {
             case .italic:
                 message[range].font = message[range].font?.italic()
             case .bold:
-                message[range].font = message[range].font?.bold()
+                message[range].font = message[range].font?.weight(.semibold)
             case .underscored:
                 message[range].uiKit.underlineStyle = .single
             case .link:
