@@ -49,13 +49,6 @@ public extension FeatureDescription {
         defaultValue: true
     )
     
-    static let newPlusMenu = FeatureDescription(
-        title: "New plus menu",
-        type: .feature(author: "m@anytype.io", releaseVersion: "demo"),
-        releaseAnytypeValue: false,
-        releaseAnyAppValue: true
-    )
-    
     static let spaceUxTypes = FeatureDescription(
         title: "Create chat space",
         type: .feature(author: "m@anytype.io", releaseVersion: "12"),
@@ -242,9 +235,9 @@ public extension FeatureDescription {
     
     static let newSharingExtension = FeatureDescription(
         title: "New Sharing Extension - IOS-4915",
-        type: .feature(author: "m@anytype.io", releaseVersion: "12"),
-        defaultValue: false,
-        debugValue: false
+        type: .feature(author: "m@anytype.io", releaseVersion: "13"),
+        defaultValue: true,
+        debugValue: true
     )
     
     static let newSpaceMembersFlow = FeatureDescription(
@@ -265,6 +258,13 @@ public extension FeatureDescription {
         title: "Media carousel for widgets",
         type: .feature(author: "joe_pusya@anytype.io", releaseVersion: "13"),
         defaultValue: true
+    )
+    
+    static let updatedHomePlusMenu = FeatureDescription(
+        title: "Updated home plus menu",
+        type: .feature(author: "joe_pusya@anytype.io", releaseVersion: "?"),
+        defaultValue: false,
+        debugValue: true
     )
 
     // MARK: - Debug
