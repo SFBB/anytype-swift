@@ -22,10 +22,6 @@ public extension FeatureFlags {
         value(for: .hideWebPayments)
     }
 
-    static var homeSpaceLevelChat: Bool {
-        value(for: .homeSpaceLevelChat)
-    }
-
     static var pinnedSpaces: Bool {
         value(for: .pinnedSpaces)
     }
@@ -54,28 +50,12 @@ public extension FeatureFlags {
         value(for: .guideUseCaseForDataSpace)
     }
 
-    static var disableRestoreLastScreen: Bool {
-        value(for: .disableRestoreLastScreen)
-    }
-
-    static var spaceHubNewTitle: Bool {
-        value(for: .spaceHubNewTitle)
-    }
-
     static var chatLayoutInsideSpace: Bool {
         value(for: .chatLayoutInsideSpace)
     }
 
-    static var chatCounters: Bool {
-        value(for: .chatCounters)
-    }
-
     static var joinStream: Bool {
         value(for: .joinStream)
-    }
-
-    static var countersOnSpaceHub: Bool {
-        value(for: .countersOnSpaceHub)
     }
 
     static var simpleSetForTypes: Bool {
@@ -94,10 +74,6 @@ public extension FeatureFlags {
         value(for: .binScreenEmptyAction)
     }
 
-    static var showChatWidget: Bool {
-        value(for: .showChatWidget)
-    }
-
     static var createChatWidget: Bool {
         value(for: .createChatWidget)
     }
@@ -108,14 +84,6 @@ public extension FeatureFlags {
 
     static var addNotificationsSettings: Bool {
         value(for: .addNotificationsSettings)
-    }
-
-    static var chatLoadingIndicator: Bool {
-        value(for: .chatLoadingIndicator)
-    }
-
-    static var anytypeImageCacher: Bool {
-        value(for: .anytypeImageCacher)
     }
 
     static var joinSpaceViaQRCode: Bool {
@@ -168,6 +136,10 @@ public extension FeatureFlags {
 
     static var vaultBackToRoots: Bool {
         value(for: .vaultBackToRoots)
+    }
+
+    static var brandNewAuthFlow: Bool {
+        value(for: .brandNewAuthFlow)
     }
 
     static var rainbowViews: Bool {
@@ -244,7 +216,6 @@ public extension FeatureFlags {
         .fullInlineSetImpl,
         .dndOnCollectionsAndSets,
         .hideWebPayments,
-        .homeSpaceLevelChat,
         .pinnedSpaces,
         .openMediaFileInPreview,
         .spaceUxTypes,
@@ -252,22 +223,15 @@ public extension FeatureFlags {
         .aiToolInSet,
         .anyAppBetaTip,
         .guideUseCaseForDataSpace,
-        .disableRestoreLastScreen,
-        .spaceHubNewTitle,
         .chatLayoutInsideSpace,
-        .chatCounters,
         .joinStream,
-        .countersOnSpaceHub,
         .simpleSetForTypes,
         .doNotWaitCompletionInAnytypePreview,
         .spaceLoadingForScreen,
         .binScreenEmptyAction,
-        .showChatWidget,
         .createChatWidget,
         .muteSpacePossibility,
         .addNotificationsSettings,
-        .chatLoadingIndicator,
-        .anytypeImageCacher,
         .joinSpaceViaQRCode,
         .swipeToReply,
         .supportSimpleEmbedBlocks,
@@ -281,6 +245,7 @@ public extension FeatureFlags {
         .fixCollectionViewReuseCrashInEditor,
         .loadAttachmentsOnHomePlusMenu,
         .vaultBackToRoots,
+        .brandNewAuthFlow,
         .rainbowViews,
         .showAlertOnAssert,
         .analytics,

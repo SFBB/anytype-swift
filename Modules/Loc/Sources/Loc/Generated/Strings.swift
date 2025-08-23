@@ -257,7 +257,6 @@ public enum Loc {
   public static let moveTo = Loc.tr("Localizable", "Move to", fallback: "Move to")
   public static let moveToBin = Loc.tr("Localizable", "Move To Bin", fallback: "Move To Bin")
   public static let mute = Loc.tr("Localizable", "Mute", fallback: "Mute")
-  public static let myChannels = Loc.tr("Localizable", "My Channels", fallback: "My Channels")
   public static let myFirstSpace = Loc.tr("Localizable", "My First Space", fallback: "My First Space")
   public static let myProperties = Loc.tr("Localizable", "My Properties", fallback: "My Properties")
   public static let mySites = Loc.tr("Localizable", "My Sites", fallback: "My Sites")
@@ -697,6 +696,12 @@ public enum Loc {
         public enum Keychain {
           public static let title = Loc.tr("Localizable", "Auth.LoginFlow.Use.Keychain.Title", fallback: "Use keychain")
         }
+      }
+    }
+    public enum Primary {
+      public enum Greeting {
+        public static let pt1 = Loc.tr("Localizable", "Auth.Primary.Greeting.pt1", fallback: "Encrypted, local,")
+        public static let pt2 = Loc.tr("Localizable", "Auth.Primary.Greeting.pt2", fallback: "yours forever")
       }
     }
   }
@@ -1703,7 +1708,7 @@ public enum Loc {
     public static let addButton = Loc.tr("Localizable", "Server.AddButton", fallback: "Add Self-hosted Network")
     public static let anytype = Loc.tr("Localizable", "Server.Anytype", fallback: "Anytype")
     public static let localOnly = Loc.tr("Localizable", "Server.LocalOnly", fallback: "Local-only")
-    public static let network = Loc.tr("Localizable", "Server.Network", fallback: "Network")
+    public static let network = Loc.tr("Localizable", "Server.Network", fallback: "Select Network")
     public static let networks = Loc.tr("Localizable", "Server.Networks", fallback: "Networks")
     public enum LocalOnly {
       public enum Alert {
