@@ -22,10 +22,6 @@ public extension FeatureFlags {
         value(for: .hideWebPayments)
     }
 
-    static var pinnedSpaces: Bool {
-        value(for: .pinnedSpaces)
-    }
-
     static var openMediaFileInPreview: Bool {
         value(for: .openMediaFileInPreview)
     }
@@ -86,20 +82,8 @@ public extension FeatureFlags {
         value(for: .addNotificationsSettings)
     }
 
-    static var joinSpaceViaQRCode: Bool {
-        value(for: .joinSpaceViaQRCode)
-    }
-
     static var swipeToReply: Bool {
         value(for: .swipeToReply)
-    }
-
-    static var supportSimpleEmbedBlocks: Bool {
-        value(for: .supportSimpleEmbedBlocks)
-    }
-
-    static var webPublishing: Bool {
-        value(for: .webPublishing)
     }
 
     static var keyboardMenuUndoRedo: Bool {
@@ -216,7 +200,6 @@ public extension FeatureFlags {
         .fullInlineSetImpl,
         .dndOnCollectionsAndSets,
         .hideWebPayments,
-        .pinnedSpaces,
         .openMediaFileInPreview,
         .spaceUxTypes,
         .enableStreamSpaceType,
@@ -232,10 +215,7 @@ public extension FeatureFlags {
         .chatInDataSpace,
         .muteSpacePossibility,
         .addNotificationsSettings,
-        .joinSpaceViaQRCode,
         .swipeToReply,
-        .supportSimpleEmbedBlocks,
-        .webPublishing,
         .keyboardMenuUndoRedo,
         .newSharingExtension,
         .newSpaceMembersFlow,

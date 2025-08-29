@@ -22,7 +22,7 @@ public enum Loc {
   public static let addLink = Loc.tr("Localizable", "Add link", fallback: "Add link")
   public static let addPhone = Loc.tr("Localizable", "Add phone", fallback: "Add phone")
   public static let addProperty = Loc.tr("Localizable", "Add property", fallback: "Add property")
-  public static let addToFavorite = Loc.tr("Localizable", "Add To Favorite", fallback: "Add To Favorite")
+  public static let addToFavorite = Loc.tr("Localizable", "Add To Favorite", fallback: "Add To Pinned")
   public static func agreementDisclamer(_ p1: Any, _ p2: Any) -> String {
     return Loc.tr("Localizable", "Agreement Disclamer", String(describing: p1), String(describing: p2), fallback: "By continuing you agree to [Terms of Use](%@) and [Privacy Policy](%@)")
   }
@@ -175,8 +175,6 @@ public enum Loc {
   public static let existingProperties = Loc.tr("Localizable", "Existing properties", fallback: "Existing properties")
   public static let export = Loc.tr("Localizable", "Export", fallback: "Export")
   public static let failedToSyncTryingAgain = Loc.tr("Localizable", "Failed to sync, trying again...", fallback: "Failed to sync, trying again...")
-  public static let favorite = Loc.tr("Localizable", "Favorite", fallback: "Favorite")
-  public static let favorites = Loc.tr("Localizable", "Favorites", fallback: "Favorites")
   public static let featuredRelations = Loc.tr("Localizable", "Featured relations", fallback: "Featured properties")
   public static let fields = Loc.tr("Localizable", "Fields", fallback: "Properties")
   public static func file(_ p1: Int) -> String {
@@ -281,7 +279,6 @@ public enum Loc {
   public static func noTypeFoundText(_ p1: Any) -> String {
     return Loc.tr("Localizable", "No type found text", String(describing: p1), fallback: "No type “%@” found. Change your request or create new type.")
   }
-  public static let nodeIsNotConnected = Loc.tr("Localizable", "Node is not connected", fallback: "Node is not connected")
   public static let nonExistentObject = Loc.tr("Localizable", "Non-existent object", fallback: "Non-existent object")
   public static let `none` = Loc.tr("Localizable", "None", fallback: "None")
   public static let note = Loc.tr("Localizable", "Note", fallback: "Note")
@@ -316,7 +313,6 @@ public enum Loc {
   public static let openSettings = Loc.tr("Localizable", "OpenSettings", fallback: "Open Settings")
   public static let other = Loc.tr("Localizable", "Other", fallback: "Other")
   public static let otherRelations = Loc.tr("Localizable", "Other relations", fallback: "Other properties")
-  public static let p2PConnecting = Loc.tr("Localizable", "P2P Connecting", fallback: "P2P Connecting...")
   public static let p2PConnection = Loc.tr("Localizable", "P2P Connection", fallback: "P2P Connection")
   public static let pages = Loc.tr("Localizable", "Pages", fallback: "Pages")
   public static func paidBy(_ p1: Any) -> String {
@@ -379,9 +375,8 @@ public enum Loc {
     return Loc.tr("Localizable", "Relation", p1, fallback: "Plural format key: Relation")
   }
   public static let remove = Loc.tr("Localizable", "Remove", fallback: "Remove")
-  public static let removeFromFavorite = Loc.tr("Localizable", "Remove From Favorite", fallback: "Remove From Favorite")
+  public static let removeFromFavorite = Loc.tr("Localizable", "Remove From Favorite", fallback: "Remove From Pinned")
   public static let removePhoto = Loc.tr("Localizable", "Remove photo", fallback: "Remove photo")
-  public static let removingCache = Loc.tr("Localizable", "Removing cache", fallback: "Removing cache")
   public static let resend = Loc.tr("Localizable", "Resend", fallback: "Resend")
   public static func resendIn(_ p1: Any) -> String {
     return Loc.tr("Localizable", "Resend in", String(describing: p1), fallback: "Resend in %@ sec")
@@ -418,7 +413,6 @@ public enum Loc {
     return Loc.tr("Localizable", "Set of", String(describing: p1), fallback: "Query of %@")
   }
   public static let sets = Loc.tr("Localizable", "Sets", fallback: "Queries")
-  public static let settingUpEncryptedStoragePleaseWait = Loc.tr("Localizable", "Setting up encrypted storage\nPlease wait", fallback: "Setting up encrypted storage\nPlease wait")
   public static let settings = Loc.tr("Localizable", "Settings", fallback: "Settings")
   public static let share = Loc.tr("Localizable", "Share", fallback: "Share")
   public static let shared = Loc.tr("Localizable", "Shared", fallback: "Shared")
@@ -459,7 +453,6 @@ public enum Loc {
     return Loc.tr("Localizable", "There is no type named", String(describing: p1), fallback: "There is no type named %@")
   }
   public static let theseObjectsWillBeDeletedIrrevocably = Loc.tr("Localizable", "These objects will be deleted irrevocably", fallback: "These objects will be deleted irrevocably. You can’t undo this action.")
-  public static let thisObjectDoesnTExist = Loc.tr("Localizable", "This object doesn't exist", fallback: "This object doesn't exist")
   public static let toBin = Loc.tr("Localizable", "To Bin", fallback: "To Bin")
   public static let today = Loc.tr("Localizable", "Today", fallback: "Today")
   public static let tomorrow = Loc.tr("Localizable", "Tomorrow", fallback: "Tomorrow")
@@ -473,7 +466,6 @@ public enum Loc {
   public static let undo = Loc.tr("Localizable", "Undo", fallback: "Undo")
   public static let undoTyping = Loc.tr("Localizable", "Undo typing", fallback: "Undo typing")
   public static let undoRedo = Loc.tr("Localizable", "Undo/Redo", fallback: "Undo/Redo")
-  public static let unfavorite = Loc.tr("Localizable", "Unfavorite", fallback: "Unfavorite")
   public static let unknown = Loc.tr("Localizable", "Unknown", fallback: "Unknown")
   public static let unknownError = Loc.tr("Localizable", "Unknown error", fallback: "Unknown error")
   public static let unlimited = Loc.tr("Localizable", "unlimited", fallback: "Unlimited")
@@ -1425,8 +1417,7 @@ public enum Loc {
     public enum Initial {
       public static let readMore = Loc.tr("Localizable", "Migration.Initial.readMore", fallback: "Read More")
       public static let startUpdate = Loc.tr("Localizable", "Migration.Initial.startUpdate", fallback: "Start Update")
-      public static let subtitle1 = Loc.tr("Localizable", "Migration.Initial.subtitle1", fallback: "We're laying the groundwork for our new chats. Including counters, notifications and other features needed for smooth chat experience.")
-      public static let subtitle2 = Loc.tr("Localizable", "Migration.Initial.subtitle2", fallback: "It might take a little while, but don't worry, your data is safe.")
+      public static let subtitle = Loc.tr("Localizable", "Migration.Initial.subtitle", fallback: "We're laying the groundwork for our new chats. Including counters, notifications and other features needed for smooth chat experience. It might take a little while, but don't worry, your data is safe.")
       public static let title = Loc.tr("Localizable", "Migration.Initial.title", fallback: "New Version Update")
     }
     public enum Progress {

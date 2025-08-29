@@ -30,11 +30,6 @@ public extension FeatureDescription {
         defaultValue: true
     )
     
-    static let pinnedSpaces = FeatureDescription(
-        title: "Pinned Spaces",
-        type: .feature(author: "vova@anytype.io", releaseVersion: "12"),
-        defaultValue: true
-    )
     
     static let openMediaFileInPreview = FeatureDescription(
         title: "Open all media files in preview",
@@ -51,7 +46,7 @@ public extension FeatureDescription {
     
     static let enableStreamSpaceType = FeatureDescription(
         title: "Create stream space",
-        type: .feature(author: "joe_pusya@anytype.io", releaseVersion: "?"),
+        type: .feature(author: "joe_pusya@anytype.io", releaseVersion: "demo"),
         defaultValue: false,
         debugValue: false
     )
@@ -145,27 +140,9 @@ public extension FeatureDescription {
         defaultValue: false
     )
     
-    static let joinSpaceViaQRCode = FeatureDescription(
-        title: "Join Space via QR Code",
-        type: .feature(author: "vova@anytype.io", releaseVersion: "12"),
-        defaultValue: true
-    )
-    
     static let swipeToReply = FeatureDescription(
         title: "Swipe to reply in chats",
-        type: .feature(author: "joe_pusya@anytype.io", releaseVersion: "12"),
-        defaultValue: true
-    )
-    
-    static let supportSimpleEmbedBlocks = FeatureDescription(
-        title: "Support simple embed blocks",
-        type: .feature(author: "joe_pusya@anytype.io", releaseVersion: "12"),
-        defaultValue: true
-    )
-    
-    static let webPublishing = FeatureDescription(
-        title: "Web Publishing",
-        type: .feature(author: "vova@anytype.io", releaseVersion: "12"),
+        type: .feature(author: "joe_pusya@anytype.io", releaseVersion: "13"),
         defaultValue: true
     )
     
