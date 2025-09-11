@@ -96,6 +96,10 @@ final class HomeWidgetsViewModel: ObservableObject {
         output?.onCreateWidgetSelected(context: .main)
     }
     
+    func onCreateObjectType() {
+        output?.onCreateObjectType()
+    }
+    
     // MARK: - Private
     
     private func startWidgetObjectTask() async {
