@@ -23588,7 +23588,29 @@
         }
       }
     },
-    "Chat.AttachmentsLimit.Alert" : {
+    "Chat.AttachmentsError.fileCreationFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to create file. Try again."
+          }
+        }
+      }
+    },
+    "Chat.AttachmentsError.invalidFile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid file. Try again"
+          }
+        }
+      }
+    },
+    "Chat.AttachmentsError.LimitExceeded" : {
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
