@@ -39475,6 +39475,17 @@
         }
       }
     },
+    "DeleteObjectType" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Object Type"
+          }
+        }
+      }
+    },
     "Deletion error" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -96633,6 +96644,28 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "搜尋或安裝新類型"
+          }
+        }
+      }
+    },
+    "ObjectTypeDeleteAlert.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to delete this Type? All existing objects of this type will be preserved, but will no longer be associated with it."
+          }
+        }
+      }
+    },
+    "ObjectTypeDeleteAlert.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Object Type?"
           }
         }
       }

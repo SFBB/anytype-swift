@@ -12,22 +12,36 @@ final class ObjectTypeWidgetViewModel: ObservableObject {
     private var setSubscriptionDataBuilder: any SetSubscriptionDataBuilderProtocol
     @Injected(\.setObjectWidgetOrderHelper)
     private var setObjectWidgetOrderHelper: any SetObjectWidgetOrderHelperProtocol
+    @Injected(\.objectActionsService)
+    private var objectActionsService: any ObjectActionsServiceProtocol
+    @Injected(\.accountParticipantsStorage)
+    private var accountParticipantsStorage: any AccountParticipantsStorageProtocol
     
     private let info: ObjectTypeWidgetInfo
+    private weak var output: (any CommonWidgetModuleOutput)?
     private let setDocument: any SetDocumentProtocol
     private let subscriptionId = "ObjectTypeWidget-\(UUID().uuidString)"
     private var isImageType: Bool = false
+    
+    var typeId: String { info.objectTypeId }
+    var canCreateObject: Bool { typeCanBeCreated && canEdit}
+    var canDeleteType: Bool { typeIsDeletable && canEdit}
     
     @Published var typeIcon: Icon?
     @Published var typeName: String = ""
     @Published var isExpanded: Bool {
         didSet { expandedDidChange() }
     }
-    @Published var canCreateObject: Bool = false
     @Published var rows: ObjectTypeWidgetRowType?
+    @Published var deleteAlert: ObjectTypeDeleteConfirmationAlertData?
     
-    init(info: ObjectTypeWidgetInfo) {
+    @Published private var typeIsDeletable: Bool = false
+    @Published private var typeCanBeCreated: Bool = false
+    @Published private var canEdit: Bool = false
+    
+    init(info: ObjectTypeWidgetInfo, output: (any CommonWidgetModuleOutput)?) {
         self.info = info
+        self.output = output
         blockWidgetExpandedService = Container.shared.blockWidgetExpandedService.resolve()
         isExpanded = blockWidgetExpandedService.isExpanded(id: info.objectTypeId)
         setDocument = Container.shared.openedDocumentProvider().setDocument(
@@ -42,19 +56,40 @@ final class ObjectTypeWidgetViewModel: ObservableObject {
     func startSubscriptions() async {
         async let typeSub: () = startTypeSubscription()
         async let objectsSub: () = startObjectsSubscription()
+        async let participantSub: () = startParticipantSubscription()
         
-        (_, _) = await (typeSub, objectsSub)
+        (_, _, _) = await (typeSub, objectsSub, participantSub)
     }
     
     func onCreateObject() {
+        Task {
+            let type = try objectTypeProvider.objectType(id: info.objectTypeId)
+            
+            let details = try await objectActionsService.createObject(
+                name: "",
+                typeUniqueKey: type.uniqueKey,
+                shouldDeleteEmptyObject: true,
+                shouldSelectType: false,
+                shouldSelectTemplate: true,
+                spaceId: type.spaceId,
+                origin: .none,
+                templateId: type.defaultTemplateId
+            )
+            AnytypeAnalytics.instance().logCreateObject(objectType: details.analyticsType, spaceId: details.spaceId, route: .homeScreen)
+            output?.onObjectSelected(screenData: details.screenData())
+        }
     }
     
     func onHeaderTap() {
-        
+        output?.onObjectSelected(screenData: .editor(.type(EditorTypeObject(objectId: info.objectTypeId, spaceId: info.spaceId))))
     }
     
     func onShowAllTap() {
-        
+        output?.onObjectSelected(screenData: .editor(.type(EditorTypeObject(objectId: info.objectTypeId, spaceId: info.spaceId))))
+    }
+    
+    func onDelete() {
+        deleteAlert = ObjectTypeDeleteConfirmationAlertData(typeId: info.objectTypeId)
     }
     
     // MARK: - Private
@@ -69,6 +104,8 @@ final class ObjectTypeWidgetViewModel: ObservableObject {
             typeIcon = .object(type.icon)
             typeName = type.name
             isImageType = type.isImageLayout
+            typeCanBeCreated = type.recommendedLayout?.isSupportedForCreation ?? false
+            typeIsDeletable = type.isDeletable
         }
     }
     
@@ -105,8 +142,14 @@ final class ObjectTypeWidgetViewModel: ObservableObject {
         } catch {}
     }
     
+    private func startParticipantSubscription() async {
+        for await canEdit in accountParticipantsStorage.canEditPublisher(spaceId: info.spaceId).values {
+            self.canEdit = canEdit
+        }
+    }
+    
     private func handleTapOnObject(details: ObjectDetails) {
-        
+        output?.onObjectSelected(screenData: details.screenData())
     }
     
     private func updateRows(rowDetails: [SetContentViewItemConfiguration]) {

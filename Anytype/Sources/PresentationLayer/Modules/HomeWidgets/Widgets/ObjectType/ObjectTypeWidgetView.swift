@@ -2,9 +2,10 @@ import SwiftUI
 
 struct ObjectTypeWidgetView: View {
     let info: ObjectTypeWidgetInfo
+    let output: (any CommonWidgetModuleOutput)?
     
     var body: some View {
-        ObjectTypeWidgetInternalView(info: info)
+        ObjectTypeWidgetInternalView(info: info, output: output)
             .id(info.hashValue)
     }
 }
@@ -13,8 +14,8 @@ private struct ObjectTypeWidgetInternalView: View {
     
     @StateObject private var model: ObjectTypeWidgetViewModel
     
-    init(info: ObjectTypeWidgetInfo) {
-        self._model = StateObject(wrappedValue: ObjectTypeWidgetViewModel(info: info))
+    init(info: ObjectTypeWidgetInfo, output: (any CommonWidgetModuleOutput)?) {
+        self._model = StateObject(wrappedValue: ObjectTypeWidgetViewModel(info: info, output: output))
     }
     
     var body: some View {
@@ -30,11 +31,15 @@ private struct ObjectTypeWidgetInternalView: View {
         ) {
             LinkWidgetViewContainer(
                 isExpanded: $model.isExpanded,
+                dragId: model.typeId,
                 homeState: .constant(.readwrite),
                 header: {
                     LinkWidgetDefaultHeader(title: model.typeName, icon: nil, onTap: {
                         model.onHeaderTap()
                     })
+                },
+                menu: {
+                    menu
                 },
                 content: {
                     content
@@ -43,6 +48,9 @@ private struct ObjectTypeWidgetInternalView: View {
         }
         .task {
             await model.startSubscriptions()
+        }
+        .anytypeSheet(item: $model.deleteAlert) {
+            ObjectTypeDeleteConfirmationAlert(data: $0)
         }
     }
     
@@ -59,5 +67,27 @@ private struct ObjectTypeWidgetInternalView: View {
             EmptyView()
         }
 
+    }
+    
+    @ViewBuilder
+    private var menu: some View {
+        if model.canCreateObject {
+            Button {
+                model.onCreateObject()
+            } label: {
+                Text(Loc.new)
+                Image(systemName: "square.and.pencil")
+            }
+            Divider()
+        }
+        
+        if model.canDeleteType {
+            Button(role: .destructive) {
+                model.onDelete()
+            } label: {
+                Text(Loc.deleteObjectType)
+                Image(systemName: "trash")
+            }
+        }
     }
 }
