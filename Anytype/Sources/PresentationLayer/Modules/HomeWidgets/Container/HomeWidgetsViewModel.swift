@@ -134,7 +134,7 @@ final class HomeWidgetsViewModel: ObservableObject {
             }
             
             if FeatureFlags.homeObjectTypeWidgets {
-                newWidgetBlocks.removeAll { $0.source == .library(.allObjects) }
+                newWidgetBlocks.removeAll { $0.source == .library(.allObjects) || $0.source == .library(.bin) }
             }
             
             guard widgetBlocks != newWidgetBlocks else { continue }
@@ -161,7 +161,9 @@ final class HomeWidgetsViewModel: ObservableObject {
         let stream = objectTypeProvider.objectTypesPublisher(spaceId: spaceId)
             .values
             .map { objects in
-                let objects = objects.sorted { $0.orderId < $1.orderId }.filter { $0.recommendedLayout.map { DetailsLayout.widgetTypeLayouts.contains($0) } ?? false }
+                let objects = objects
+                    .filter { ($0.recommendedLayout.map { DetailsLayout.widgetTypeLayouts.contains($0) } ?? false) && !$0.isTemplateType }
+                    .sorted { $0.orderId < $1.orderId }
                 return objects.map { ObjectTypeWidgetInfo(objectTypeId: $0.id, spaceId: spaceId) }
             }
             .removeDuplicates()

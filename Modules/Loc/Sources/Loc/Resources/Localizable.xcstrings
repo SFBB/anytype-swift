@@ -27130,6 +27130,94 @@
         }
       }
     },
+    "ChatTip.Step1.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anytype now supports real-time chat in Shared Channels — so your thoughts and dialogues can grow together."
+          }
+        }
+      }
+    },
+    "ChatTip.Step1.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ideas need conversations"
+          }
+        }
+      }
+    },
+    "ChatTip.Step2.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spaces and Chats now show live previews and updates — one place to follow everything that matters."
+          }
+        }
+      }
+    },
+    "ChatTip.Step2.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Vault just leveled up"
+          }
+        }
+      }
+    },
+    "ChatTip.Step3.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share ideas, drop docs, edit together — everything flows in real time."
+          }
+        }
+      }
+    },
+    "ChatTip.Step3.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chats that do more"
+          }
+        }
+      }
+    },
+    "ChatTip.Step4.Description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your pages, lists, and files — structured, surfaced, and always within reach."
+          }
+        }
+      }
+    },
+    "ChatTip.Step4.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Everything in Its Right Place"
+          }
+        }
+      }
+    },
     "Choose default object type" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -35475,6 +35563,17 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "建立類型"
+          }
+        }
+      }
+    },
+    "CreateChat" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Chat"
           }
         }
       }
@@ -71682,6 +71781,17 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Let’s Go"
+          }
+        }
+      }
+    },
+    "LetsTryIt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let's try it"
           }
         }
       }
@@ -159514,6 +159624,28 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "此空間將不再共享"
+          }
+        }
+      }
+    },
+    "SpaceShare.StopSharingEmptySpace.Message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You’ve removed the last member, so this space is now private and only accessible to you."
+          }
+        }
+      }
+    },
+    "SpaceShare.StopSharingEmptySpace.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The space is now private"
           }
         }
       }

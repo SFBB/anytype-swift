@@ -120,6 +120,7 @@ public enum Loc {
   public static let createSet = Loc.tr("Localizable", "Create Set", fallback: "Create Query")
   public static let createSpace = Loc.tr("Localizable", "Create Space", fallback: "Create Space")
   public static let createType = Loc.tr("Localizable", "Create type", fallback: "Create type")
+  public static let createChat = Loc.tr("Localizable", "CreateChat", fallback: "Create Chat")
   public static let current = Loc.tr("Localizable", "Current", fallback: "Current")
   public static let customizeURL = Loc.tr("Localizable", "Customize URL", fallback: "Customize URL")
   public static func date(_ p1: Int) -> String {
@@ -223,6 +224,7 @@ public enum Loc {
   public static let learnMore = Loc.tr("Localizable", "Learn more", fallback: "Learn more")
   public static let leaveASpace = Loc.tr("Localizable", "Leave a space", fallback: "Leave a space")
   public static let letsGo = Loc.tr("Localizable", "Lets Go", fallback: "Let’s Go")
+  public static let letsTryIt = Loc.tr("Localizable", "LetsTryIt", fallback: "Let's try it")
   public static let limitObjectTypes = Loc.tr("Localizable", "Limit object types", fallback: "Limit object types")
   public static let link = Loc.tr("Localizable", "Link", fallback: "Link")
   public static let linkTo = Loc.tr("Localizable", "Link to", fallback: "Link to")
@@ -861,6 +863,24 @@ public enum Loc {
     public enum SendLimitAlert {
       public static let message = Loc.tr("Localizable", "Chat.SendLimitAlert.Message", fallback: "Looks like you're sending messages at lightning speed. Give it a sec before your next one.")
       public static let title = Loc.tr("Localizable", "Chat.SendLimitAlert.Title", fallback: "Hold up! Turbo typing detected!")
+    }
+  }
+  public enum ChatTip {
+    public enum Step1 {
+      public static let description = Loc.tr("Localizable", "ChatTip.Step1.Description", fallback: "Anytype now supports real-time chat in Shared Channels — so your thoughts and dialogues can grow together.")
+      public static let title = Loc.tr("Localizable", "ChatTip.Step1.Title", fallback: "Ideas need conversations")
+    }
+    public enum Step2 {
+      public static let description = Loc.tr("Localizable", "ChatTip.Step2.Description", fallback: "Spaces and Chats now show live previews and updates — one place to follow everything that matters.")
+      public static let title = Loc.tr("Localizable", "ChatTip.Step2.Title", fallback: "Your Vault just leveled up")
+    }
+    public enum Step3 {
+      public static let description = Loc.tr("Localizable", "ChatTip.Step3.Description", fallback: "Share ideas, drop docs, edit together — everything flows in real time.")
+      public static let title = Loc.tr("Localizable", "ChatTip.Step3.Title", fallback: "Chats that do more")
+    }
+    public enum Step4 {
+      public static let description = Loc.tr("Localizable", "ChatTip.Step4.Description", fallback: "Your pages, lists, and files — structured, surfaced, and always within reach.")
+      public static let title = Loc.tr("Localizable", "ChatTip.Step4.Title", fallback: "Everything in Its Right Place")
     }
   }
   public enum ClearCache {
@@ -2195,6 +2215,10 @@ public enum Loc {
       public static let message = Loc.tr("Localizable", "SpaceShare.StopSharing.Message", fallback: "Members will no longer sync to this space and the share link will be deactivated.")
       public static let title = Loc.tr("Localizable", "SpaceShare.StopSharing.Title", fallback: "Stop sharing the space")
       public static let toast = Loc.tr("Localizable", "SpaceShare.StopSharing.Toast", fallback: "The space is no longer shared")
+    }
+    public enum StopSharingEmptySpace {
+      public static let message = Loc.tr("Localizable", "SpaceShare.StopSharingEmptySpace.Message", fallback: "You’ve removed the last member, so this space is now private and only accessible to you.")
+      public static let title = Loc.tr("Localizable", "SpaceShare.StopSharingEmptySpace.Title", fallback: "The space is now private")
     }
     public enum Tip {
       public static let title = Loc.tr("Localizable", "SpaceShare.Tip.Title", fallback: "Collaborate on spaces")
