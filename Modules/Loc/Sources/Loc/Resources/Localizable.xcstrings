@@ -14179,454 +14179,7 @@
         }
       }
     },
-    "Auth.JoinFlow.Key.ReadMore.Instruction.Option1.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The easiest way to store your key is to save it in your password manager."
-          }
-        },
-        "be" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Самы просты спосаб захаваць ключ - гэта захаваць яго ў менеджару пароляў."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Am einfachsten ist es, deinen Schlüssel in deinem Passwort-Manager zu speichern."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The easiest way to store your key is to save it in your password manager."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "La forma más fácil de preservar tu clave es guardarla en un gestor de contraseñas."
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The easiest way to store your key is to save it in your password manager."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The easiest way to store your key is to save it in your password manager."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "La façon la plus simple de conserver votre phrase de récupération est de l’enregistrer dans votre gestionnaire de mots de passe."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Cara termudah untuk menyimpan kuncimu adalah dengan menyimpannya di aplikasi pengelola sandi."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Il modo più semplice per conservare la tua Chiave è salvarla nel tuo gestore di password."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "最も簡単な方法は、パスワードマネージャーを使うことです。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "키를 보관하는 가장 쉬운 방법은 비밀번호 관리자에 저장하는 것입니다."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The easiest way to store your key is to save it in your password manager."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "De eenvoudigste manier om jouw sleutel op te slaan is door deze op te slaan in jouw wachtwoordmanager."
-          }
-        },
-        "or" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "ଆପଣଙ୍କ ଚାବି ଷ୍ଟୋର୍ କରିବାର ସବୁଠାରୁ ସହଜ ଉପାୟ ହେଉଛି ଏହାକୁ ଆପଣଙ୍କ ପାସୱାର୍ଡ ମ୍ୟାନେଜରରେ ସଞ୍ଚୟ କରିବା |"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Najprostszy sposób na przechowywanie twojego klucza to użycie menedżera haseł."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "A maneira mais fácil de armazenar sua chave é salvá-la em seu gerenciador de senhas."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "A maneira mais fácil de armazenar sua chave é salvá-la em seu gerenciador de senhas."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Для хранения ключа удобнее всего использовать менеджер паролей."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Anahtarınızı saklamanın en kolay yolu şifre yöneticinize kaydetmektir."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The easiest way to store your key is to save it in your password manager."
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Cách dễ nhất để cất giữ khoá của bạn là lưu vào trình quản lý mật khẩu của bạn."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "保存密钥最简单的方法是将其保存在您的密码管理器中。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "保存密鑰最簡單的方式是將其保存在您的密碼管理器中。"
-          }
-        }
-      }
-    },
-    "Auth.JoinFlow.Key.ReadMore.Instruction.Option2.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "الطريقة الأكثر أمانًا هي كتابتها على ورقة والاحتفاظ بها دون اتصال بالإنترنت، في مكان آمن ومحمي."
-          }
-        },
-        "be" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Самы бяспечны спосаб - запісаць яе на паперы і пакінуць паперу ў бяспечным месцы."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Am sichersten ist es, sie auf Papier aufzuschreiben und offline, an einem sicheren Ort."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The most secure way is to write it down on paper and keep it offline, in a safe and secure place."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "La forma más segura es escribirla en papel y mantenerla a buen recaudo."
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The most secure way is to write it down on paper and keep it offline, in a safe and secure place."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The most secure way is to write it down on paper and keep it offline, in a safe and secure place."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Le moyen le plus sûr est de l'écrire sur papier et de le garder dans un endroit sûr et sécurisé."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Sedangkan, cara yang paling aman adalah dengan menuliskannya pada secarik kertas dan menyimpan kertas itu di tempat yang aman."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Il modo più sicuro è scriverlo su carta e tenerlo offline, in un luogo sicuro."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "最も安全な方法は、紙に書いて、ネットから切り離した安全な場所に保管することです。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "가장 안전한 방법은 종이에 적어 오프라인의 안전한 장소에 보관하는 것입니다."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Den sikreste måten er å skrive den ned på papir og oppbevare den offline, på et trygt og sikkert sted."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "De meest veilige manier is om het op papier te schrijven en het offline, op een veilige en beveiligde plek te bewaren."
-          }
-        },
-        "or" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "ସବୁଠାରୁ ସୁରକ୍ଷିତ ଉପାୟ ହେଉଛି ଏହାକୁ କାଗଜରେ ଲେଖିବା ଏବଂ ଏହାକୁ ଅଫଲାଇନରେ, ଏକ ସୁରକ୍ଷିତ ଏବଂ ସୁରକ୍ଷିତ ସ୍ଥାନରେ ରଖିବା |"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Najbezpieczniejszym sposobem jest zapisanie go na papierze i przechowywanie offline, w bezpiecznym miejscu."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "A forma mais segura é escrevê-la no papel e mantê-la fora do dispositivo, num lugar seguro e seguro."
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "A maneira mais segura é apontá-la num papel e mantê-la em suporte físico num lugar seguro."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Самый безопасный способ - записать ее на бумаге и оставить бумагу в безопасном месте."
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "En güvenli yol bunu bir kağıda yazmak ve çevrimdışı olarak güvenli bir yerde saklamaktır."
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Найнадійніший спосіб - записати його на папері й зберігати в надійному і безпечному місці."
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "An toàn nhất là viết ra giấy và giữ nó ở một nơi kín đáo, an toàn."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "最可靠的方法是现实中在纸面上写下，并放在一个安全可靠的地方。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "最安全的方法是將其寫在紙上並離線保存在安全可靠的地方。"
-          }
-        }
-      }
-    },
-    "Auth.JoinFlow.Key.ReadMore.Instruction.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "How to save my key?"
-          }
-        },
-        "be" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Як захаваць мой ключ?"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Wie kann ich meinen Schlüssel speichern?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "How to save my key?"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "¿Cómo guardo mi clave?"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "How to save my key?"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "How to save my key?"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Comment sauvegarder ma phrase ?"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Bagaimana menyimpan kunciku?"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Come salvare la mia chiave?"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "おすすめの保管方法はありますか？"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "키를 어떻게 저장하나요?"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "How to save my key?"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Hoe bewaar ik mijn sleutel?"
-          }
-        },
-        "or" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "ମୋ ଚାବି କିପରି ସଞ୍ଚୟ କରିବେ?"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Jak zapisać mój klucz?"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Como salvar minha chave?"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Como salvar minha chave?"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Как сохранить ключ?"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Kurtarma anahtarını nasıl kaydederim?"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "How to save my key?"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Lưu khoá của tôi như nào?"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "怎么储存我的密钥？"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "如何保存我的密鑰？"
-          }
-        }
-      }
-    },
-    "Auth.JoinFlow.Key.ReadMore.Option1.Title" : {
+    "Auth.JoinFlow.Key.ReadMore.Option1.description" : {
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
@@ -14650,7 +14203,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "It is represented by a recovery phrase – 12 random words from which your vault is magically generated on this device."
+            "value" : "Your key is represented by a recovery phrase — 12 random words that generate your vault on this device."
           }
         },
         "es" : {
@@ -14775,7 +14328,18 @@
         }
       }
     },
-    "Auth.JoinFlow.Key.ReadMore.Option2.Title" : {
+    "Auth.JoinFlow.Key.ReadMore.Option1.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It’s your login and password"
+          }
+        }
+      }
+    },
+    "Auth.JoinFlow.Key.ReadMore.Option2.description" : {
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
@@ -14799,7 +14363,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whomever knows the combination of these words owns your vault. **Right now, you are the only person in the world who knows it.**"
+            "value" : "Anyone who knows these words can access your vault. Right now, you are the only person in the world who knows them."
           }
         },
         "es" : {
@@ -14924,7 +14488,18 @@
         }
       }
     },
-    "Auth.JoinFlow.Key.ReadMore.Option3.Title" : {
+    "Auth.JoinFlow.Key.ReadMore.Option2.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whoever has the key, has access"
+          }
+        }
+      }
+    },
+    "Auth.JoinFlow.Key.ReadMore.Option3.description" : {
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
@@ -14948,7 +14523,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All computational resources on Earth are not enough to break in. If you lose it, it cannot be recovered. So, store it somewhere safe!"
+            "value" : "All computational resources on Earth are not enough to break in. If you lose your key, it cannot be recovered. Store it somewhere safe — in a password manager or written down on paper."
           }
         },
         "es" : {
@@ -15073,6 +14648,17 @@
         }
       }
     },
+    "Auth.JoinFlow.Key.ReadMore.Option3.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only you responsible for it"
+          }
+        }
+      }
+    },
     "Auth.JoinFlow.Key.ReadMore.Title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15097,7 +14683,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "What is the Key?"
+            "value" : "How the Key works?"
           }
         },
         "es" : {
