@@ -6,10 +6,6 @@
 public extension FeatureFlags {
 
     // Static value reader
-    static var openMediaFileInPreview: Bool {
-        value(for: .openMediaFileInPreview)
-    }
-
     static var spaceUxTypes: Bool {
         value(for: .spaceUxTypes)
     }
@@ -32,10 +28,6 @@ public extension FeatureFlags {
 
     static var swipeToReply: Bool {
         value(for: .swipeToReply)
-    }
-
-    static var keyboardMenuUndoRedo: Bool {
-        value(for: .keyboardMenuUndoRedo)
     }
 
     static var newSharingExtension: Bool {
@@ -200,14 +192,12 @@ public extension FeatureFlags {
 
     // All toggles
     static let features: [FeatureDescription] = [
-        .openMediaFileInPreview,
         .spaceUxTypes,
         .spaceLoadingForScreen,
         .binScreenEmptyAction,
         .muteSpacePossibility,
         .addNotificationsSettings,
         .swipeToReply,
-        .keyboardMenuUndoRedo,
         .newSharingExtension,
         .newSpaceMembersFlow,
         .removeMessagesFromNotificationsCenter,

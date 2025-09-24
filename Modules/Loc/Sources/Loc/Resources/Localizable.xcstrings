@@ -98176,6 +98176,17 @@
         }
       }
     },
+    "Page" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page"
+          }
+        }
+      }
+    },
     "Pages" : {
       "extractionState" : "manual",
       "localizations" : {
