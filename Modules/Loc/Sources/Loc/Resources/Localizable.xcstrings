@@ -184578,6 +184578,28 @@
         }
       }
     },
+    "Widgets.System.DeleteAlert.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We’ve redesigned how widgets work, and this widget is no longer supported. Once deleted, this widget cannot be restored."
+          }
+        }
+      }
+    },
+    "Widgets.System.DeleteAlert.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This Widget Cannot Be Restored"
+          }
+        }
+      }
+    },
     "Yellow" : {
       "extractionState" : "manual",
       "localizations" : {
