@@ -82,20 +82,8 @@ public extension FeatureFlags {
         value(for: .dndOnCollectionsAndSets)
     }
 
-    static var enableStreamSpaceType: Bool {
-        value(for: .enableStreamSpaceType)
-    }
-
-    static var aiToolInSet: Bool {
-        value(for: .aiToolInSet)
-    }
-
     static var anyAppBetaTip: Bool {
         value(for: .anyAppBetaTip)
-    }
-
-    static var guideUseCaseForDataSpace: Bool {
-        value(for: .guideUseCaseForDataSpace)
     }
 
     static var chatLayoutInsideSpace: Bool {
@@ -112,10 +100,6 @@ public extension FeatureFlags {
 
     static var doNotWaitCompletionInAnytypePreview: Bool {
         value(for: .doNotWaitCompletionInAnytypePreview)
-    }
-
-    static var chatInDataSpace: Bool {
-        value(for: .chatInDataSpace)
     }
 
     static var rainbowViews: Bool {
@@ -203,15 +187,11 @@ public extension FeatureFlags {
         .setKanbanView,
         .fullInlineSetImpl,
         .dndOnCollectionsAndSets,
-        .enableStreamSpaceType,
-        .aiToolInSet,
         .anyAppBetaTip,
-        .guideUseCaseForDataSpace,
         .chatLayoutInsideSpace,
         .joinStream,
         .simpleSetForTypes,
         .doNotWaitCompletionInAnytypePreview,
-        .chatInDataSpace,
         .rainbowViews,
         .showAlertOnAssert,
         .analytics,
