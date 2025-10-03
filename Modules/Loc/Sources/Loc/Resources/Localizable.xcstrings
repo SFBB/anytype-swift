@@ -22577,6 +22577,17 @@
         }
       }
     },
+    "ChannelType" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Channel Type"
+          }
+        }
+      }
+    },
     "Chat" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -32167,6 +32178,39 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "繼續"
+          }
+        }
+      }
+    },
+    "ConvertChannelTypeAlert.confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, convert"
+          }
+        }
+      }
+    },
+    "ConvertChannelTypeAlert.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switching between Space and Chat will significantly change the experience."
+          }
+        }
+      }
+    },
+    "ConvertChannelTypeAlert.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Convert Channel Type?"
           }
         }
       }
@@ -147235,6 +147279,17 @@
         }
       }
     },
+    "Spaces.UxType.Chat.ChangeDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Group chat with shared data. Best for small groups or a single ongoing conversation."
+          }
+        }
+      }
+    },
     "Spaces.UxType.Chat.Description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -147529,6 +147584,17 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Chat"
+          }
+        }
+      }
+    },
+    "Spaces.UxType.Space.ChangeDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hub for advanced data management. Multi-chats by topic coming soon. Ideal for larger teams."
           }
         }
       }
