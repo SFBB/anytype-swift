@@ -56156,6 +56156,39 @@
         }
       }
     },
+    "Experimental Features" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Experimental Features"
+          }
+        }
+      }
+    },
+    "Experimental.NewObjectCreationMenu.subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Always pick object type when creating"
+          }
+        }
+      }
+    },
+    "Experimental.NewObjectCreationMenu.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Object Creation Menu"
+          }
+        }
+      }
+    },
     "Export" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -59784,7 +59817,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Local storage"
+            "value" : "Local Storage"
           }
         },
         "es" : {
@@ -74035,7 +74068,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Log out"
+            "value" : "Log Out"
           }
         },
         "es" : {
@@ -74166,7 +74199,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Login key"
+            "value" : "Login Key"
           }
         }
       }
