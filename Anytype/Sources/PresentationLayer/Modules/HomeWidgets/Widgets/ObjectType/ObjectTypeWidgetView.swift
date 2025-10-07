@@ -23,16 +23,14 @@ private struct ObjectTypeWidgetInternalView: View {
             isEnable: model.canCreateObject,
             showTitle: model.isExpanded,
             action: {
-                if #available(iOS 17.0, *) {
-                    WidgetSwipeTip().invalidate(reason: .actionPerformed)
-                }
+                WidgetSwipeTip().invalidate(reason: .actionPerformed)
                 model.onCreateObject()
             }
         ) {
             LinkWidgetViewContainer(
                 isExpanded: $model.isExpanded,
                 dragId: model.typeId,
-                homeState: .constant(.readwrite),
+                homeState: model.canEdit ? .constant(.readwrite) : .constant(.readonly),
                 createObjectAction: model.canCreateObject ? {
                     model.onCreateObject()
                 } : nil,

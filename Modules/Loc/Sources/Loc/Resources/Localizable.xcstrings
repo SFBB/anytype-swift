@@ -24746,7 +24746,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This chat is empty."
+            "value" : "You just created a chat"
           }
         },
         "es" : {
