@@ -124,20 +124,12 @@ public extension FeatureDescription {
         debugValue: false
     )
     
-    static let chatLayoutInsideSpace = FeatureDescription(
-        title: "Chat Layout Inside Space",
+    static let multichats = FeatureDescription(
+        title: "Multichats",
         type: .feature(author: "m@anytype.io", releaseVersion: "?"),
         releaseAnytypeValue: false,
         releaseAnyAppValue: false,
         debugValue: true
-    )
-    
-    static let joinStream = FeatureDescription(
-        title: "Join to stream after login",
-        type: .feature(author: "m@anytype.io", releaseVersion: "demo"),
-        releaseAnytypeValue: false,
-        releaseAnyAppValue: true,
-        debugValue: false
     )
 
     static let doNotWaitCompletionInAnytypePreview = FeatureDescription(
