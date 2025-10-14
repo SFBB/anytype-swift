@@ -16,7 +16,6 @@ final class SpaceHubCoordinatorViewModel: ObservableObject, SpaceHubModuleOutput
     @Published var spaceProfileData: AccountInfo?
     @Published var userWarningAlert: UserWarningAlert?
     @Published var typeSearchForObjectCreationSpaceId: StringIdentifiable?
-    @Published var sharingSpaceId: StringIdentifiable?
     @Published var showSharingExtension = false
     @Published var membershipTierId: IntIdentifiable?
     @Published var showGalleryImport: GalleryInstallationData?
@@ -398,12 +397,8 @@ final class SpaceHubCoordinatorViewModel: ObservableObject, SpaceHubModuleOutput
         
         currentSpaceId = spaceId
         
-        if FeatureFlags.spaceLoadingForScreen {
-            // This is not required. But it help to load space as fast as possible
-            Task { try await activeSpaceManager.setActiveSpace(spaceId: spaceId) }
-        } else {
-            try await activeSpaceManager.setActiveSpace(spaceId: spaceId)
-        }
+        // This is not required. But it help to load space as fast as possible
+        Task { try await activeSpaceManager.setActiveSpace(spaceId: spaceId) }
         
         return spaceView
     }
@@ -454,11 +449,7 @@ final class SpaceHubCoordinatorViewModel: ObservableObject, SpaceHubModuleOutput
         case .createObjectFromWidget:
             createAndShowDefaultObject(route: .widget)
         case .showSharingExtension:
-            if FeatureFlags.newSharingExtension {
-                showSharingExtension = true
-            } else {
-                sharingSpaceId = fallbackSpaceId?.identifiable
-            }
+            showSharingExtension = true
         case let .galleryImport(type, source):
             showGalleryImport = GalleryInstallationData(type: type, source: source)
         case .invite(let cid, let key):

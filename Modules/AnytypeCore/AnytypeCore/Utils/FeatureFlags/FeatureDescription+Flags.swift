@@ -4,24 +4,6 @@ import Foundation
 
 public extension FeatureDescription {
     
-    static let spaceUxTypes = FeatureDescription(
-        title: "Create chat space",
-        type: .feature(author: "m@anytype.io", releaseVersion: "13"),
-        defaultValue: true
-    )
-    
-    static let spaceLoadingForScreen = FeatureDescription(
-        title: "Space Loading State Inside Screen",
-        type: .feature(author: "m@anytype.io", releaseVersion: "13"),
-        defaultValue: true
-    )
-    
-    static let binScreenEmptyAction = FeatureDescription(
-        title: "Bin screen - empty action",
-        type: .feature(author: "m@anytype.io", releaseVersion: "13"),
-        defaultValue: true
-    )
-    
     static let muteSpacePossibility = FeatureDescription(
         title: "Mute space possibility",
         type: .feature(author: "joe_pusya@anytype.io", releaseVersion: "13"),
@@ -37,12 +19,6 @@ public extension FeatureDescription {
     static let swipeToReply = FeatureDescription(
         title: "Swipe to reply in chats",
         type: .feature(author: "joe_pusya@anytype.io", releaseVersion: "13"),
-        defaultValue: true
-    )
-    
-    static let newSharingExtension = FeatureDescription(
-        title: "New Sharing Extension - IOS-4915",
-        type: .feature(author: "m@anytype.io", releaseVersion: "13"),
         defaultValue: true
     )
     
@@ -88,11 +64,6 @@ public extension FeatureDescription {
         defaultValue: true
     )
 
-    static let homeObjectTypeWidgets = FeatureDescription(
-        title: "Home object type widget",
-        type: .feature(author: "m@anytype.io", releaseVersion: "13"),
-        defaultValue: true
-    )
     
     // MARK: - Experemental
     
@@ -116,19 +87,10 @@ public extension FeatureDescription {
         defaultValue: false
     )
 
-    static let anyAppBetaTip = FeatureDescription(
-        title: "Show any app beta alert",
-        type: .feature(author: "m@anytype.io", releaseVersion: "demo"),
-        releaseAnytypeValue: false,
-        releaseAnyAppValue: true,
-        debugValue: false
-    )
-    
     static let multichats = FeatureDescription(
         title: "Multichats",
         type: .feature(author: "m@anytype.io", releaseVersion: "?"),
-        releaseAnytypeValue: false,
-        releaseAnyAppValue: false,
+        defaultValue: false,
         debugValue: true
     )
 

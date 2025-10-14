@@ -6,18 +6,6 @@
 public extension FeatureFlags {
 
     // Static value reader
-    static var spaceUxTypes: Bool {
-        value(for: .spaceUxTypes)
-    }
-
-    static var spaceLoadingForScreen: Bool {
-        value(for: .spaceLoadingForScreen)
-    }
-
-    static var binScreenEmptyAction: Bool {
-        value(for: .binScreenEmptyAction)
-    }
-
     static var muteSpacePossibility: Bool {
         value(for: .muteSpacePossibility)
     }
@@ -28,10 +16,6 @@ public extension FeatureFlags {
 
     static var swipeToReply: Bool {
         value(for: .swipeToReply)
-    }
-
-    static var newSharingExtension: Bool {
-        value(for: .newSharingExtension)
     }
 
     static var newSpaceMembersFlow: Bool {
@@ -62,10 +46,6 @@ public extension FeatureFlags {
         value(for: .brandNewAuthFlow)
     }
 
-    static var homeObjectTypeWidgets: Bool {
-        value(for: .homeObjectTypeWidgets)
-    }
-
     static var setKanbanView: Bool {
         value(for: .setKanbanView)
     }
@@ -76,10 +56,6 @@ public extension FeatureFlags {
 
     static var dndOnCollectionsAndSets: Bool {
         value(for: .dndOnCollectionsAndSets)
-    }
-
-    static var anyAppBetaTip: Bool {
-        value(for: .anyAppBetaTip)
     }
 
     static var multichats: Bool {
@@ -152,13 +128,9 @@ public extension FeatureFlags {
 
     // All toggles
     static let features: [FeatureDescription] = [
-        .spaceUxTypes,
-        .spaceLoadingForScreen,
-        .binScreenEmptyAction,
         .muteSpacePossibility,
         .addNotificationsSettings,
         .swipeToReply,
-        .newSharingExtension,
         .newSpaceMembersFlow,
         .removeMessagesFromNotificationsCenter,
         .mediaCarouselForWidgets,
@@ -166,11 +138,9 @@ public extension FeatureFlags {
         .loadAttachmentsOnHomePlusMenu,
         .vaultBackToRoots,
         .brandNewAuthFlow,
-        .homeObjectTypeWidgets,
         .setKanbanView,
         .fullInlineSetImpl,
         .dndOnCollectionsAndSets,
-        .anyAppBetaTip,
         .multichats,
         .doNotWaitCompletionInAnytypePreview,
         .rainbowViews,
