@@ -50,6 +50,7 @@ make setup-middle    # Initial setup
 - **All user-facing text must be localized** for international support
 - **Do not add comments** unless explicitly requested
 - **We only work in feature branches** - never push directly to develop/main
+- **Remove unused code after refactoring** - Delete unused properties, functions, and entire files that are no longer referenced
 
 ## 📝 Localization System
 
@@ -64,7 +65,15 @@ make setup-middle    # Initial setup
    - Block subtitles: `[feature]BlockSubtitle`
    - Common words: `camera`, `photo`, `picture`, `video(1)`
 
-3. **Only if key doesn't exist**, add to `Modules/Loc/Sources/Loc/Resources/Localizable.xcstrings`:
+3. **Choosing the Right File**:
+   Localization is split into 3 files - select based on your feature:
+   - **Auth.xcstrings** (86 keys): Authentication, login/join flows, keychain, vault, onboarding, migration
+   - **Workspace.xcstrings** (493 keys): Spaces, objects, relations, collections, sets, types, templates, collaboration
+   - **UI.xcstrings** (667 keys): Settings, widgets, alerts, common UI elements, general app strings
+
+   **⚠️ CRITICAL**: Keys must be unique across ALL three files. Duplicate keys will break code generation.
+
+4. **Only if key doesn't exist**, add to the appropriate file in `Modules/Loc/Sources/Loc/Resources/`:
    ```json
    "Your localization key" : {
      "extractionState" : "manual",
@@ -79,7 +88,7 @@ make setup-middle    # Initial setup
    }
    ```
 
-4. **Generate and use**:
+5. **Generate and use**:
    ```bash
    make generate
    ```
@@ -91,7 +100,7 @@ make setup-middle    # Initial setup
 ### Key Patterns
 - **Naming**: Use short, descriptive keys → `"No properties yet"` ✅, `"No properties yet. Add some to this type."` ❌
 - **Hierarchical**: Use dots for organization → `"QR.join.title"` creates `Loc.Qr.Join.title`
-- **Generated file**: 160,000+ lines, use `rg` for searching
+- **Generated file**: All 3 localization files (Auth, Workspace, UI) generate into a single `Strings.swift` file (~5,000 lines). Use `rg` for searching
 - **Always import**: `import Loc` when using localization
 
 ## 🎨 Design System & Common UI Components
@@ -206,6 +215,23 @@ Modules/                # Swift packages
 - [ ] NO emoji signatures like 🤖
 - [ ] Single line commit message only
 - [ ] Professional message without AI attribution
+
+### Task-Based Branching
+**⚠️ CRITICAL: This is the FIRST thing to do when starting any task**
+
+When receiving a Linear task ID (e.g., `IOS-5292`):
+1. **Identify the task branch**: The branch name follows the format `ios-XXXX-description`
+   - Example: `ios-5292-update-space-hub-loading-state`
+   - You can retrieve the branch name from Linear issue details
+
+2. **Switch to the task branch IMMEDIATELY** before doing ANY other work:
+   ```bash
+   git checkout ios-5292-update-space-hub-loading-state
+   ```
+
+3. **All work for the task must be done in this dedicated branch**
+   - Never work on tasks in the wrong branch
+   - Verify you're on the correct branch: `git branch --show-current`
 
 ### Git & GitHub
 - **Main branch**: `develop`

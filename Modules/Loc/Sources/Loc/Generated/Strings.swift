@@ -572,6 +572,7 @@ public enum Loc {
   public static let search = Loc.tr("UI", "Search", fallback: "Search...")
   public static let searchForLanguage = Loc.tr("UI", "Search for language", fallback: "Search for language")
   public static let searchOrCreateNew = Loc.tr("UI", "Search or create new", fallback: "Search or create new")
+  public static let seeAll = Loc.tr("UI", "SeeAll", fallback: "See all")
   public static let selectAll = Loc.tr("UI", "Select all", fallback: "Select all")
   public static let selectDate = Loc.tr("UI", "Select date", fallback: "Select date")
   public static let selectFile = Loc.tr("UI", "Select file", fallback: "Select file")
@@ -1423,13 +1424,12 @@ public enum Loc {
     public enum Empty {
       public static let title = Loc.tr("Workspace", "Chat.Empty.Title", fallback: "You just created a chat")
       public enum Button {
-        public static let title = Loc.tr("Workspace", "Chat.Empty.Button.title", fallback: "Invite members")
+        public static let addMembers = Loc.tr("Workspace", "Chat.Empty.Button.AddMembers", fallback: "Add members")
       }
-      public enum Editor {
-        public static let description = Loc.tr("Workspace", "Chat.Empty.Editor.Description", fallback: "Write the first message to spark it up!")
-      }
-      public enum Owner {
-        public static let description = Loc.tr("Workspace", "Chat.Empty.Owner.Description", fallback: "Invite people and start the conversation!")
+      public enum Feature {
+        public static let availableOffline = Loc.tr("Workspace", "Chat.Empty.Feature.AvailableOffline", fallback: "Messages, docs & files available offline")
+        public static let privateEncrypted = Loc.tr("Workspace", "Chat.Empty.Feature.PrivateEncrypted", fallback: "Fully private and encrypted")
+        public static let yoursForever = Loc.tr("Workspace", "Chat.Empty.Feature.YoursForever", fallback: "Yours forever")
       }
     }
     public enum FileSyncError {
