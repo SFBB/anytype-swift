@@ -1,0 +1,87 @@
+name: Claude Code Review
+
+on:
+  pull_request:
+    types: [opened]
+    # Optional: Only run on specific file changes
+    # paths:
+    #   - "src/**/*.ts"
+    #   - "src/**/*.tsx"
+    #   - "src/**/*.js"
+    #   - "src/**/*.jsx"
+
+jobs:
+  claude-review:
+    # Optional: Filter by PR author
+    # if: |
+    #   github.event.pull_request.user.login == 'external-contributor' ||
+    #   github.event.pull_request.user.login == 'new-developer' ||
+    #   github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR'
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      issues: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Run Claude Code Review
+        id: claude-review
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+            COMMIT SHA: ${{ github.event.pull_request.head.sha }}
+
+            Review this PR using CLAUDE.md for project conventions. Be LEAN and ACTIONABLE - only provide value, avoid noise.
+
+            RULES:
+            - ONLY include sections when there are ACTUAL issues to report
+            - NO "Strengths" or praise sections
+            - NO "no concerns" statements (skip the section entirely)
+            - NO design/UI/spacing suggestions (padding, margins, colors, etc.) - you cannot see the visual design
+            - Reference specific file:line locations for issues
+            - If no issues found: comment "✅ **Approved** - No issues found"
+
+            SECTIONS (include ONLY if issues exist):
+            - **Bugs/Issues**: Logic errors, potential bugs that need fixing
+            - **Best Practices**: Violations of Swift/SwiftUI conventions or CLAUDE.md guidelines (code quality only, not design)
+            - **Performance**: Actual performance problems (not theoretical)
+            - **Security**: Real security vulnerabilities
+
+            END WITH:
+            - **Summary**: ONE sentence only with status emoji:
+              - ✅ **Approved** - [brief reason]
+              - ⚠️ **Minor Issues** - [what needs fixing]
+              - 🚨 **Major Issues** - [critical problems]
+
+            IMPORTANT - Review Comment Strategy:
+            1. Post a summary comment using `gh pr comment ${{ github.event.pull_request.number }}` with overall feedback and high-level observations
+            2. For EACH specific code issue, post an inline comment on the exact lines using:
+
+               gh pr comment ${{ github.event.pull_request.number }} \
+                 --body "Your detailed comment about this specific issue" \
+                 --file "path/to/file.swift" \
+                 --line 68
+
+            Example:
+            - Summary: Post overall review with `gh pr comment ${{ github.event.pull_request.number }} --body "Summary..."`
+            - Issue 1: Missing error handling at MembershipStatusStorage.swift:68-75
+              -> Post inline comment: `gh pr comment ${{ github.event.pull_request.number }} --body "Missing error handling..." --file "path/to/MembershipStatusStorage.swift" --line 68`
+            - Issue 2: Race condition at MembershipStatusStorage.swift:38
+              -> Post inline comment: `gh pr comment ${{ github.event.pull_request.number }} --body "Race condition..." --file "path/to/MembershipStatusStorage.swift" --line 38`
+
+            This way, reviewers see inline comments exactly where the issues are in the code.
+
+          # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
+          # or https://docs.claude.com/en/docs/claude-code/cli-reference for available options
+          claude_args: '--allowed-tools "Bash(gh issue view:*),Bash(gh search:*),Bash(gh issue list:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr list:*)"'
+
