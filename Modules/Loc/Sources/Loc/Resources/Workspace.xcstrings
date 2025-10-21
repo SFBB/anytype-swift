@@ -1875,7 +1875,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Add members"
+            "value" : "Aggiungi membri"
           }
         },
         "ja" : {
@@ -2024,7 +2024,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Messages, docs & files available offline"
+            "value" : "Messaggi, documenti & file disponibili offline"
           }
         },
         "ja" : {
@@ -2173,7 +2173,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Fully private and encrypted"
+            "value" : "Completamente privato e crittografato"
           }
         },
         "ja" : {
@@ -2322,7 +2322,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Yours forever"
+            "value" : "Tuo per sempre"
           }
         },
         "ja" : {
@@ -2435,7 +2435,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You just created a chat"
+            "value" : "Chat without the cloud"
           }
         },
         "es" : {
@@ -2489,7 +2489,7 @@
         "nb" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You just created a chat"
+            "value" : "Chat without the cloud"
           }
         },
         "nl" : {
@@ -28925,155 +28925,6 @@
         }
       }
     },
-    "Membership.Upgrade.NoMoreMembers" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "لا يمكنك إضافة المزيد من الأعضاء"
-          }
-        },
-        "be" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Вы не можаце дадаць больш удзельнікаў"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Du kannst keine weiteren Mitglieder hinzufügen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can’t add more members"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "No puedes añadir más miembros"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "You can’t add more members"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "You can’t add more members"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Vous ne pouvez plus ajouter de membres"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Anda tidak dapat menambah anggota lagi"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Non puoi aggiungere altri membri"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "これ以上、閲覧権限のメンバーを追加できません。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "You can’t add more members"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "You can’t add more members"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Je kunt geen leden meer toevoegen"
-          }
-        },
-        "or" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "You can’t add more members"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Nie możesz dodać więcej członków"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Você não pode adicionar mais membros"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "You can’t add more members"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Вы не можете добавить больше участников"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Daha fazla üye ekleyemezsiniz"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "You can’t add more members"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Bạn không thể thêm thành viên"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "您无法添加更多成员"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "您無法新增更多成員"
-          }
-        }
-      }
-    },
     "Membership.Upgrade.SpacesLimit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -53310,7 +53161,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You've reached the limit of %lld editors."
+            "value" : "Kamu telah mencapai batas %lld penyunting."
           }
         },
         "it" : {
@@ -53608,7 +53459,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You've reached the limit of %lld shared spaces."
+            "value" : "Kamu telah mencapai batas %lld ruang terbagi."
           }
         },
         "it" : {

@@ -444,10 +444,10 @@ public enum Loc {
   public static let moveTo = Loc.tr("UI", "Move to", fallback: "Move to")
   public static let moveToBin = Loc.tr("UI", "Move To Bin", fallback: "Move To Bin")
   public static let mute = Loc.tr("UI", "Mute", fallback: "Mute")
+  public static let myChannels = Loc.tr("UI", "My channels", fallback: "My Channels")
   public static let myFirstSpace = Loc.tr("UI", "My First Space", fallback: "My First Space")
   public static let myProperties = Loc.tr("UI", "My Properties", fallback: "My Properties")
   public static let mySites = Loc.tr("UI", "My Sites", fallback: "My Sites")
-  public static let mySpaces = Loc.tr("UI", "My spaces", fallback: "My Spaces")
   public static let myself = Loc.tr("UI", "Myself", fallback: "Myself")
   public static let name = Loc.tr("UI", "Name", fallback: "Name")
   public static let new = Loc.tr("UI", "New", fallback: "New")
@@ -1422,7 +1422,7 @@ public enum Loc {
       public static let title = Loc.tr("Workspace", "Chat.DeleteMessage.Title", fallback: "Delete this message?")
     }
     public enum Empty {
-      public static let title = Loc.tr("Workspace", "Chat.Empty.Title", fallback: "You just created a chat")
+      public static let title = Loc.tr("Workspace", "Chat.Empty.Title", fallback: "Chat without the cloud")
       public enum Button {
         public static let addMembers = Loc.tr("Workspace", "Chat.Empty.Button.AddMembers", fallback: "Add members")
       }
@@ -1766,7 +1766,6 @@ public enum Loc {
       public static let moreMembers = Loc.tr("Workspace", "Membership.Upgrade.MoreMembers", fallback: "Upgrade to add more members")
       public static let moreSpaces = Loc.tr("Workspace", "Membership.Upgrade.MoreSpaces", fallback: "Upgrade to add more spaces.")
       public static let noMoreEditors = Loc.tr("Workspace", "Membership.Upgrade.NoMoreEditors", fallback: "You can’t add more editors")
-      public static let noMoreMembers = Loc.tr("Workspace", "Membership.Upgrade.NoMoreMembers", fallback: "You can’t add more members")
       public static func spacesLimit(_ p1: Int) -> String {
         return Loc.tr("Workspace", "Membership.Upgrade.SpacesLimit", p1, fallback: "Plural format key: Membership.Upgrade.SpacesLimit")
       }

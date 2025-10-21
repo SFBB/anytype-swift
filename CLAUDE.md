@@ -93,6 +93,11 @@ make setup-middle    # Initial setup
    }
    ```
 
+   **⚠️ IMPORTANT**: When adding or updating localization strings:
+   - **Only update the English (`en`) translation** - All other language translations are handled automatically via Crowdin
+   - Do not manually edit translations for other languages (de, es, fr, ja, etc.)
+   - The localization team manages non-English translations through Crowdin workflow
+
 5. **Generate and use**:
    ```bash
    make generate
@@ -126,6 +131,27 @@ String(format: Loc.pinLimitReached, 10)  // DON'T DO THIS
 ```
 
 **Why**: SwiftGen automatically generates parameterized functions for strings with format specifiers (%lld, %d, %@). Always use the generated function directly.
+
+### Removing Unused Localization Keys
+
+When removing code that uses localization keys, **always check if the key is still used elsewhere**:
+
+1. **Search for usage**:
+   ```bash
+   rg "keyName" --type swift
+   ```
+
+2. **If only found in Generated/Strings.swift**, the key is unused:
+   - Remove the entire key entry from the source `.xcstrings` file
+   - Run `make generate` to regenerate Strings.swift
+
+3. **Example workflow**:
+   - Removed `MembershipParticipantUpgradeReason.numberOfSpaceReaders`
+   - Search: `rg "noMoreMembers" --type swift` → only in Strings.swift
+   - Remove `"Membership.Upgrade.NoMoreMembers"` from Workspace.xcstrings
+   - Run `make generate`
+
+**Important**: Never leave orphaned localization keys in .xcstrings files - they bloat the codebase and confuse translators.
 
 ## 🎨 Design System & Common UI Components
 
@@ -229,6 +255,27 @@ Modules/                # Swift packages
 - Import order: system → third-party → internal
 - Property organization: @Published/@Injected → public → private → constants → variables → methods
 - Use async/await, SwiftUI property wrappers, trailing closures, type inference
+- **Avoid nested types** - Extract enums/structs to top-level with descriptive names (e.g., `SpaceLimitBannerLimitType` instead of `SpaceLimitBannerView.LimitType`)
+- **Enum exhaustiveness**: Always use explicit switch statements for enum pattern matching to enable compiler warnings when new cases are added
+  - ✅ **CORRECT**:
+    ```swift
+    var showManageButton: Bool {
+        switch self {
+        case .sharedSpaces:
+            return true
+        case .editors:
+            return false
+        }
+    }
+    ```
+  - ❌ **WRONG**:
+    ```swift
+    var showManageButton: Bool {
+        if case .sharedSpaces = self { return true }
+        return false  // Default fallback prevents compiler warnings
+    }
+    ```
+  - **Exception**: Only use default fallback for super obvious single-case checks (e.g., `isSharedSpaces`, `isEditor`)
 
 ## 🔄 Development Workflow
 
