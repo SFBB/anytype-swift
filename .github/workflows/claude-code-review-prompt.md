@@ -26,7 +26,12 @@ Review this PR using CLAUDE.md for project conventions. Be LEAN and ACTIONABLE -
 - NO "no concerns" statements (skip the section entirely)
 - NO design/UI/spacing suggestions (padding, margins, colors, etc.) - you cannot see the visual design
 - Reference specific file:line locations for issues
-- If no issues found: comment "✅ **Approved** - No issues found"
+- **If no issues found**:
+  - Comment ONLY: "✅ **Approved** - No issues found"
+  - DO NOT describe what the PR does
+  - DO NOT list changes made
+  - DO NOT provide any summary or explanation
+  - Zero noise, zero fluff - just the approval statement
 
 ### Review Sections
 Include ONLY if issues exist:
@@ -98,6 +103,43 @@ Always post a summary at the end:
 ```bash
 gh pr comment ${PR_NUMBER} --body "Review complete - see inline comments for details"
 ```
+
+## CRITICAL: Post Your Review
+
+**YOU MUST POST YOUR REVIEW TO THE PR** - analysis alone is not sufficient.
+
+After completing your review analysis:
+
+1. **For reviews with inline comments**: Post inline comments first using the strategies above, then post a final summary
+2. **For reviews without inline comments**: Post your full review text as a single PR comment
+
+**Command**:
+```bash
+gh pr comment ${PR_NUMBER} --repo ${REPO} --body "YOUR_REVIEW_TEXT_HERE"
+```
+
+**Example** (clean approval):
+```bash
+gh pr comment ${PR_NUMBER} --repo ${REPO} --body "✅ **Approved** - No issues found"
+```
+
+**Example** (review with issues):
+```bash
+gh pr comment ${PR_NUMBER} --repo ${REPO} --body "## Bugs/Issues
+
+**SpaceHubToolbar.swift:109**
+The \`attentionDotView\` overlay positioning is incorrect...
+
+---
+
+⚠️ **Minor Issues** - Fix overlay positioning"
+```
+
+**Important**:
+- Use single quotes to wrap multi-line review text if needed
+- Escape special characters appropriately for bash
+- Always include the status emoji summary at the end
+- The workflow provides ${PR_NUMBER} and ${REPO} variables
 
 ## Common Analysis Mistakes to Avoid
 
