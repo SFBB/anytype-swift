@@ -6,38 +6,6 @@
 public extension FeatureFlags {
 
     // Static value reader
-    static var muteSpacePossibility: Bool {
-        value(for: .muteSpacePossibility)
-    }
-
-    static var addNotificationsSettings: Bool {
-        value(for: .addNotificationsSettings)
-    }
-
-    static var swipeToReply: Bool {
-        value(for: .swipeToReply)
-    }
-
-    static var removeMessagesFromNotificationsCenter: Bool {
-        value(for: .removeMessagesFromNotificationsCenter)
-    }
-
-    static var mediaCarouselForWidgets: Bool {
-        value(for: .mediaCarouselForWidgets)
-    }
-
-    static var fixCollectionViewReuseCrashInEditor: Bool {
-        value(for: .fixCollectionViewReuseCrashInEditor)
-    }
-
-    static var loadAttachmentsOnHomePlusMenu: Bool {
-        value(for: .loadAttachmentsOnHomePlusMenu)
-    }
-
-    static var vaultBackToRoots: Bool {
-        value(for: .vaultBackToRoots)
-    }
-
     static var showAllButtonInWidgets: Bool {
         value(for: .showAllButtonInWidgets)
     }
@@ -64,14 +32,6 @@ public extension FeatureFlags {
 
     static var dndOnCollectionsAndSets: Bool {
         value(for: .dndOnCollectionsAndSets)
-    }
-
-    static var multichats: Bool {
-        value(for: .multichats)
-    }
-
-    static var doNotWaitCompletionInAnytypePreview: Bool {
-        value(for: .doNotWaitCompletionInAnytypePreview)
     }
 
     static var rainbowViews: Bool {
@@ -136,14 +96,6 @@ public extension FeatureFlags {
 
     // All toggles
     static let features: [FeatureDescription] = [
-        .muteSpacePossibility,
-        .addNotificationsSettings,
-        .swipeToReply,
-        .removeMessagesFromNotificationsCenter,
-        .mediaCarouselForWidgets,
-        .fixCollectionViewReuseCrashInEditor,
-        .loadAttachmentsOnHomePlusMenu,
-        .vaultBackToRoots,
         .showAllButtonInWidgets,
         .turnOffAutomaticWidgetOpening,
         .channelTypeSwitcher,
@@ -151,8 +103,6 @@ public extension FeatureFlags {
         .setKanbanView,
         .fullInlineSetImpl,
         .dndOnCollectionsAndSets,
-        .multichats,
-        .doNotWaitCompletionInAnytypePreview,
         .rainbowViews,
         .showAlertOnAssert,
         .analytics,

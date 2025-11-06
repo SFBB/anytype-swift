@@ -13,24 +13,14 @@ struct SpaceCard: View {
     let onTapSettings: () -> Void
     let onTapDelete: () -> Void
 
-    @State private var vaultBackToRootsToggle = FeatureFlags.vaultBackToRoots
-    @State private var muteSpacePossibilityToggle = FeatureFlags.muteSpacePossibility
-    
     var body: some View {
         Button {
             onTap()
         } label: {
-            if !vaultBackToRootsToggle {
-                SpaceCardLabel(
-                    model: model,
-                    draggedSpaceViewId: $draggedSpaceViewId
-                )
-            } else {
-                NewSpaceCardLabel(
-                    model: model,
-                    draggedSpaceViewId: $draggedSpaceViewId
-                )
-            }
+            NewSpaceCardLabel(
+                model: model,
+                draggedSpaceViewId: $draggedSpaceViewId
+            )
         }
         .contentShape([.dragPreview, .contextMenuPreview], RoundedRectangle(cornerRadius: 20, style: .continuous))
         .contextMenu { menuItems.tint(Color.Text.primary) }
@@ -48,8 +38,8 @@ struct SpaceCard: View {
         } else {
             pinButton
         }
-        
-        if muteSpacePossibilityToggle, model.isShared {
+
+        if model.isShared {
             muteButton
         }
         
