@@ -18,12 +18,12 @@ public extension FeatureFlags {
         value(for: .channelTypeSwitcher)
     }
 
-    static var newObjectSettings: Bool {
-        value(for: .newObjectSettings)
-    }
-
     static var showUploadStatusIndicator: Bool {
         value(for: .showUploadStatusIndicator)
+    }
+
+    static var newObjectSettings: Bool {
+        value(for: .newObjectSettings)
     }
 
     static var setKanbanView: Bool {
@@ -102,13 +102,17 @@ public extension FeatureFlags {
         value(for: .spaceHubAlwaysShowLoading)
     }
 
+    static var showHangedObjects: Bool {
+        value(for: .showHangedObjects)
+    }
+
     // All toggles
     static let features: [FeatureDescription] = [
         .showAllButtonInWidgets,
         .turnOffAutomaticWidgetOpening,
         .channelTypeSwitcher,
-        .newObjectSettings,
         .showUploadStatusIndicator,
+        .newObjectSettings,
         .setKanbanView,
         .fullInlineSetImpl,
         .dndOnCollectionsAndSets,
@@ -127,6 +131,7 @@ public extension FeatureFlags {
         .logMiddlewareRequests,
         .showPushMessagesInForeground,
         .skipOnboardingEmailCollection,
-        .spaceHubAlwaysShowLoading
+        .spaceHubAlwaysShowLoading,
+        .showHangedObjects
     ]
 }

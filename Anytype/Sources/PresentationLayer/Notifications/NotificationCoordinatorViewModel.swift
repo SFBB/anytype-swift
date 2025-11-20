@@ -14,15 +14,24 @@ final class NotificationCoordinatorViewModel: ObservableObject {
     private var objectIconBuilder: any ObjectIconBuilderProtocol
     @Injected(\.syncStatusStorage)
     private var syncStatusStorage: any SyncStatusStorageProtocol
+    @Injected(\.spaceHubSpacesStorage)
+    private var spaceHubSpacesStorage: any SpaceHubSpacesStorageProtocol
 
     private var subscription: AnyCancellable?
     private var dismissAllPresented: DismissAllPresented?
-    
+    private var uploadingFilesCount: Int = 0
+    private var showSpaceLoading: Bool = false
+    private let hangedObjectsMonitor = HangedObjectsMonitor()
+
     @Published var spaceRequestAlert: SpaceRequestAlertData?
     @Published var membershipUpgradeReason: MembershipUpgradeReason?
-    @Published var uploadingFilesCount: Int = 0
+    @Published var uploadStatusText: String?
 
     func onAppear() {
+        hangedObjectsMonitor.onStateChanged = { [weak self] in
+            self?.updateUploadStatusText()
+        }
+
         Task {
             if subscription.isNotNil {
                 anytypeAssertionFailure("Try start subscription again")
@@ -37,6 +46,7 @@ final class NotificationCoordinatorViewModel: ObservableObject {
     func onDisappear() {
         subscription?.cancel()
         subscription = nil
+        hangedObjectsMonitor.reset()
     }
     
     func setDismissAllPresented(dismissAllPresented: DismissAllPresented) {
@@ -51,17 +61,46 @@ final class NotificationCoordinatorViewModel: ObservableObject {
         for await statuses in syncStatusStorage.allSpacesStatusPublisher().values {
             guard FeatureFlags.showUploadStatusIndicator else { continue }
 
-            let count = statuses
-                .filter { $0.status == .syncing } // todo: count only files
-                .reduce(0) { $0 + Int($1.syncingObjectsCounter) }
+            uploadingFilesCount = statuses
+                .filter { $0.status == .syncing }
+                .reduce(0) { $0 + Int($1.uploadingFilesCounter) }
 
-            withAnimation {
-                uploadingFilesCount = count
+            if FeatureFlags.showHangedObjects {
+                let syncingCount = statuses
+                    .filter { $0.status == .syncing }
+                    .reduce(0) { $0 + Int($1.syncingObjectsCounter) }
+                hangedObjectsMonitor.update(count: syncingCount)
             }
+
+            updateUploadStatusText()
         }
     }
-    
+
+    func startHandleSpaceLoading() async {
+        for await spaces in await spaceHubSpacesStorage.spacesStream {
+            showSpaceLoading = spaces.contains { $0.spaceView.isLoading } || FeatureFlags.spaceHubAlwaysShowLoading
+            updateUploadStatusText()
+        }
+    }
+
     // MARK: - Private
+
+    private func updateUploadStatusText() {
+        let newText: String? = if uploadingFilesCount > 0 {
+            Loc.filesUploading(uploadingFilesCount)
+        } else if showSpaceLoading {
+            Loc.syncing
+        } else if hangedObjectsMonitor.shouldShow() {
+            Loc.itemsSyncing(hangedObjectsMonitor.objectsCount)
+        } else {
+            nil
+        }
+
+        withAnimation {
+            uploadStatusText = newText
+        }
+    }
+
     private func handle(events: [NotificationEvent]) async {
         for event in events {
             switch event {
