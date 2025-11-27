@@ -48,8 +48,7 @@ public extension FeatureDescription {
     static let fullInlineSetImpl = FeatureDescription(
         title: "Full inline set impl (IOS-790)",
         type: .feature(author: "joe_pusya@anytype.io", releaseVersion: "?"),
-        defaultValue: false,
-        debugValue: false
+        defaultValue: false
     )
     
     static let dndOnCollectionsAndSets = FeatureDescription(
@@ -58,13 +57,19 @@ public extension FeatureDescription {
         defaultValue: false
     )
 
+    static let demoOneToOneSpaces = FeatureDescription(
+        title: "Demo 1-1 Spaces - IOS-5521",
+        type: .feature(author: "vova@anytype.io", releaseVersion: "?"),
+        defaultValue: false,
+        debugValue: true
+    )
+
     // MARK: - Debug
     
     static let rainbowViews = FeatureDescription(
         title: "Paint editor views 🌈",
         type: .debug,
-        defaultValue: false,
-        debugValue: false
+        defaultValue: false
     )
     
     static let showAlertOnAssert = FeatureDescription(
@@ -76,15 +81,13 @@ public extension FeatureDescription {
     static let analytics = FeatureDescription(
         title: "Analytics - send events to Amplitude (only for test builds)",
         type: .debug,
-        defaultValue: false,
-        debugValue: false
+        defaultValue: false
     )
     
     static let analyticsAlerts = FeatureDescription(
         title: "Analytics - show alerts",
         type: .debug,
-        defaultValue: false,
-        debugValue: false
+        defaultValue: false
     )
     
     static let nonfatalAlerts = FeatureDescription(
@@ -97,15 +100,13 @@ public extension FeatureDescription {
     static let resetTips = FeatureDescription(
         title: "Tips 💭 - reset on launch",
         type: .debug,
-        defaultValue: false,
-        debugValue: false
+        defaultValue: false
     )
     
     static let showAllTips = FeatureDescription(
         title: "Tips 💭 - show immediate (ignore time rules)",
         type: .debug,
-        defaultValue: false,
-        debugValue: false
+        defaultValue: false
     )
     
     static let sharingExtensionShowContentTypes = FeatureDescription(
@@ -125,15 +126,13 @@ public extension FeatureDescription {
     static let failReceiptValidation = FeatureDescription(
         title: "Fail receipt validaton of Memebership",
         type: .debug,
-        defaultValue: false,
-        debugValue: false
+        defaultValue: false
     )
     
     static let showGlobalSearchScore = FeatureDescription(
         title: "Show global search score",
         type: .debug,
-        defaultValue: false,
-        debugValue: false
+        defaultValue: false
     )
     
     // Pulse handles URLSession on main thread.
@@ -141,8 +140,7 @@ public extension FeatureDescription {
     static let networkHTTPSRequestsLogger = FeatureDescription(
         title: "Enable network requests logger for images and other https requests",
         type: .debug,
-        defaultValue: false,
-        debugValue: false
+        defaultValue: false
     )
     
     static let logMiddlewareRequests = FeatureDescription(
@@ -155,8 +153,7 @@ public extension FeatureDescription {
     static let showPushMessagesInForeground = FeatureDescription(
         title: "Show push messages in foreground",
         type: .debug,
-        defaultValue: false,
-        debugValue: false
+        defaultValue: false
     )
     
     static let skipOnboardingEmailCollection = FeatureDescription(
@@ -174,7 +171,6 @@ public extension FeatureDescription {
     static let showHangedObjects = FeatureDescription(
         title: "Show hanged objects",
         type: .debug,
-        defaultValue: false,
-        debugValue: true
+        defaultValue: false
     )
 }
