@@ -2,10 +2,12 @@ import SwiftUI
 import QRCode
 import Assets
 import Services
+import AnytypeCore
 
 struct ProfileQRCodeView: View {
 
     @StateObject private var model = ProfileQRCodeViewModel()
+    @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
         content
@@ -29,7 +31,8 @@ struct ProfileQRCodeView: View {
                 EmptyView()
             case .error:
                 EmptyStateView(title: Loc.error, style: .error)
-            case .loaded(let document, _):
+            case .loaded(let lightDocument, let darkDocument, _):
+                let document = colorScheme == .dark ? darkDocument : lightDocument
                 loadedContent(document: document)
             }
         }
@@ -63,20 +66,16 @@ struct ProfileQRCodeView: View {
     private var headerRow: some View {
         HStack {
             Spacer()
-            HStack(spacing: 6) {
-                IconView(icon: model.profileIcon)
-                    .frame(width: 18, height: 18)
-                AnytypeText(model.anyName.isEmpty ? Loc.qrCode : model.anyName, style: .caption1Medium)
-                    .foregroundColor(.Text.primary)
-            }
+            AnytypeText(model.anyName.isEmpty ? Loc.qrCode : model.anyName, style: .uxTitle1Semibold)
+                .foregroundColor(.Text.primary)
             Spacer()
+        }
+        .overlay(alignment: .trailing) {
             Button { model.onScanTap() } label: {
-                Image(systemName: "qrcode.viewfinder")
-                    .resizable()
-                    .frame(width: 18, height: 18)
+                Image(asset: .X32.scanCode)
+                    .frame(width: 32, height: 32)
                     .foregroundColor(.Text.primary)
             }
-            .frame(width: 18, height: 18)
         }
     }
 
@@ -87,10 +86,12 @@ struct ProfileQRCodeView: View {
             let qrCodeSize = containerSize * 0.625
 
             ZStack {
-                CircularTextView(
-                    phrase: Loc.connectWithMeOnAnytype,
-                    size: circularTextSize
-                )
+                if FeatureFlags.qrCodeCircularText {
+                    CircularTextView(
+                        phrase: Loc.connectWithMeOnAnytype,
+                        size: circularTextSize
+                    )
+                }
                 QRCodeDocumentUIView(document: document)
                     .frame(width: qrCodeSize, height: qrCodeSize)
             }
