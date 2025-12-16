@@ -10367,7 +10367,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Attach Object"
+            "value" : "附加对象"
           }
         },
         "zh-Hant" : {
@@ -10831,7 +10831,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Attachments"
+                  "value" : "%lld 个附件"
                 }
               }
             }
@@ -11304,7 +11304,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Audios"
+                  "value" : "%lld 个音频"
                 }
               }
             }
@@ -15828,7 +15828,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Bookmarks"
+                  "value" : "%lld个书签"
                 }
               }
             }
@@ -16433,7 +16433,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Take photo or video"
+            "value" : "拍摄照片或视频"
           }
         },
         "zh-Hant" : {
@@ -20174,9 +20174,147 @@
     "Connect" : {
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "be" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Verbinden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Connect"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Conectar"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hubungkan"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connetti"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Подключиться"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Bağlan"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "连接"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Connect"
           }
         }
@@ -20185,9 +20323,147 @@
     "Connect with me on Anytype" : {
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "be" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : " Conecta conmigo en Anytype"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Свяжитесь со мной на Anytype"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Anytype üzerinden benimle bağlantı kur"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Connect with me on Anytype"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "与我在Anytype上联系"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Connect with me on Anytype"
           }
         }
@@ -20807,7 +21083,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Switching between Space and Chat will significantly change the experience."
+            "value" : "Der Wechsel zwischen Space und Chat wird das Erlebnis erheblich verändern."
           }
         },
         "en" : {
@@ -24057,7 +24333,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Customize URL"
+            "value" : "自定义链接"
           }
         },
         "zh-Hant" : {
@@ -25416,7 +25692,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Dates"
+                  "value" : "%lld 个日期"
                 }
               }
             }
@@ -30073,7 +30349,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Document scan failed"
+            "value" : "文档扫描失败"
           }
         },
         "zh-Hant" : {
@@ -32010,7 +32286,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%@ embed. This content is not available on mobile"
+            "value" : "这是一个 %@ 嵌入组件，无法在移动端查看。"
           }
         },
         "zh-Hant" : {
@@ -32159,7 +32435,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%@ embed. Opens in external app or browser"
+            "value" : "这是一个 %@ 嵌入组件。您可在第三方应用或浏览器中打开。"
           }
         },
         "zh-Hant" : {
@@ -32308,7 +32584,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%@ embed is empty"
+            "value" : "这是一个 %@ 嵌入组件，内容为空。"
           }
         },
         "zh-Hant" : {
@@ -33232,7 +33508,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Publish your first web site to get started."
+            "value" : "Veröffentliche deine erste Webseite, um loszulegen."
           }
         },
         "en" : {
@@ -36781,7 +37057,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Experimental Features"
+            "value" : "实验性功能"
           }
         },
         "zh-Hant" : {
@@ -36930,7 +37206,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Always pick object type when creating"
+            "value" : "在创建对象时始终选择对象类型"
           }
         },
         "zh-Hant" : {
@@ -37079,7 +37355,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "New Object Creation Menu"
+            "value" : "新版对象创建菜单"
           }
         },
         "zh-Hant" : {
@@ -38139,7 +38415,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Files"
+                  "value" : "%lld 个文件"
                 }
               }
             }
@@ -38830,7 +39106,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%#@file@ uploading"
+            "value" : "Загрузка %#@file@"
           },
           "substitutions" : {
             "file" : {
@@ -38840,25 +39116,25 @@
                   "few" : {
                     "stringUnit" : {
                       "state" : "new",
-                      "value" : "%arg files"
+                      "value" : "%arg файл"
                     }
                   },
                   "many" : {
                     "stringUnit" : {
                       "state" : "new",
-                      "value" : "%arg files"
+                      "value" : "%arg файл"
                     }
                   },
                   "one" : {
                     "stringUnit" : {
                       "state" : "new",
-                      "value" : "%arg file"
+                      "value" : "%arg файл"
                     }
                   },
                   "other" : {
                     "stringUnit" : {
                       "state" : "new",
-                      "value" : "%arg files"
+                      "value" : "%arg файлов"
                     }
                   }
                 }
@@ -38956,7 +39232,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%#@file@ uploading"
+            "value" : "%#@file@ 正在上传"
           },
           "substitutions" : {
             "file" : {
@@ -41073,7 +41349,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Remote storage is not available in local-only mode. Your files are stored locally on your device."
+            "value" : "本地模式下无法使用远程存储，您的文件将保存在当前设备中。"
           }
         },
         "zh-Hant" : {
@@ -45276,7 +45552,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Hide Description"
+            "value" : "Beschreibung ausblenden"
           }
         },
         "en" : {
@@ -45396,7 +45672,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Hide Description"
+            "value" : "隐藏描述"
           }
         },
         "zh-Hant" : {
@@ -46756,7 +47032,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Images"
+                  "value" : "%lld 张图像"
                 }
               }
             }
@@ -46914,7 +47190,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Image from Photo Library"
+            "value" : "相册中的照片"
           }
         },
         "zh-Hant" : {
@@ -49094,7 +49370,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Keychain"
+            "value" : "钥匙串"
           }
         },
         "zh-Hant" : {
@@ -49839,7 +50115,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Let's try it"
+            "value" : "让我们试试吧"
           }
         },
         "zh-Hant" : {
@@ -52267,7 +52543,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Lists"
+                  "value" : "%lld 个列表"
                 }
               }
             }
@@ -52901,7 +53177,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Locked"
+            "value" : "Gesperrt"
           }
         },
         "en" : {
@@ -53021,7 +53297,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Locked"
+            "value" : "已锁定"
           }
         },
         "zh-Hant" : {
@@ -54866,7 +55142,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Misc"
+            "value" : "Sonstiges"
           }
         },
         "en" : {
@@ -58414,7 +58690,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "No matches found.\nTry a different keyword or check your spelling."
+            "value" : "未找到相关结果。\n请尝试其他关键词。"
           }
         },
         "zh-Hant" : {
@@ -58563,7 +58839,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "No properties yet. Add some to this type."
+            "value" : "尚无属性。为此类型添加一些吧。"
           }
         },
         "zh-Hant" : {
@@ -60070,7 +60346,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Objects"
+                  "value" : "%lld 个对象"
                 }
               }
             }
@@ -61232,7 +61508,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Object types"
+                  "value" : "%lld 种类型"
                 }
               }
             }
@@ -61688,7 +61964,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Are you sure you want to delete this Type? All existing objects of this type will be preserved, but will no longer be associated with it."
+            "value" : "确定要删除此类型吗？所有已创建的对象将保留，但不再与此类型关联。"
           }
         },
         "zh-Hant" : {
@@ -61837,7 +62113,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Delete Object Type?"
+            "value" : "确认删除此类型？"
           }
         },
         "zh-Hant" : {
@@ -63476,7 +63752,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open web page"
+            "value" : "打开网页"
           }
         },
         "zh-Hant" : {
@@ -65281,7 +65557,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld PDFs"
+                  "value" : "%lld 个PDF"
                 }
               }
             }
@@ -68792,7 +69068,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Photo"
+            "value" : "照片"
           }
         },
         "zh-Hant" : {
@@ -69388,7 +69664,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You've reached the limit of %d pinned spaces."
+            "value" : "已达到 %d 个置顶空间的上限"
           }
         },
         "zh-Hant" : {
@@ -70461,7 +70737,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "This layout differs from the type's default. Reset to match?"
+            "value" : "Dieses Layout weicht von der Standardeinstellung des Typs ab. Zur Übereinstimmung zurücksetzen?"
           }
         },
         "en" : {
@@ -71177,7 +71453,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Publish to Web"
+            "value" : "发布至网络"
           }
         },
         "zh-Hant" : {
@@ -73879,7 +74155,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Relations"
+                  "value" : "%lld 个关系"
                 }
               }
             }
@@ -74961,7 +75237,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Resolve layout conflict"
+            "value" : "Layoutkonflikt lösen"
           }
         },
         "en" : {
@@ -75991,9 +76267,147 @@
     "Saved to Photos" : {
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "be" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "In Fotos gespeichert"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Saved to Photos"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Guardado en Fotos"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Tersimpan ke Foto"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Сохранено в Фото"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Fotoğraflara Kaydedildi"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Saved to Photos"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "已保存到相册"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Saved to Photos"
           }
         }
@@ -76137,7 +76551,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Scan documents"
+            "value" : "扫描文档"
           }
         },
         "zh-Hant" : {
@@ -77479,7 +77893,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You phone doesn’t have a passcode or biometric authorization. It might make it easier to steal your data. Enable it in your app settings to secure your data."
+            "value" : "您的手机没有设置密码或生物识别验证，这可能会增加您的数据被盗的风险。请在应用设置中启用密码或生物识别验证，以保护您的数据安全。"
           }
         },
         "zh-Hant" : {
@@ -77628,7 +78042,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Proceed anyway"
+            "value" : "仍要继续"
           }
         },
         "zh-Hant" : {
@@ -77777,7 +78191,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Secure your phone"
+            "value" : "保护您的手机"
           }
         },
         "zh-Hant" : {
@@ -77806,7 +78220,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "See all"
+            "value" : "Alles ansehen"
           }
         },
         "en" : {
@@ -77926,7 +78340,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "See all"
+            "value" : "查看全部"
           }
         },
         "zh-Hant" : {
@@ -78671,7 +79085,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Select Objects"
+            "value" : "选择对象"
           }
         },
         "zh-Hant" : {
@@ -80038,7 +80452,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Send"
+            "value" : "发送"
           }
         },
         "zh-Hant" : {
@@ -80052,9 +80466,147 @@
     "sendMessage" : {
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "be" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Nachricht senden"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Send Message"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Enviar mensaje"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Kirim Pesan"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Invia Messaggio"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Отправить сообщение"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Mesaj Gönder"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Send Message"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "发送消息"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Send Message"
           }
         }
@@ -84686,9 +85238,147 @@
     "Share QR Code" : {
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "be" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "QR-Code teilen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Share QR Code"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Compartir código QR"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Bagikan Kode QR"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Поделиться QR кодом"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Karekodu Paylaş"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Share QR Code"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "分享二维码"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Share QR Code"
           }
         }
@@ -84861,7 +85551,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Show Description"
+            "value" : "Beschreibung anzeigen"
           }
         },
         "en" : {
@@ -84981,7 +85671,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Show Description"
+            "value" : "显示描述"
           }
         },
         "zh-Hant" : {
@@ -89304,7 +89994,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%@ deleted successfully"
+            "value" : "已删除 %@"
           }
         },
         "zh-Hant" : {
@@ -89966,13 +90656,13 @@
         "id" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Syncing..."
+            "value" : "Menyinkronkan…"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Syncing..."
+            "value" : "Sincronizzazione in corso..."
           }
         },
         "ja" : {
@@ -90026,13 +90716,13 @@
         "ru" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Syncing..."
+            "value" : "Синхронизация..."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Syncing..."
+            "value" : "Senkronize ediliyor..."
           }
         },
         "uk" : {
@@ -90050,7 +90740,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Syncing..."
+            "value" : "同步中..."
           }
         },
         "zh-Hant" : {
@@ -90228,7 +90918,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "No access to the space"
+            "value" : "Kein Zugriff auf den Space"
           }
         },
         "en" : {
@@ -92154,7 +92844,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Tags"
+                  "value" : "%lld 个标签"
                 }
               }
             }
@@ -93654,7 +94344,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Text Style"
+            "value" : "文本样式"
           }
         },
         "zh-Hant" : {
@@ -96068,7 +96758,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "There are no spaces yet"
+            "value" : "Es gibt noch keine Spaces"
           }
         },
         "en" : {
@@ -99646,7 +100336,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Unlocked"
+            "value" : "Entsperrt"
           }
         },
         "en" : {
@@ -99766,7 +100456,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Unlocked"
+            "value" : "已解锁"
           }
         },
         "zh-Hant" : {
@@ -100093,7 +100783,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Unpinned"
+            "value" : "Losgelöst"
           }
         },
         "en" : {
@@ -100213,7 +100903,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Unpinned"
+            "value" : "已取消置顶"
           }
         },
         "zh-Hant" : {
@@ -100809,7 +101499,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Unset as default"
+            "value" : "重置为默认值"
           }
         },
         "zh-Hant" : {
@@ -100958,7 +101648,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Unset default"
+            "value" : "取消默认设置"
           }
         },
         "zh-Hant" : {
@@ -103956,7 +104646,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "%lld Videos"
+                  "value" : "%lld 个视频"
                 }
               }
             }
@@ -104263,7 +104953,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "View in Browser"
+            "value" : "在浏览器中查看"
           }
         },
         "zh-Hant" : {
@@ -108779,7 +109469,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Widget with a Query or Collection layout"
+            "value" : "Widget mit Abfrage- oder Sammlungslayout"
           }
         },
         "en" : {
@@ -110091,7 +110781,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "We’ve redesigned how widgets work, and this widget is no longer supported. Once deleted, this widget cannot be restored."
+            "value" : "我们已经重新设计了小组件，因此不再支持这个小组件。一旦删除，这个小组件将无法恢复。"
           }
         },
         "zh-Hant" : {
@@ -110836,7 +111526,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You joined %@"
+            "value" : "您已加入 %@"
           }
         },
         "zh-Hant" : {

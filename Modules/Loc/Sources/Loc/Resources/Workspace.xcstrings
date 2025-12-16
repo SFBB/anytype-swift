@@ -288,7 +288,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Failed to create file. Try again."
+            "value" : "无法创建文件。请重试"
           }
         },
         "zh-Hant" : {
@@ -437,7 +437,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Invalid file. Try again"
+            "value" : "文件无效。请重试"
           }
         },
         "zh-Hant" : {
@@ -901,7 +901,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "new",
-                  "value" : "You can upload only %d attachments at a time"
+                  "value" : "您一次只能上传 %d 个附件"
                 }
               }
             }
@@ -1953,7 +1953,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Add members"
+            "value" : "添加成员"
           }
         },
         "zh-Hant" : {
@@ -2102,7 +2102,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Messages, docs & files available offline"
+            "value" : "消息、文档和文件可离线访问"
           }
         },
         "zh-Hant" : {
@@ -2251,7 +2251,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Fully private and encrypted"
+            "value" : "完全隐私，信息加密"
           }
         },
         "zh-Hant" : {
@@ -2400,7 +2400,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Yours forever"
+            "value" : "永远属于您"
           }
         },
         "zh-Hant" : {
@@ -2698,7 +2698,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Update App"
+            "value" : "更新应用"
           }
         },
         "zh-Hant" : {
@@ -2847,7 +2847,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "This version doesn’t support sending files or images. Update the app to share media in chats."
+            "value" : "此版本不支持发送文件或图像。您需要更新应用，才能在聊天中发送媒体文件。"
           }
         },
         "zh-Hant" : {
@@ -2996,7 +2996,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Incompatible Version"
+            "value" : "版本不兼容"
           }
         },
         "zh-Hant" : {
@@ -3145,7 +3145,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "We couldn’t connect right now. This may be due to no internet or a temporary sync issue. We’ll keep trying in the background."
+            "value" : "目前无法连接服务器，可能是网络异常或同步服务暂时出现问题。我们将在后台自动重试。"
           }
         },
         "zh-Hant" : {
@@ -3443,7 +3443,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Network Error"
+            "value" : "网络错误"
           }
         },
         "zh-Hant" : {
@@ -5083,7 +5083,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Anytype now supports real-time chat in Shared Channels — so your thoughts and dialogues can grow together."
+            "value" : "Anytype 现已支持共享空间的实时聊天——让每一次所思所言，共同生长。"
           }
         },
         "zh-Hant" : {
@@ -8093,7 +8093,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Inline query"
+            "value" : "Inline Abfrage"
           }
         },
         "en" : {
@@ -9108,7 +9108,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Create Chat"
+            "value" : "新建聊天"
           }
         },
         "zh-Hant" : {
@@ -19775,7 +19775,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "These properties exist in some objects but aren’t part of the Type. Add them to make them appear in all objects of this Type."
+            "value" : "Diese Eigenschaften existieren in einigen Objekten aber sind nicht Teil des Typs. Füge sie hinzu, um sie in allen Objekten dieses Typs erscheinen zu lassen."
           }
         },
         "en" : {
@@ -20371,7 +20371,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Join Space"
+            "value" : "Space beitreten"
           }
         },
         "en" : {
@@ -20520,7 +20520,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Join Space Button"
+            "value" : "Space beitreten Schaltfläche"
           }
         },
         "en" : {
@@ -26410,7 +26410,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You can manage tier on Desktop platform"
+            "value" : "Du kannst deine Mitgliedschaft in der Desktop-App verwalten"
           }
         },
         "en" : {
@@ -31325,7 +31325,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "New Property"
+            "value" : "新建属性"
           }
         },
         "zh-Hant" : {
@@ -32100,7 +32100,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You're editing type"
+            "value" : "Du bearbeitest den Typ"
           }
         },
         "en" : {
@@ -35827,7 +35827,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Get notified instantly when someone messages or mentions you in your spaces."
+            "value" : "Werde sofort benachrichtigt, wenn dir jemand eine Nachricht sendet oder dich in einem deiner Space erwähnt."
           }
         },
         "en" : {
@@ -53572,7 +53572,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "People with link can edit and write in chat"
+            "value" : "Personen mit Link können den Chat ansehen und lesen"
           }
         },
         "en" : {
@@ -53721,7 +53721,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Editor access"
+            "value" : "Bearbeiter-Zugriff"
           }
         },
         "en" : {
@@ -54615,7 +54615,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Viewer access"
+            "value" : "Lese-Zugriff"
           }
         },
         "en" : {
@@ -59842,6 +59842,155 @@
         }
       }
     },
+    "Spaces.UxType.OneToOne.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "be" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direkter Kanal"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direct channel"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Canal directo"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Kanal langsung"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Прямой канал"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Doğrudan kanal"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direct channel"
+          }
+        }
+      }
+    },
     "Spaces.UxType.Space.ChangeDescription" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -60587,17 +60736,6 @@
         }
       }
     },
-    "Spaces.UxType.OneToOne.Title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Direct channel"
-          }
-        }
-      }
-    },
     "SpaceSettings.DeleteAlert.Message" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -60676,7 +60814,7 @@
         "nb" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Dette rommet vil bli slettet ugjenkallelig. Du kan ikke angre denne handlingen."
+            "value" : "This space will be deleted irrevocably. You can't undo this action."
           }
         },
         "nl" : {
@@ -66299,7 +66437,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "The link you are using does not seem to work. Please ask the owner to share a new one with you."
+            "value" : "Der von dir verwendete Link scheint nicht zu funktionieren. Bitte frage den Eigentümer nach einem Neuen."
           }
         },
         "en" : {
@@ -66895,7 +67033,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "No access to this space"
+            "value" : "Kein Zugriff auf den Space"
           }
         },
         "en" : {
@@ -67044,7 +67182,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Join Space"
+            "value" : "Space beitreten"
           }
         },
         "en" : {
@@ -68512,6 +68650,61 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "離開請求"
+          }
+        }
+      }
+    },
+    "SpaceShare.MakePrivate.Action" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make Private"
+          }
+        }
+      }
+    },
+    "SpaceShare.MakePrivate.Confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
+          }
+        }
+      }
+    },
+    "SpaceShare.MakePrivate.Message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Making this space private will disable the current invite link, so it can no longer be used to join. You'll remain the only member. When you re-enable sharing, a new link will be generated."
+          }
+        }
+      }
+    },
+    "SpaceShare.MakePrivate.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make this space private?"
+          }
+        }
+      }
+    },
+    "SpaceShare.MakePrivate.Toast" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can make the space private after removing all members"
           }
         }
       }
