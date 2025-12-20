@@ -2,7 +2,7 @@
 
 Complete guide to iOS development patterns, architecture, and best practices for the Anytype iOS app.
 
-*Last updated: 2025-01-30*
+*Last updated: 2025-12-18*
 
 ## Overview
 
@@ -468,6 +468,65 @@ Text(Loc.addMember)
 // ❌ Don't edit this file - changes will be overwritten
 ```
 
+### ❌ SwiftUI Group with Lifecycle Modifiers (2025-12-18)
+
+`Group` distributes modifiers to its children. When used with conditionals and lifecycle modifiers (`onAppear`, `task`), callbacks can fire multiple times as views switch between branches.
+
+```swift
+// ❌ WRONG - onAppear/task can fire multiple times when loadingDocument changes
+var body: some View {
+    Group {
+        if model.loadingDocument {
+            Spacer()
+        } else {
+            content
+        }
+    }
+    .onAppear { model.onAppear() }
+    .task { await model.startSubscriptions() }
+}
+
+// ✅ CORRECT - Extract to @ViewBuilder, modifiers applied once
+var body: some View {
+    loadingContent
+        .onAppear { model.onAppear() }
+        .task { await model.startSubscriptions() }
+}
+
+@ViewBuilder
+private var loadingContent: some View {
+    if model.loadingDocument {
+        Spacer()
+    } else {
+        content
+    }
+}
+```
+
+**Also avoid Group inside ForEach with modifiers**:
+```swift
+// ❌ WRONG - Group distributes onDrop to each case
+ForEach(items) { item in
+    Group {
+        switch item.type { ... }
+    }
+    .onDrop(...)
+}
+
+// ✅ CORRECT - Extract switch to @ViewBuilder function
+ForEach(items) { item in
+    itemContent(item)
+        .onDrop(...)
+}
+
+@ViewBuilder
+private func itemContent(_ item: Item) -> some View {
+    switch item.type { ... }
+}
+```
+
+**Reference**: [SwiftUI Group Still Considered Harmful](https://twocentstudios.com/2025/12/12/swiftui-group-still-considered-harmful/)
+
 ### ❌ Computed Properties Accessing Storage in ViewModels
 
 Using computed properties that access storage/services causes unnecessary calls on every view re-render:
@@ -510,6 +569,45 @@ final class ProfileViewModel: ObservableObject {
 
 **Rule**: If the value doesn't change during the view's lifetime, use `let` constant. If it can change, subscribe to updates with `@Published`.
 
+### ViewModel Initialization Performance (2025-12-19)
+
+ViewModel initializers run every time the View struct is created, not just when the view appears. Keep initializers cheap.
+
+**Current Best Practice (already used in codebase)**:
+```swift
+// ✅ CORRECT - Init is cheap, heavy work in .task
+struct ChatView: View {
+    @State private var model: ChatViewModel
+
+    init(spaceId: String, chatId: String) {
+        _model = State(wrappedValue: ChatViewModel(spaceId: spaceId, chatId: chatId))
+    }
+
+    var body: some View {
+        content
+            .task { await model.startSubscriptions() }  // Heavy work here
+    }
+}
+```
+
+**Alternative for Expensive Initialization**:
+If the ViewModel init itself is expensive (performs I/O, network, etc.), defer creation:
+```swift
+struct ExpensiveView: View {
+    let id: String
+    @State private var model: ExpensiveViewModel?
+
+    var body: some View {
+        content
+            .task(id: id) {
+                model = ExpensiveViewModel(id: id)  // Runs once per id
+            }
+    }
+}
+```
+
+**Reference**: [Initializing @Observable Classes in SwiftUI](https://nilcoalescing.com/blog/InitializingObservableClassesWithinTheSwiftUIHierarchy/)
+
 ## 📚 Integration with Other Guides
 
 - **Localization**: See `LOCALIZATION_GUIDE.md` for using `Loc.*` constants
@@ -535,6 +633,7 @@ final class ProfileViewModel: ObservableObject {
 - Trim whitespace-only lines
 - Hardcode strings (use Loc.*)
 - Use computed properties accessing storage in ViewModels (causes re-render overhead)
+- Use `Group` with conditionals + lifecycle modifiers (use `@ViewBuilder` instead)
 
 ### Testing
 
