@@ -5,7 +5,7 @@ import AnytypeCore
 
 struct ChatHeaderView: View {
 
-    @StateObject private var model: ChatHeaderViewModel
+    @State private var model: ChatHeaderViewModel
 
     init(
         spaceId: String,
@@ -14,7 +14,7 @@ struct ChatHeaderView: View {
         onTapOpenSpaceSettings: @escaping () -> Void,
         onTapAddMembers: @escaping (() -> Void)
     ) {
-        self._model = StateObject(wrappedValue: ChatHeaderViewModel(
+        _model = State(initialValue: ChatHeaderViewModel(
             spaceId: spaceId,
             chatId: chatId,
             onTapOpenWidgets: onTapOpenWidgets,
@@ -40,7 +40,7 @@ struct ChatHeaderView: View {
                         .lineLimit(1)
                     if model.muted {
                         Image(asset: .X18.muted)
-                            .foregroundColor(.Text.primary)
+                            .foregroundStyle(Color.Text.primary)
                     } else {
                         Spacer.fixedWidth(18)
                     }
@@ -53,7 +53,7 @@ struct ChatHeaderView: View {
                         model.tapAddMembers()
                     } label: {
                         Image(systemName: "person.fill.badge.plus")
-                            .foregroundColor(.Control.transparentSecondary)
+                            .foregroundStyle(Color.Control.transparentSecondary)
                             .frame(width: 28, height: 28)
                     }
                 }

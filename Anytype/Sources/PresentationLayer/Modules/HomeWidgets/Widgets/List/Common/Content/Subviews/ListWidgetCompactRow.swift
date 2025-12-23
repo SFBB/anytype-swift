@@ -18,7 +18,7 @@ struct ListWidgetCompactRow: View {
                 .frame(width: 18, height: 18)
 
             AnytypeText(model.title, style: .previewTitle2Medium)
-                .foregroundColor(titleColor)
+                .foregroundStyle(titleColor)
                 .lineLimit(1)
 
             Spacer()
@@ -26,12 +26,12 @@ struct ListWidgetCompactRow: View {
             if let chatPreview = model.chatPreview, chatPreview.hasCounters {
                 HStack(spacing: 4) {
                     if chatPreview.mentionCounter > 0 {
-                        MentionBadge(style: chatPreview.mentionStyle)
+                        MentionBadge(style: chatPreview.mentionCounterStyle)
                     }
                     if chatPreview.unreadCounter > 0 {
                         CounterView(
                             count: chatPreview.unreadCounter,
-                            style: chatPreview.unreadStyle
+                            style: chatPreview.unreadCounterStyle
                         )
                     }
                 }

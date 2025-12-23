@@ -4,17 +4,17 @@ import AnytypeCore
 
 
 struct TypePropertiesView: View {
-    
-    @StateObject private var model: TypePropertiesViewModel
-    
+
+    @State private var model: TypePropertiesViewModel
+
     @State private var draggedRow: TypePropertiesRow?
-    
+
     init(data: EditorTypeObject) {
-        _model = StateObject(wrappedValue: TypePropertiesViewModel(data: data))
+        _model = State(initialValue: TypePropertiesViewModel(data: data))
     }
-    
+
     init(document: some BaseDocumentProtocol) {
-        _model = StateObject(wrappedValue: TypePropertiesViewModel(document: document))
+        _model = State(initialValue: TypePropertiesViewModel(document: document))
     }
     
     var body: some View {
@@ -44,7 +44,7 @@ struct TypePropertiesView: View {
         HStack {
             Spacer()
             AnytypeText(Loc.fields, style: .uxTitle1Semibold)
-                .foregroundColor(.Text.primary)
+                .foregroundStyle(Color.Text.primary)
             Spacer()
         }
         .frame(height: 48)
@@ -125,7 +125,7 @@ struct TypePropertiesView: View {
                 model.onRelationTap(data)
             } label: {
                 Image(asset: data.relation.iconAsset)
-                    .foregroundColor(.Control.secondary)
+                    .foregroundStyle(Color.Control.secondary)
                 Spacer.fixedWidth(10)
                 AnytypeText(data.relation.name, style: .uxBodyRegular)
                 
@@ -182,7 +182,7 @@ struct TypePropertiesView: View {
                 Button(Loc.Fields.addToType) { model.onAddConflictRelation(data) }
             } label: {
                 Image(asset: data.format.iconAsset)
-                    .foregroundColor(.Control.secondary)
+                    .foregroundStyle(Color.Control.secondary)
                 Spacer.fixedWidth(10)
                 AnytypeText(data.name, style: .uxBodyRegular)
                 

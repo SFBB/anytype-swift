@@ -4,11 +4,11 @@ import AnytypeCore
 
 
 struct ProfileView: View {
-    @StateObject private var model: ProfileViewModel
+    @State private var model: ProfileViewModel
     @Environment(\.pageNavigation) private var pageNavigation
 
     init(info: ObjectInfo) {
-        _model = StateObject(wrappedValue: ProfileViewModel(info: info))
+        _model = State(initialValue: ProfileViewModel(info: info))
     }
 
     var body: some View {
@@ -78,7 +78,7 @@ struct ProfileView: View {
             Spacer.fixedHeight(12)
             AnytypeText(details.name, style: .heading).lineLimit(1)
             Spacer.fixedHeight(4)
-            AnytypeText(details.displayName, style: .caption1Regular).foregroundColor(.Text.secondary).lineLimit(1)
+            AnytypeText(details.displayName, style: .caption1Regular).foregroundStyle(Color.Text.secondary).lineLimit(1)
             Spacer.fixedHeight(4)
             AnytypeText(details.description, style: .previewTitle2Regular)
             connectButton
@@ -93,7 +93,7 @@ struct ProfileView: View {
             Spacer.fixedHeight(12)
             AnytypeText(details.name, style: .heading).lineLimit(1)
             Spacer.fixedHeight(4)
-            AnytypeText(details.displayName, style: .caption1Regular).foregroundColor(.Text.secondary).lineLimit(1)
+            AnytypeText(details.displayName, style: .caption1Regular).foregroundStyle(Color.Text.secondary).lineLimit(1)
             connectButton
             Spacer.fixedHeight(32)
         }

@@ -1,12 +1,8 @@
 import SwiftUI
 
 struct PushNotificationsSettingsView: View {
-    
-    @StateObject private var model: PushNotificationsSettingsViewModel
-    
-    init() {
-        _model = StateObject(wrappedValue: PushNotificationsSettingsViewModel())
-    }
+
+    @State private var model = PushNotificationsSettingsViewModel()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -43,23 +39,23 @@ struct PushNotificationsSettingsView: View {
     private func notificationsStatusRow(enabled: Bool) -> some View {
         HStack(spacing: 0) {
             AnytypeText(Loc.PushNotifications.Settings.Status.title, style: .previewTitle1Regular)
-                .foregroundColor(.Text.primary)
-            
+                .foregroundStyle(Color.Text.primary)
+
             Spacer()
-            
+
             Circle()
                 .fill(enabled ? Color.Pure.green : Color.Pure.red)
                 .frame(width: 10, height: 10)
-            
+
             Spacer.fixedWidth(8)
-            
+
             AnytypeText(enabled ? Loc.enabled : Loc.disabled, style: .previewTitle1Regular)
-                .foregroundColor(.Text.secondary)
-            
+                .foregroundStyle(Color.Text.secondary)
+
             if !enabled {
                 Spacer.fixedWidth(8)
                 Image(asset: .X18.webLink)
-                    .foregroundColor(.Control.secondary)
+                    .foregroundStyle(Color.Control.secondary)
             }
         }
         .frame(height: 52)
