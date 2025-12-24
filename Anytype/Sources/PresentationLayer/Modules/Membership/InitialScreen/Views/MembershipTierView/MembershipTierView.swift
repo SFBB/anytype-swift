@@ -3,16 +3,16 @@ import Services
 
 
 struct MembershipTierView: View {
-    @StateObject private var model: MembershipTierViewModel
-    
+    @State private var model: MembershipTierViewModel
+
     @Environment(\.colorScheme) private var colorScheme
-    
+
     init(
         tierToDisplay: MembershipTier,
         onTap: @escaping () -> Void
     ) {
-        _model = StateObject(
-            wrappedValue: MembershipTierViewModel(
+        _model = State(
+            initialValue: MembershipTierViewModel(
                 tierToDisplay: tierToDisplay,
                 onTap: onTap
             )
@@ -27,6 +27,9 @@ struct MembershipTierView: View {
             }
             .task {
                 model.updateState()
+            }
+            .task {
+                await model.startMembershipSubscription()
             }
             .onChange(of: model.userMembership) {
                 model.updateState()
@@ -60,7 +63,7 @@ struct MembershipTierView: View {
         .padding(.horizontal, 16)
         .frame(width: 192, height: 296)
         .background(backgroundView)
-        .cornerRadius(16, style: .continuous)
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
     
     private var info: some View  {
