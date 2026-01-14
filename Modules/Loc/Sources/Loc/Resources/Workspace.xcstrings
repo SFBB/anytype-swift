@@ -62387,6 +62387,28 @@
         }
       }
     },
+    "SpaceSettings.HomePage.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home page"
+          }
+        }
+      }
+    },
+    "SpaceSettings.HomePage.Widgets" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets"
+          }
+        }
+      }
+    },
     "SpaceShare.AccessChanged" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -75718,6 +75740,18 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "TemplateSelection.Header.Title" : {
+      "comment" : "Header title for template selection",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose template"
           }
         }
       }

@@ -263,6 +263,13 @@ struct SpaceSettingsView: View {
     @ViewBuilder
     private var preferences: some View {
         SectionHeaderView(title: Loc.preferences)
+        if FeatureFlags.homePage {
+            RoundedButton(
+                Loc.SpaceSettings.HomePage.title,
+                decoration: model.homePageState.buttonDecoration
+            ) { model.onHomePageTap() }
+            Spacer.fixedHeight(8)
+        }
         RoundedButton(
             Loc.defaultObjectType,
             decoration: .init(objectType: model.defaultObjectType)
