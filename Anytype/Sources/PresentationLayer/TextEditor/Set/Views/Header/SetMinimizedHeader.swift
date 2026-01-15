@@ -1,17 +1,13 @@
 import SwiftUI
-import AnytypeCore
 
 struct SetMinimizedHeader: View {
 
-    @Environment(\.widgetsAnimationNamespace) private var widgetsNamespace
-    @Namespace private var glassNamespace
+    @Namespace private var rightContentGlassNamespace
 
     @ObservedObject var model: EditorSetViewModel
     var headerSize: CGSize
     var tableViewOffset: CGPoint
     @Binding var headerMinimizedSize: CGSize
-
-    private let height = ObjectHeaderConstants.minimizedHeaderHeight
 
     var body: some View {
         VStack {
@@ -21,28 +17,23 @@ struct SetMinimizedHeader: View {
     }
 
     private var header: some View {
-        GlassEffectContainerIOS26(spacing: 12) {
+        NavigationHeader(
+            navigationButtonType: .back,
+            isTitleInteractive: true
+        ) {
+            titleContent
+        } rightContent: {
             HStack(spacing: 8) {
-                PageNavigationBackButton()
-                    .frame(width: 44, height: 44)
-                    .glassEffectInteractiveIOS26(in: Circle())
-                    .glassEffectIDIOS26("back", in: glassNamespace)
-                titlePill
-
-                HStack(spacing: 8) {
-                    syncsStatusButton
-                    if !model.hasTargetObjectId {
-                        settingsButton
-                    }
+                syncsStatusButton
+                if !model.hasTargetObjectId {
+                    settingsButton
                 }
             }
         }
-        .padding(.horizontal, 16)
-        .frame(height: height)
         .readSize { headerMinimizedSize = $0 }
     }
 
-    private var titlePill: some View {
+    private var titleContent: some View {
         Button {
             model.onTapWidgets()
         } label: {
@@ -61,9 +52,6 @@ struct SetMinimizedHeader: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
         }
-        .matchedTransitionSourceIOS26(id: "widgetsOverlay", in: widgetsNamespace)
-        .glassEffectInteractiveIOS26(in: Capsule())
-        .glassEffectIDIOS26("titlePill", in: glassNamespace)
     }
 
     private var syncsStatusButton: some View {
@@ -77,39 +65,23 @@ struct SetMinimizedHeader: View {
             .frame(width: 28, height: 28)
             .allowsHitTesting(false)
         }
-        .frame(width: 44, height: 44)
+        .frame(width: NavigationHeaderConstants.buttonSize, height: NavigationHeaderConstants.buttonSize)
         .glassEffectInteractiveIOS26(in: Circle())
-        .glassEffectIDIOS26("syncStatus", in: glassNamespace)
+        .glassEffectIDIOS26("syncStatus", in: rightContentGlassNamespace)
     }
-    
-    
 
-    @ViewBuilder
     private var settingsButton: some View {
-        Group {
-            if FeatureFlags.newObjectSettings {
-                ObjectSettingsMenuContainer(
-                    objectId: model.setDocument.objectId,
-                    spaceId: model.setDocument.spaceId,
-                    output: model.headerSettingsViewModel.output
-                ) {
-                    Image(asset: .X24.more)
-                        .foregroundStyle(Color.Control.primary)
-                        .frame(width: 44, height: 44)
-                }
-            } else {
-                Button {
-                    UISelectionFeedbackGenerator().selectionChanged()
-                    model.showObjectSettings()
-                } label: {
-                    Image(asset: .X24.more)
-                        .foregroundStyle(Color.Control.primary)
-                        .frame(width: 44, height: 44)
-                }
-            }
+        ObjectSettingsMenuContainer(
+            objectId: model.setDocument.objectId,
+            spaceId: model.setDocument.spaceId,
+            output: model.headerSettingsViewModel.output
+        ) {
+            Image(asset: .X24.more)
+                .foregroundStyle(Color.Control.primary)
+                .frame(width: NavigationHeaderConstants.buttonSize, height: NavigationHeaderConstants.buttonSize)
         }
         .glassEffectInteractiveIOS26(in: Circle())
-        .glassEffectIDIOS26("settings", in: glassNamespace)
+        .glassEffectIDIOS26("settings", in: rightContentGlassNamespace)
     }
 }
 
