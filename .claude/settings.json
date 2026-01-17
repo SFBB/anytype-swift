@@ -98,14 +98,33 @@
             "command": ".claude/hooks/post-tool-use-tracker.sh"
           }
         ]
-      }
-    ],
-    "Stop": [
+      },
       {
+        "matcher": "Edit|Write",
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/swiftformat-auto.sh"
+            "command": ".claude/hooks/swiftformat-post-edit.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/notification-alert.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/notification-alert.sh"
           }
         ]
       }
