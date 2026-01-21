@@ -5,10 +5,12 @@ import Services
 struct ChatHeaderView: View {
 
     @State private var model: ChatHeaderViewModel
+    private let settingsOutput: (any ObjectSettingsCoordinatorOutput)?
 
     init(
         spaceId: String,
         chatId: String,
+        settingsOutput: (any ObjectSettingsCoordinatorOutput)?,
         onTapOpenWidgets: @escaping () -> Void,
         onTapOpenSpaceSettings: @escaping () -> Void,
         onTapAddMembers: @escaping (() -> Void)
@@ -20,6 +22,7 @@ struct ChatHeaderView: View {
             onTapOpenSpaceSettings: onTapOpenSpaceSettings,
             onTapAddMembers: onTapAddMembers
         ))
+        self.settingsOutput = settingsOutput
     }
 
     var body: some View {
@@ -46,13 +49,15 @@ struct ChatHeaderView: View {
         Button {
             model.tapOpenWidgets()
         } label: {
-            HStack(alignment: .center, spacing: 8) {
+            HStack(alignment: .center, spacing: 0) {
                 IconView(icon: model.icon)
                     .frame(width: 32, height: 32)
+                Spacer.fixedWidth(8)
                 if model.showLoading {
                     CircleLoadingView(.Text.primary)
                         .frame(width: 18, height: 18)
                         .transition(.scale.combined(with: .opacity))
+                    Spacer.fixedWidth(4)
                 }
                 if model.isOneToOne {
                     VStack(alignment: .leading, spacing: 0) {
@@ -61,23 +66,24 @@ struct ChatHeaderView: View {
                                 .lineLimit(1)
                             if model.hasMembership {
                                 Image(asset: .X18.membershipBadge)
-                                    .frame(width: 18, height: 18)
+                                    .frame(width: 16, height: 16)
                             }
                             if model.muted {
                                 Image(asset: .X18.muted)
-                                    .foregroundStyle(Color.Text.primary)
+                                    .foregroundStyle(Color.Control.transparentSecondary)
                             }
                         }
-                        AnytypeText(model.anytypeName, style: .caption1Regular)
-                            .foregroundStyle(Color.Text.secondary)
+                        AnytypeText(model.anytypeName, style: .relation3Regular)
+                            .foregroundStyle(Color.Text.transparentSecondary)
                             .lineLimit(1)
                     }
                 } else {
                     AnytypeText(model.title, style: .uxTitle2Semibold)
                         .lineLimit(1)
                     if model.muted {
+                        Spacer.fixedWidth(4)
                         Image(asset: .X18.muted)
-                            .foregroundStyle(Color.Text.primary)
+                            .foregroundStyle(Color.Control.transparentSecondary)
                     }
                 }
                 Spacer()
@@ -108,7 +114,7 @@ struct ChatHeaderView: View {
                 ObjectSettingsMenuContainer(
                     objectId: model.chatId,
                     spaceId: model.spaceId,
-                    output: nil
+                    output: settingsOutput
                 ) {
                     Image(asset: .X24.more)
                         .foregroundStyle(Color.Control.primary)

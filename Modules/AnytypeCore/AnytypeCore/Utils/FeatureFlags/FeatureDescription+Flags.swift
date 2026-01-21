@@ -55,12 +55,6 @@ public extension FeatureDescription {
         category: .productFeature(author: "vova@anytype.io", targetRelease: "?"),
         defaultValue: false
     )
-    
-    static let matchedTransitionSource = FeatureDescription(
-        title: "iOS 26 - matchedTransitionSource (source view may disappear)",
-        type: .feature(author: "vova@anytype.io", releaseVersion: "?"),
-        defaultValue: false
-    )
 
     // MARK: - Debug
     
@@ -154,12 +148,6 @@ public extension FeatureDescription {
         defaultValue: false
     )
     
-    static let skipOnboardingEmailCollection = FeatureDescription(
-        title: "Skip mandatory onboarding email collection",
-        category: .developerTool,
-        defaultValue: false,
-        debugValue: true
-    )
     static let spaceHubAlwaysShowLoading = FeatureDescription(
         title: "Space Hub - Always show loading",
         category: .developerTool,
