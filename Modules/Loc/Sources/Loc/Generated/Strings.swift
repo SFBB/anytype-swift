@@ -1395,6 +1395,7 @@ public enum Loc {
   public static let shared = Loc.tr("Workspace", "Shared", fallback: "Shared")
   public static let task = Loc.tr("Workspace", "Task", fallback: "Task")
   public enum Chat {
+    public static let channelSettings = Loc.tr("Workspace", "Chat.ChannelSettings", fallback: "Channel Settings")
     public static let editMessage = Loc.tr("Workspace", "Chat.EditMessage", fallback: "Edit Message")
     public static let inviteMembers = Loc.tr("Workspace", "Chat.InviteMembers", fallback: "Invite members")
     public static let newMessages = Loc.tr("Workspace", "Chat.NewMessages", fallback: "New Messages")
@@ -1420,6 +1421,10 @@ public enum Loc {
         public static let ok = Loc.tr("Workspace", "Chat.CreateObject.Dismiss.Ok", fallback: "Yes, close")
         public static let title = Loc.tr("Workspace", "Chat.CreateObject.Dismiss.Title", fallback: "Are you sure you want to close this screen?")
       }
+    }
+    public enum DeleteChat {
+      public static let description = Loc.tr("Workspace", "Chat.DeleteChat.Description", fallback: "This chat and all its attachments will be moved to Bin. No one will be able to send new messages. You can restore it from Bin until it's permanently cleared.")
+      public static let title = Loc.tr("Workspace", "Chat.DeleteChat.Title", fallback: "Move chat to Bin?")
     }
     public enum DeleteMessage {
       public static let description = Loc.tr("Workspace", "Chat.DeleteMessage.Description", fallback: "It cannot be restored after confirmation")
