@@ -38815,6 +38815,28 @@
         }
       }
     },
+    "Experimental.CompactVault.subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatically hide message previews for channels with no unread messages"
+          }
+        }
+      }
+    },
+    "Experimental.CompactVault.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto-hide read previews"
+          }
+        }
+      }
+    },
     "Experimental.NewObjectCreationMenu.subtitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -41438,6 +41460,116 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Clean up files"
+          }
+        }
+      }
+    },
+    "FileStorage.AutoDownload.Gb1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 GB"
+          }
+        }
+      }
+    },
+    "FileStorage.AutoDownload.Mb100" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "100 MB"
+          }
+        }
+      }
+    },
+    "FileStorage.AutoDownload.Mb20" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "20 MB"
+          }
+        }
+      }
+    },
+    "FileStorage.AutoDownload.Mb250" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "250 MB"
+          }
+        }
+      }
+    },
+    "FileStorage.AutoDownload.Off" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Off"
+          }
+        }
+      }
+    },
+    "FileStorage.AutoDownload.SectionTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline access"
+          }
+        }
+      }
+    },
+    "FileStorage.AutoDownload.Subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto sync files up to a selected size"
+          }
+        }
+      }
+    },
+    "FileStorage.AutoDownload.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline Downloads"
+          }
+        }
+      }
+    },
+    "FileStorage.AutoDownload.Unlimited" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlimited"
+          }
+        }
+      }
+    },
+    "FileStorage.AutoDownload.UseCellularData" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use Cellular Data"
           }
         }
       }

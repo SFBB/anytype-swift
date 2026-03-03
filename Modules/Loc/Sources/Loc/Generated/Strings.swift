@@ -924,6 +924,10 @@ public enum Loc {
     public static let pleaseTryAgain = Loc.tr("UI", "Error occurred. Please try again", fallback: "Error occurred. Please try again")
   }
   public enum Experimental {
+    public enum CompactVault {
+      public static let subtitle = Loc.tr("UI", "Experimental.CompactVault.subtitle", fallback: "Automatically hide message previews for channels with no unread messages")
+      public static let title = Loc.tr("UI", "Experimental.CompactVault.title", fallback: "Auto-hide read previews")
+    }
     public enum NewObjectCreationMenu {
       public static let subtitle = Loc.tr("UI", "Experimental.NewObjectCreationMenu.subtitle", fallback: "Always pick object type when creating")
       public static let title = Loc.tr("UI", "Experimental.NewObjectCreationMenu.title", fallback: "New Object Creation Menu")
@@ -934,6 +938,18 @@ public enum Loc {
     public static let limitError = Loc.tr("UI", "FileStorage.LimitError", fallback: "You exceeded file limit upload")
     public static let offloadTitle = Loc.tr("UI", "FileStorage.OffloadTitle", fallback: "Offload files")
     public static let title = Loc.tr("UI", "FileStorage.Title", fallback: "File storage")
+    public enum AutoDownload {
+      public static let gb1 = Loc.tr("UI", "FileStorage.AutoDownload.Gb1", fallback: "1 GB")
+      public static let mb100 = Loc.tr("UI", "FileStorage.AutoDownload.Mb100", fallback: "100 MB")
+      public static let mb20 = Loc.tr("UI", "FileStorage.AutoDownload.Mb20", fallback: "20 MB")
+      public static let mb250 = Loc.tr("UI", "FileStorage.AutoDownload.Mb250", fallback: "250 MB")
+      public static let off = Loc.tr("UI", "FileStorage.AutoDownload.Off", fallback: "Off")
+      public static let sectionTitle = Loc.tr("UI", "FileStorage.AutoDownload.SectionTitle", fallback: "Offline access")
+      public static let subtitle = Loc.tr("UI", "FileStorage.AutoDownload.Subtitle", fallback: "Auto sync files up to a selected size")
+      public static let title = Loc.tr("UI", "FileStorage.AutoDownload.Title", fallback: "Offline Downloads")
+      public static let unlimited = Loc.tr("UI", "FileStorage.AutoDownload.Unlimited", fallback: "Unlimited")
+      public static let useCellularData = Loc.tr("UI", "FileStorage.AutoDownload.UseCellularData", fallback: "Use Cellular Data")
+    }
     public enum LimitLegend {
       public static func current(_ p1: Any, _ p2: Any) -> String {
         return Loc.tr("UI", "FileStorage.LimitLegend.Current", String(describing: p1), String(describing: p2), fallback: "%@ | %@")
