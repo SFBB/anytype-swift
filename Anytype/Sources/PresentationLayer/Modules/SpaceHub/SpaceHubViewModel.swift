@@ -21,6 +21,7 @@ final class SpaceHubViewModel {
     var spaceMuteData: SpaceMuteData?
     var profileIcon: Icon?
     var spaceToDelete: StringIdentifiable?
+    var spaceToLeave: StringIdentifiable?
     
     @ObservationIgnored
     private weak var output: (any SpaceHubModuleOutput)?
@@ -101,6 +102,10 @@ final class SpaceHubViewModel {
     func onDeleteSpace(spaceId: String) {
         spaceToDelete = spaceId.identifiable
     }
+
+    func onLeaveSpace(spaceId: String) {
+        spaceToLeave = spaceId.identifiable
+    }
     
     func startSubscriptions() async {
         async let spacesSub: () = subscribeOnSpaces()
@@ -135,7 +140,7 @@ final class SpaceHubViewModel {
         for await spaces in await spaceHubSpacesStorage.spacesStream {
             self.spaces = spaces.sorted(by: sortSpacesForPinnedFeature)
             await updateFilteredSpaces()
-            self.dataLoaded = spaces.isNotEmpty
+            self.dataLoaded = true
         }
     }
     
