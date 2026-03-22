@@ -1420,6 +1420,16 @@ public enum Loc {
   public static let propertiesFormats = Loc.tr("Workspace", "Properties formats", fallback: "Properties formats")
   public static let shared = Loc.tr("Workspace", "Shared", fallback: "Shared")
   public static let task = Loc.tr("Workspace", "Task", fallback: "Task")
+  public enum Channel {
+    public enum Create {
+      public static let group = Loc.tr("Workspace", "Channel.Create.Group", fallback: "Group")
+      public static let personal = Loc.tr("Workspace", "Channel.Create.Personal", fallback: "Personal")
+      public enum EmptyState {
+        public static let button = Loc.tr("Workspace", "Channel.Create.EmptyState.button", fallback: "Create Channel")
+        public static let title = Loc.tr("Workspace", "Channel.Create.EmptyState.title", fallback: "There are no channels yet")
+      }
+    }
+  }
   public enum Chat {
     public static let channelSettings = Loc.tr("Workspace", "Chat.ChannelSettings", fallback: "Channel Settings")
     public static let editMessage = Loc.tr("Workspace", "Chat.EditMessage", fallback: "Edit Message")
