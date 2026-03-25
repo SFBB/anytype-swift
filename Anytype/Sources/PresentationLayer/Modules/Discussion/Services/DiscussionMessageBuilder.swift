@@ -17,7 +17,7 @@ actor DiscussionMessageBuilder: DiscussionMessageBuilderProtocol, Sendable {
     }
 
     private let accountParticipantsStorage: any ParticipantsStorageProtocol = Container.shared.participantsStorage()
-    private let messageTextBuilder: any MessageTextBuilderProtocol = Container.shared.messageTextBuilder()
+    private let discussionTextBuilder: any DiscussionTextBuilderProtocol = Container.shared.discussionTextBuilder()
     private let openDocumentProvider: any OpenedDocumentsProviderProtocol = Container.shared.openedDocumentProvider()
 
     private let spaceId: String
@@ -81,7 +81,8 @@ actor DiscussionMessageBuilder: DiscussionMessageBuilderProtocol, Sendable {
                 authorIcon: authorParticipant?.icon.map { .object($0) } ?? Icon.object(.profile(.placeholder)),
                 authorId: authorParticipant?.id,
                 createDate: message.createdAtDate.formatted(date: .abbreviated, time: .omitted),
-                messageString: messageTextBuilder.makeMessage(content: message.resolvedContent(useBlocksFormat: true), spaceId: spaceId, position: position),
+                messageString: AttributedString(),
+                discussionBlocks: message.resolvedDiscussionBlocks(spaceId: spaceId, position: position, textBuilder: discussionTextBuilder),
                 replyModel: mapReply(
                     fullMessage: fullMessage,
                     participants: participants,
@@ -180,9 +181,10 @@ actor DiscussionMessageBuilder: DiscussionMessageBuilderProtocol, Sendable {
             let filesCout = fullMessage.replyAttachments.count(where: \.resolvedLayoutValue.isFile)
 
             let description: String
-            if replyChat.resolvedContent(useBlocksFormat: true).text.isNotEmpty {
-                description = messageTextBuilder
-                    .makeMessaeWithoutStyle(content: replyChat.resolvedContent(useBlocksFormat: true))
+            let replyBlocks = replyChat.resolvedDiscussionBlocks(spaceId: spaceId, position: .left, textBuilder: discussionTextBuilder)
+            let replyPlainText = replyBlocks.plainText
+            if replyPlainText.isNotEmpty {
+                description = replyPlainText
                     .replacingOccurrences(of: "\n+", with: "\n", options: .regularExpression)
             } else if fullMessage.replyAttachments.count == 1 {
                 description = replyAttachment?.title ?? ""

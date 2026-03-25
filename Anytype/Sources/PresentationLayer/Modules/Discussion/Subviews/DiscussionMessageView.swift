@@ -121,10 +121,8 @@ struct DiscussionMessageView: View {
     private var messageContent: some View {
         linkedObjectsForTop
 
-        if !data.messageString.isEmpty {
-            Text(data.messageString)
-                .anytypeStyle(.chatText)
-                .padding(.vertical, 2)
+        ForEach(data.discussionBlocks) { block in
+            DiscussionBlockItemView(block: block)
         }
 
         linkedObjectsForBottom
@@ -227,7 +225,7 @@ struct DiscussionMessageView: View {
             }
         }
 
-        if !data.messageString.isEmpty {
+        if data.discussionBlocks.hasContent {
             Button {
                 output?.didSelectCopyPlainText(message: data)
             } label: {
