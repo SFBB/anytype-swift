@@ -61,7 +61,7 @@ struct DiscussionCoordinatorView: View {
                 SimpleCameraView(data: $0)
             }
             .sheet(item: $model.newLinkedObject) {
-                ChatCreateObjectCoordinatorView(data: $0)
+                ChatCreateObjectCoordinatorView(data: $0, chatId: model.discussionId)
             }
             .anytypeSheet(item: $model.pushNotificationsAlertData) {
                 PushNotificationsAlertView(data: $0)
@@ -71,9 +71,6 @@ struct DiscussionCoordinatorView: View {
             }
             .sheet(item: $model.spaceShareData) { data in
                 SpaceShareCoordinatorView(data: data)
-            }
-            .anytypeSheet(item: $model.qrCodeInviteLink) {
-                QrCodeView(title: Loc.joinSpace, data: $0.absoluteString, analyticsType: .inviteSpace, route: .chat)
             }
             .onChange(of: model.photosItems) {
                 model.photosPickerFinished()

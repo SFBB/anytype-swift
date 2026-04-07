@@ -134,6 +134,8 @@ final class ChatViewModel: MessageModuleOutput, ChatActionProviderHandler {
     @ObservationIgnored
     var showEmptyState: Bool { mesageBlocks.isEmpty && dataLoaded }
     @ObservationIgnored
+    var isOneToOneSpace: Bool { participantSpaceView?.spaceView.isOneToOne ?? false }
+    @ObservationIgnored
     var spaceUxType: SpaceUxType { participantSpaceView?.spaceView.uxType ?? .data }
     @ObservationIgnored
     var participantPermissions: ParticipantPermissions? { participantSpaceView?.participant?.permission }
@@ -366,7 +368,7 @@ final class ChatViewModel: MessageModuleOutput, ChatActionProviderHandler {
     }
     
     func updateMentionState() async throws {
-        guard spaceUxType.supportsMentions else {
+        guard !isOneToOneSpace else {
             mentionObjectsModels = []
             return
         }
@@ -502,7 +504,7 @@ final class ChatViewModel: MessageModuleOutput, ChatActionProviderHandler {
     }
     
     func configureProvider(_ provider: Binding<ChatActionProvider>) {
-        provider.wrappedValue.handler = self
+        provider.wrappedValue.register(chatId: chatId, handler: self)
     }
     
     private func handleAttachmentError(_ error: any Error) {
@@ -615,11 +617,7 @@ final class ChatViewModel: MessageModuleOutput, ChatActionProviderHandler {
     func didSelectReplyMessage(message: MessageViewData) {
         guard let reply = message.reply else { return }
         AnytypeAnalytics.instance().logClickScrollToReply(chatId: message.chatId)
-        Task {
-            try await chatStorage.loadPagesTo(messageId: reply.id)
-            collectionViewScrollProxy.scrollTo(itemId: reply.id)
-            messageHiglightId = reply.id
-        }
+        scrollToMessage(messageId: reply.id)
     }
     
     func didSelectDeleteMessage(message: MessageViewData) {
@@ -662,7 +660,15 @@ final class ChatViewModel: MessageModuleOutput, ChatActionProviderHandler {
     }
 
     // MARK: - ChatActionProviderHandler
-    
+
+    func scrollToMessage(messageId: String) {
+        Task {
+            try? await chatStorage.loadPagesTo(messageId: messageId)
+            collectionViewScrollProxy.scrollTo(itemId: messageId)
+            messageHiglightId = messageId
+        }
+    }
+
     func addAttachment(_ attachment: ChatLinkObject, clearInput needsClearInput: Bool) {
         Task {
             let results = try await searchService.searchObjects(spaceId: attachment.spaceId, objectIds: [attachment.objectId])

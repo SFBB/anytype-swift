@@ -54,10 +54,6 @@ final class DiscussionViewModel: MessageModuleOutput, ChatActionProviderHandler 
     private var pushNotificationsAlertHandler: any PushNotificationsAlertHandlerProtocol
     @Injected(\.notificationsCenterService) @ObservationIgnored
     private var notificationsCenterService: any NotificationsCenterServiceProtocol
-    @Injected(\.workspaceService) @ObservationIgnored
-    private var workspaceService: any WorkspaceServiceProtocol
-    @Injected(\.universalLinkParser) @ObservationIgnored
-    private var universalLinkParser: any UniversalLinkParserProtocol
     @Injected(\.shareSuggestionService) @ObservationIgnored
     private var shareSuggestionService: any ShareSuggestionServiceProtocol
     @Injected(\.deepLinkParser) @ObservationIgnored
@@ -76,7 +72,6 @@ final class DiscussionViewModel: MessageModuleOutput, ChatActionProviderHandler 
 
     var dataLoaded = false
     var canEdit = false
-    var qrCodeInviteUrl: URL?
     @ObservationIgnored
     var keyboardDismiss: KeyboardDismiss?
 
@@ -131,6 +126,8 @@ final class DiscussionViewModel: MessageModuleOutput, ChatActionProviderHandler 
     var commentsCount: Int = 0
     @ObservationIgnored
     var showEmptyState: Bool { mesageBlocks.isEmpty && dataLoaded }
+    @ObservationIgnored
+    var isOneToOneSpace: Bool { participantSpaceView?.spaceView.isOneToOne ?? false }
     @ObservationIgnored
     var spaceUxType: SpaceUxType { participantSpaceView?.spaceView.uxType ?? .data }
     @ObservationIgnored
@@ -227,15 +224,6 @@ final class DiscussionViewModel: MessageModuleOutput, ChatActionProviderHandler 
             }
         })
         output?.onShowCameraSelected(data: data)
-    }
-
-    func onTapInviteLink() {
-        output?.onInviteLinkSelected()
-    }
-
-    func onTapShowQrCode() {
-        guard let url = qrCodeInviteUrl else { return }
-        output?.onShowQrCodeSelected(url: url)
     }
 
     func startSubscriptions() async {
@@ -378,7 +366,7 @@ final class DiscussionViewModel: MessageModuleOutput, ChatActionProviderHandler 
     }
 
     func updateMentionState() async throws {
-        guard spaceUxType.supportsMentions else {
+        guard !isOneToOneSpace else {
             mentionObjectsModels = []
             return
         }
@@ -507,7 +495,8 @@ final class DiscussionViewModel: MessageModuleOutput, ChatActionProviderHandler 
     }
 
     func configureProvider(_ provider: Binding<ChatActionProvider>) {
-        provider.wrappedValue.handler = self
+        guard let chatId else { return }
+        provider.wrappedValue.register(chatId: chatId, handler: self)
     }
 
     private func handleAttachmentError(_ error: any Error) {
@@ -596,13 +585,9 @@ final class DiscussionViewModel: MessageModuleOutput, ChatActionProviderHandler 
     }
 
     func didSelectReplyMessage(message: MessageViewData) {
-        guard let reply = message.reply, let chatStorage else { return }
+        guard let reply = message.reply else { return }
         AnytypeAnalytics.instance().logClickScrollToReply(chatId: message.chatId)
-        Task {
-            try await chatStorage.loadPagesTo(messageId: reply.id)
-            collectionViewScrollProxy.scrollTo(itemId: reply.id)
-            messageHiglightId = reply.id
-        }
+        scrollToMessage(messageId: reply.id)
     }
 
     func didSelectDeleteMessage(message: MessageViewData) {
@@ -649,6 +634,15 @@ final class DiscussionViewModel: MessageModuleOutput, ChatActionProviderHandler 
     }
 
     // MARK: - ChatActionProviderHandler
+
+    func scrollToMessage(messageId: String) {
+        guard let chatStorage else { return }
+        Task {
+            try? await chatStorage.loadPagesTo(messageId: messageId)
+            collectionViewScrollProxy.scrollTo(itemId: messageId)
+            messageHiglightId = messageId
+        }
+    }
 
     func addAttachment(_ attachment: ChatLinkObject, clearInput needsClearInput: Bool) {
         Task {
@@ -729,21 +723,11 @@ final class DiscussionViewModel: MessageModuleOutput, ChatActionProviderHandler 
         }
     }
 
-    func updateInviteState() async {
-        do {
-            let invite = try await workspaceService.getCurrentInvite(spaceId: spaceId)
-            qrCodeInviteUrl = universalLinkParser.createUrl(link: .invite(cid: invite.cid, key: invite.fileKey))
-        } catch {
-            qrCodeInviteUrl = nil
-        }
-    }
-
     private func updateMessages() async {
         guard let discussionMessageBuilder else { return }
         let newMessageBlocks = await discussionMessageBuilder.makeMessage(
             messages: messages,
             participants: participants,
-            firstUnreadMessageOrderId: firstUnreadMessageOrderId,
             limits: discussionMessageLimits
         )
         guard newMessageBlocks != mesageBlocks else { return }
