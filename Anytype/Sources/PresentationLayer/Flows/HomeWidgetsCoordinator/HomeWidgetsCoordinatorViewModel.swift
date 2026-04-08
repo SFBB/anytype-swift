@@ -39,9 +39,12 @@ final class HomeWidgetsCoordinatorViewModel: HomeWidgetsModuleOutput, SetObjectC
 
     func onAppear() {
         guard FeatureFlags.createChannelFlow else { return }
-        let spaceView = spaceViewsStorage.spaceView(spaceId: spaceInfo.accountSpaceId)
+        let spaceId = spaceInfo.accountSpaceId
+        let canEdit = participantSpacesStorage.participantSpaceView(spaceId: spaceId)?.canEdit ?? false
+        guard canEdit else { return }
+        let spaceView = spaceViewsStorage.spaceView(spaceId: spaceId)
         let homepageNotSet = spaceView?.homepage == .empty
-        let pickerAlreadyDismissed = onboardingStorage.isHomepagePickerDismissed(spaceId: spaceInfo.accountSpaceId)
+        let pickerAlreadyDismissed = onboardingStorage.isHomepagePickerDismissed(spaceId: spaceId)
         if homepageNotSet, !pickerAlreadyDismissed, !showHomepagePicker {
             showHomepagePicker = true
         }
@@ -63,11 +66,9 @@ final class HomeWidgetsCoordinatorViewModel: HomeWidgetsModuleOutput, SetObjectC
 
     func onHomepagePickerFinished(result: HomepagePickerResult) {
         showHomepagePicker = false
+        onboardingStorage.setHomepagePickerDismissed(spaceId: spaceInfo.accountSpaceId)
 
-        if case .later = result {
-            onboardingStorage.setHomepagePickerDismissed(spaceId: spaceInfo.accountSpaceId)
-            return
-        }
+        if case .later = result { return }
 
         guard case .homepageSet(let value) = result, case .object(let details) = value else { return }
         pageNavigation?.open(details.screenData())
