@@ -9,11 +9,20 @@ struct DiscussionCoordinatorData: Hashable, Codable {
     let objectId: String
     let objectName: String
     let spaceId: String
+    let messageId: String?
+
+    init(discussionId: String?, objectId: String, objectName: String, spaceId: String, messageId: String? = nil) {
+        self.discussionId = discussionId
+        self.objectId = objectId
+        self.objectName = objectName
+        self.spaceId = spaceId
+        self.messageId = messageId
+    }
 }
 
 @MainActor
 @Observable
-final class DiscussionCoordinatorViewModel: DiscussionModuleOutput, ObjectSettingsCoordinatorOutput {
+final class DiscussionCoordinatorViewModel: DiscussionModuleOutput {
 
     @ObservationIgnored
     var discussionId: String?
@@ -23,11 +32,11 @@ final class DiscussionCoordinatorViewModel: DiscussionModuleOutput, ObjectSettin
     let objectName: String
     @ObservationIgnored
     let spaceId: String
+    @ObservationIgnored
+    let messageId: String?
 
     var objectToMessageSearchData: ObjectSearchWithMetaModuleData?
     var showEmojiData: MessageReactionPickerData?
-    var showSyncStatusInfo = false
-    var objectIconPickerData: ObjectIconPickerData?
     var linkToObjectData: LinkToObjectSearchModuleData?
     var showFilesPicker = false
     var showPhotosPicker = false
@@ -38,8 +47,6 @@ final class DiscussionCoordinatorViewModel: DiscussionModuleOutput, ObjectSettin
     var safariUrl: URL?
     var cameraData: SimpleCameraData?
     var newLinkedObject: EditorScreenData?
-    var spaceShareData: SpaceShareData?
-    var dismiss = false
 
     @ObservationIgnored
     private var filesPickerData: FilesPickerData?
@@ -57,6 +64,7 @@ final class DiscussionCoordinatorViewModel: DiscussionModuleOutput, ObjectSettin
         self.objectId = data.objectId
         self.objectName = data.objectName
         self.spaceId = data.spaceId
+        self.messageId = data.messageId
     }
 
     func onLinkObjectSelected(data: ObjectSearchWithMetaModuleData) {
@@ -134,37 +142,4 @@ final class DiscussionCoordinatorViewModel: DiscussionModuleOutput, ObjectSettin
         }
     }
 
-    // MARK: - ObjectSettingsCoordinatorOutput
-
-    func closeEditor() {
-        dismiss.toggle()
-    }
-
-    func showEditorScreen(data: ScreenData) {
-        pageNavigation?.open(data)
-    }
-
-    func didCreateLinkToItself(selfName: String, data: ScreenData) {
-        anytypeAssertionFailure("Unsupported method: didCreateLinkToItself")
-    }
-
-    func didCreateTemplate(templateId: String) {
-        anytypeAssertionFailure("Unsupported method: didCreateTemplate")
-    }
-
-    func didTapUseTemplateAsDefault(templateId: String) {
-        anytypeAssertionFailure("Unsupported method: didTapUseTemplateAsDefault")
-    }
-
-    func didUndoRedo() {
-        anytypeAssertionFailure("Unsupported method: didUndoRedo")
-    }
-
-    func versionRestored(_ text: String) {
-        anytypeAssertionFailure("Unsupported method: versionRestored")
-    }
-
-    func showInviteMembers(spaceId: String) {
-        spaceShareData = SpaceShareData(spaceId: spaceId, route: .chat)
-    }
 }
