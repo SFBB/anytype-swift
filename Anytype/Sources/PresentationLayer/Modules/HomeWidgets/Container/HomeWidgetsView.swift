@@ -34,6 +34,7 @@ private struct HomeWidgetsInternalView: View {
             content
                 .animation(.default, value: model.widgetBlocks.count)
                 .animation(.default, value: model.myFavoritesListViewModel.rows.count)
+                .animation(.default, value: model.recentlyEditedListViewModel.rows.count)
 
             if context.showEmbeddedBottomPanel {
                 HomeBottomNavigationPanelView(
@@ -86,7 +87,9 @@ private struct HomeWidgetsInternalView: View {
                 blockWidgets
                 unreadWidget
                 myFavoritesWidget
+                recentlyEditedWidget
                 objectTypeWidgets
+                binWidget
                 AnytypeNavigationSpacer(minHeight: context.showEmbeddedBottomPanel ? 72 : 0)
             }
             .padding(.horizontal, 20)
@@ -153,20 +156,37 @@ private struct HomeWidgetsInternalView: View {
     }
 
     @ViewBuilder
+    private var recentlyEditedWidget: some View {
+        if model.recentlyEditedListViewModel.rows.isNotEmpty {
+            HomeWidgetsGroupView(title: Loc.Widgets.Library.RecentlyEdited.name) {
+                model.onTapRecentlyEditedHeader()
+            }
+            if model.recentlyEditedSectionIsExpanded {
+                RecentlyEditedListView(model: model.recentlyEditedListViewModel)
+            }
+        }
+    }
+
+    @ViewBuilder
     private var objectTypeWidgets: some View {
         HomeWidgetsGroupView(title: Loc.types, onTap: {
             model.onTapObjectTypeHeader()
         }, onCreate: nil)
         if model.objectTypeSectionIsExpanded {
-            VStack(spacing: 12) {
-                ObjectTypesUnifiedWidgetView(
-                    typeInfos: model.objectTypeWidgets,
-                    canCreateType: model.canCreateObjectType,
-                    onCreateType: { model.onCreateObjectType() },
-                    output: model.output
-                )
-                BinLinkWidgetView(spaceId: model.spaceId, homeState: $model.homeState, output: model.output)
-            }
+            ObjectTypesUnifiedWidgetView(
+                typeInfos: model.objectTypeWidgets,
+                canCreateType: model.canCreateObjectType,
+                onCreateType: { model.onCreateObjectType() },
+                output: model.output
+            )
+        }
+    }
+
+    @ViewBuilder
+    private var binWidget: some View {
+        if model.homeState.isReadWrite {
+            BinLinkWidgetView(spaceId: model.spaceId, homeState: $model.homeState, output: model.output)
+                .padding(.top, 24)
         }
     }
 }
