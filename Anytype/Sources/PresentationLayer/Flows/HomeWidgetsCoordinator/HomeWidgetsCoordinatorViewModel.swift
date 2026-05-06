@@ -20,6 +20,7 @@ final class HomeWidgetsCoordinatorViewModel: HomeWidgetsModuleOutput, SetObjectC
     var qrCodeInviteData: URLIdentifiable?
     var showHomeChangePicker = false
     var showHomepagePicker = false
+    var showManageSections = false
     var shouldDismissOverlay = false
 
     @Injected(\.legacySetObjectCreationCoordinator) @ObservationIgnored
@@ -128,6 +129,10 @@ final class HomeWidgetsCoordinatorViewModel: HomeWidgetsModuleOutput, SetObjectC
 
     func onSpaceChatShowQrCodeSelected(url: URL) {
         qrCodeInviteData = url.identifiable
+    }
+
+    func onManageSectionsSelected() {
+        showManageSections = true
     }
 
     // MARK: - SetObjectCreationCoordinatorOutput
