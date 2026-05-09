@@ -71,9 +71,15 @@ final class SetObjectWidgetInternalViewModel {
         self.style = style
         self.widgetObject = data.channelWidgetsObject
         self.output = data.output
-        
+
         let storageProvider = Container.shared.subscriptionStorageProvider.resolve()
         self.subscriptionStorage = storageProvider.createSubscriptionStorage(subId: subscriptionId)
+
+        // Avoid a frame of empty row before `targetDetailsPublisher` first ticks.
+        if let details = data.prefetchedDetails {
+            self.name = details.pluralTitle
+            self.icon = details.objectIconImage
+        }
     }
     
     func startSubscriptions() async {
@@ -160,29 +166,27 @@ final class SetObjectWidgetInternalViewModel {
     // MARK: - Private for view updates
     
     private func updateRows(rowDetails: [SetContentViewItemConfiguration]?) {
-        withAnimation(rows.rowsIsNil ? nil : .default) {
-            showUnsupportedBanner = (style == .view) && !(setDocument?.activeView.type.isSupportedOnDevice ?? false)
-         
-            switch style {
-            case .list:
-                let listRows = buildListRows(from: rowDetails)
-                rows = .list(rows: listRows, id: activeViewId ?? "")
-            case .compactList:
-                let listRows = buildListRows(from: rowDetails)
-                rows = .compactList(rows: listRows, id: activeViewId ?? "")
-            case .view:
-                if isSetByImageType() {
+        showUnsupportedBanner = (style == .view) && !(setDocument?.activeView.type.isSupportedOnDevice ?? false)
+
+        switch style {
+        case .list:
+            let listRows = buildListRows(from: rowDetails)
+            rows = .list(rows: listRows, id: activeViewId ?? "")
+        case .compactList:
+            let listRows = buildListRows(from: rowDetails)
+            rows = .compactList(rows: listRows, id: activeViewId ?? "")
+        case .view:
+            if isSetByImageType() {
+                let galleryRows = rowDetails.map { widgetRowModelBuilder.buildGalleryRows(from: $0) }
+                rows = .gallery(rows: galleryRows, id: activeViewId ?? "")
+            } else {
+                switch setDocument?.activeView.type {
+                case .table, .list, .kanban, .calendar, .graph, nil:
+                    let listRows = buildListRows(from: rowDetails)
+                    rows = .compactList(rows: listRows, id: activeViewId ?? "")
+                case .gallery:
                     let galleryRows = rowDetails.map { widgetRowModelBuilder.buildGalleryRows(from: $0) }
                     rows = .gallery(rows: galleryRows, id: activeViewId ?? "")
-                } else {
-                    switch setDocument?.activeView.type {
-                    case .table, .list, .kanban, .calendar, .graph, nil:
-                        let listRows = buildListRows(from: rowDetails)
-                        rows = .compactList(rows: listRows, id: activeViewId ?? "")
-                    case .gallery:
-                        let galleryRows = rowDetails.map { widgetRowModelBuilder.buildGalleryRows(from: $0) }
-                        rows = .gallery(rows: galleryRows, id: activeViewId ?? "")
-                    }
                 }
             }
         }
@@ -210,17 +214,15 @@ final class SetObjectWidgetInternalViewModel {
     }
     
     private func updateHeader(dataviewState: WidgetDataviewState?) {
-        withAnimation(headerItems.isNil ? nil : .default) {
-            headerItems = dataviewState?.dataview.map { dataView in
-                ViewWidgetTabsItemModel(
-                    dataviewId: dataView.id,
-                    title: dataView.nameWithPlaceholder,
-                    isSelected: dataView.id == dataviewState?.activeViewId,
-                    onTap: { [weak self] in
-                        self?.onActiveViewTap(dataView.id)
-                    }
-                )
-            }
+        headerItems = dataviewState?.dataview.map { dataView in
+            ViewWidgetTabsItemModel(
+                dataviewId: dataView.id,
+                title: dataView.nameWithPlaceholder,
+                isSelected: dataView.id == dataviewState?.activeViewId,
+                onTap: { [weak self] in
+                    self?.onActiveViewTap(dataView.id)
+                }
+            )
         }
     }
     
@@ -290,11 +292,16 @@ final class SetObjectWidgetInternalViewModel {
         setDocument = newSetDocument
         try? await newSetDocument.open()
 
-        // dataView blocks may sync after open() returns; re-trigger updateBodyState when they do.
+        // dataView blocks and permissions sync after open(); re-pull on emit.
         dataviewUpdateTask = Task { [weak self] in
             for await update in newSetDocument.setUpdatePublisher.values {
                 guard case .dataviewUpdated = update else { continue }
-                await self?.updateBodyState()
+                guard let self else { continue }
+                await updateBodyState()
+                let nextAllowCreate = newSetDocument.setPermissions.canCreateObject
+                if allowCreateObject != nextAllowCreate {
+                    allowCreateObject = nextAllowCreate
+                }
             }
         }
 
@@ -306,11 +313,8 @@ final class SetObjectWidgetInternalViewModel {
     
     private func updateModelState() async {
         await updateBodyState()
-    
-        guard let setDocument else { return }
-        allowCreateObject = setDocument.setPermissions.canCreateObject
-        
-        guard let details = setDocument.details else { return }
+        // setPermissions is assigned async by SetDocument.updateData(); read it in dataviewUpdateTask.
+        guard let setDocument, let details = setDocument.details else { return }
         name = details.pluralTitle
         icon = details.objectIconImage
     }
