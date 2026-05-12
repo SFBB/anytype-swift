@@ -53,7 +53,7 @@ private struct HomeWidgetsInternalView: View {
                 )
             }
         }
-        .task {
+        .task(priority: .high) {
             await model.openWidgetObjects()
         }
         .task {
@@ -90,9 +90,9 @@ private struct HomeWidgetsInternalView: View {
             VStack(spacing: 0) {
                 SpaceInfoView(spaceId: model.spaceId)
                 InviteMembersStubWidgetView(spaceId: model.spaceId, output: model.output)
-                homeWidget
                 if let channelWidgetsObject = model.channelWidgetsObject,
                    let personalWidgetsObject = model.personalWidgetsObject {
+                    homeWidget
                     ForEach(model.visibleSections, id: \.self) { section in
                         manageableSection(
                             section,
@@ -121,11 +121,14 @@ private struct HomeWidgetsInternalView: View {
                 info: model.info,
                 channelWidgetsObject: channelWidgetsObject,
                 personalWidgetsObject: personalWidgetsObject,
+                prefetchedSetSubscriptions: model.prefetchedSetSubscriptions,
+                prefetchedTreeChildren: model.prefetchedTreeChildren,
                 output: model.output
             )
         case .unread:
             UnreadSectionView(
                 spaceId: model.spaceId,
+                prefetched: model.prefetchedUnreadSection,
                 output: model.output,
                 onShouldHideBadgesChange: { shouldHideChatBadges = $0 }
             )
@@ -158,7 +161,7 @@ private struct HomeWidgetsInternalView: View {
         if context == .overlay, let data = model.homeWidgetData {
             HomeWidgetView(data: data)
                 .id("\(data.objectId)-\(data.canSetHomepage)")
-                .padding(.bottom, 8)
+                .padding(.bottom, 12)
         }
     }
 }

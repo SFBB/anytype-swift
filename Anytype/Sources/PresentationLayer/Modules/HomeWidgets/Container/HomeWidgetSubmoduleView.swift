@@ -10,8 +10,10 @@ struct HomeWidgetSubmoduleView: View {
     let personalWidgetsObject: any BaseDocumentProtocol
     let workspaceInfo: AccountInfo
     @Binding var homeState: HomeWidgetsState
+    let prefetchedSetSubscription: PrefetchedSetSubscription?
+    let prefetchedTreeChildren: PrefetchedTreeChildren?
     let output: (any CommonWidgetModuleOutput)?
-    
+
     var body: some View {
         switch widgetInfo.source {
         case .object(let objectDetails):
@@ -79,7 +81,9 @@ struct HomeWidgetSubmoduleView: View {
             homeState: $homeState,
             spaceInfo: workspaceInfo,
             output: output,
-            prefetchedDetails: prefetchedDetails
+            prefetchedDetails: prefetchedDetails,
+            prefetchedSetSubscription: prefetchedSetSubscription,
+            prefetchedTreeChildren: prefetchedTreeChildren
         )
     }
 }
