@@ -71,6 +71,10 @@ actor MemoryPressureProfilerTrigger: MemoryPressureProfilerTriggerProtocol {
         guard let path = await debugService.runProfiler(durationInSeconds: 0, reason: reason) else {
             return
         }
-        sentryReporter.report(path: path, reasonTag: reason.tag, jsonInfo: nil)
+        sentryReporter.report(path: path, reasonTag: reason.tag, jsonInfo: nil) { [debugService] in
+            Task {
+                await debugService.cleanupReport(ts: Int(Date().timeIntervalSince1970))
+            }
+        }
     }
 }
