@@ -105169,6 +105169,17 @@
         }
       }
     },
+    "UnifiedSearch.Accessibility.filterBy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter by %@"
+          }
+        }
+      }
+    },
     "UnifiedSearch.Chip.by" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -105319,6 +105330,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Search %@ in all Channels"
+          }
+        }
+      }
+    },
+    "UnifiedSearch.Onboarding.useAsFilter" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use as filter"
           }
         }
       }

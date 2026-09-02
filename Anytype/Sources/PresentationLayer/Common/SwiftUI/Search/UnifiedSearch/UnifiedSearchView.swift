@@ -3,10 +3,15 @@ import SwiftUI
 
 struct UnifiedSearchView: View {
 
+    private enum FilterResultsOnboardingTarget: Hashable {
+        case focus(String)
+        case channel(String)
+        case person(String)
+        case type(String)
+    }
+
     @State private var model: UnifiedSearchViewModel
     @Namespace private var glassNamespace
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var barExpanded = false
 
     init(data: UnifiedSearchModuleData) {
         self._model = State(initialValue: UnifiedSearchViewModel(data: data))
@@ -26,15 +31,6 @@ struct UnifiedSearchView: View {
         // app switcher snapshots without a keyboard, and the underlying screen
         // must not show through the gap
         .background(Color.Background.secondary.ignoresSafeArea())
-        .onAppear {
-            guard model.animatesBarExpansion, !reduceMotion else {
-                barExpanded = true
-                return
-            }
-            withAnimation(.spring(duration: 0.35, bounce: 0.15)) {
-                barExpanded = true
-            }
-        }
         .task {
             await model.observeTypes()
         }
@@ -61,6 +57,12 @@ struct UnifiedSearchView: View {
             if model.showOnboarding {
                 onboardingOverlay
             }
+        }
+        .sheet(isPresented: $model.showChannelsPicker) {
+            UnifiedSearchPickerView(rows: model.channelsPickerRows) {
+                model.onSelectChannelScope($0)
+            }
+            .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $model.showPeoplePicker) {
             UnifiedSearchPickerView(rows: model.peoplePickerRows) {
@@ -105,9 +107,6 @@ struct UnifiedSearchView: View {
                 .padding(.vertical, 10)
             }
         }
-        // The bar springs open from the entry button's corner
-        .scaleEffect(model.animatesBarExpansion && !barExpanded ? 0.2 : 1, anchor: .bottomLeading)
-        .opacity(model.animatesBarExpansion && !barExpanded ? 0 : 1)
         .fitIPadToReadableContentGuide()
         if #available(iOS 26.0, *) {
             block
@@ -159,8 +158,13 @@ struct UnifiedSearchView: View {
                         title: row.title,
                         caption: row.caption,
                         badged: row.kind != .typeInstance,
+                        showsFilterResultsOnboarding: filterResultsOnboardingTarget == .focus(row.id),
                         onTap: { model.onSelectFocusRow(row) },
-                        onDrill: { model.onSelectFocusRow(row) }
+                        onDrill: {
+                            model.onFilterResultsTap {
+                                model.onFilterByFocusRow(row)
+                            }
+                        }
                     )
                 }
             }
@@ -171,8 +175,13 @@ struct UnifiedSearchView: View {
                 ForEach(model.channelRows) { row in
                     UnifiedSearchChannelRowView(
                         row: row,
+                        showsFilterResultsOnboarding: filterResultsOnboardingTarget == .channel(row.id),
                         onTap: { model.onSelectChannel(row) },
-                        onDrill: { model.onScopeToSpace(row.spaceId, source: .row) }
+                        onDrill: {
+                            model.onFilterResultsTap {
+                                model.onScopeToSpace(row.spaceId, source: .row)
+                            }
+                        }
                     )
                 }
             }
@@ -190,8 +199,13 @@ struct UnifiedSearchView: View {
                         title: row.title,
                         caption: row.caption,
                         badged: true,
+                        showsFilterResultsOnboarding: filterResultsOnboardingTarget == .person(row.id),
                         onTap: { model.onSelectPersonRow(row) },
-                        onDrill: { model.onDrillPersonRow(row) }
+                        onDrill: {
+                            model.onFilterResultsTap {
+                                model.onDrillPersonRow(row)
+                            }
+                        }
                     )
                 }
             }
@@ -204,8 +218,13 @@ struct UnifiedSearchView: View {
                         icon: row.icon,
                         title: row.title,
                         caption: row.subtitle,
+                        showsFilterResultsOnboarding: filterResultsOnboardingTarget == .type(row.id),
                         onTap: { model.onSelectTypeRow(row) },
-                        onDrill: { model.onDrillTypeRow(row) }
+                        onDrill: {
+                            model.onFilterResultsTap {
+                                model.onDrillTypeRow(row)
+                            }
+                        }
                     )
                 }
             }
@@ -251,6 +270,23 @@ struct UnifiedSearchView: View {
         }
         .scrollIndicators(.never)
         .scrollDismissesKeyboard(.immediately)
+    }
+
+    private var filterResultsOnboardingTarget: FilterResultsOnboardingTarget? {
+        guard model.showFilterResultsOnboarding, !model.showOnboarding else { return nil }
+        if let focus = model.focusRows.first {
+            return .focus(focus.id)
+        }
+        if let channel = model.channelRows.first {
+            return .channel(channel.id)
+        }
+        if let person = model.personRows.first {
+            return .person(person.id)
+        }
+        if let type = model.typeRows.first {
+            return .type(type.id)
+        }
+        return nil
     }
 
     // The empty browse titles itself with day groups; a text search shows one
