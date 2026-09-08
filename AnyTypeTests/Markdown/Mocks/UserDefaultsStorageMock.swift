@@ -19,6 +19,7 @@ final class UserDefaultsStorageMock: UserDefaultsStorageProtocol {
     var autoDownloadSizeLimitRawValue: Int { get { fatalError() } set { fatalError() } }
     var autoDownloadUseCellular: Bool { get { fatalError() } set { fatalError() } }
     var spaceHubLastMessageDates: [String: Date] = [:]
+    var unifiedSearchDiscovered: Bool = false
     
     func wallpapersPublisher() -> AnyPublisher<[String : Anytype.SpaceWallpaperType], Never> {
         fatalError()

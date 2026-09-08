@@ -73,7 +73,7 @@ struct UnifiedSearchBar: View {
             }
 
             UnifiedSearchTextField(
-                placeholder: Loc.UnifiedSearch.placeholder,
+                placeholder: Loc.search,
                 focusRequestId: focusRequestId,
                 text: $text,
                 onBackspaceWhenEmpty: onBackspaceWhenEmpty,

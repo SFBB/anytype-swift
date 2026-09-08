@@ -1347,7 +1347,7 @@ public enum Loc {
     public static func inSpacePlusOne(_ p1: Any) -> String {
       return Loc.tr("UI", "UnifiedSearch.inSpacePlusOne", String(describing: p1), fallback: "in %@ + 1 other Channel")
     }
-    public static let placeholder = Loc.tr("UI", "UnifiedSearch.placeholder", fallback: "Search and filter objects, messages")
+    public static let placeholder = Loc.tr("UI", "UnifiedSearch.placeholder", fallback: "Search everything")
     public enum Accessibility {
       public static func filterBy(_ p1: Any) -> String {
         return Loc.tr("UI", "UnifiedSearch.Accessibility.filterBy", String(describing: p1), fallback: "Filter by %@")

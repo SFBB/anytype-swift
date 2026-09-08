@@ -15,6 +15,7 @@ protocol UserDefaultsStorageProtocol: AnyObject, Sendable {
     var autoDownloadSizeLimitRawValue: Int { get set }
     var autoDownloadUseCellular: Bool { get set }
     var spaceHubLastMessageDates: [String: Date] { get set }
+    var unifiedSearchDiscovered: Bool { get set }
 
     func wallpaperPublisher(spaceId: String) -> AnyPublisher<SpaceWallpaperType, Never>
     func wallpapersPublisher() -> AnyPublisher<[String: SpaceWallpaperType], Never>
@@ -62,6 +63,12 @@ final class UserDefaultsStorage: UserDefaultsStorageProtocol, @unchecked Sendabl
     // Chat previews load slowly after launch; this keeps the hub in its last order until they land.
     @UserDefault("UserData.SpaceHubLastMessageDates", defaultValue: [:])
     var spaceHubLastMessageDates: [String: Date]
+
+    // MARK: - Unified Search
+    // True once the user opened unified search from the hub, or from the first launch for a
+    // fresh install. Until then the hub's search entry glimmers so upgraders notice the feature.
+    @UserDefault("UserData.UnifiedSearchDiscovered", defaultValue: false)
+    var unifiedSearchDiscovered: Bool
 
     // MARK: - UserInterfaceStyle
     @UserDefault("UserData.UserInterfaceStyle", defaultValue: UIUserInterfaceStyle.unspecified.rawValue)
