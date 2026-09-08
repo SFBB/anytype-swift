@@ -60,6 +60,7 @@ struct SpaceHubView: View {
                     view.safeAreaBarIOS26(edge: .bottom, spacing: 0) {
                         VaultSearchBottomBar(
                             quickCaptureEnabled: FeatureFlags.quickCapture,
+                            highlightSearch: model.highlightSearchEntry,
                             onTapSearch: { model.onSearchTap() },
                             onTapQuickCapture: { model.onTapQuickCapture() },
                             onTapCreatePersonalChannel: { model.onTapCreatePersonalChannel() },

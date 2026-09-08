@@ -21,6 +21,8 @@ final class SpaceHubViewModel {
     private var allSpaceCardModels: [SpaceCardModel] = []
 
     var notificationsNotDetermined = false
+    // Existing users see the search entry glimmer until their first tap; fresh installs never do
+    var highlightSearchEntry = false
     var spaceMuteData: SpaceMuteData?
     var profileIcon: Icon?
     var spaceToDelete: StringIdentifiable?
@@ -48,6 +50,7 @@ final class SpaceHubViewModel {
 
     init(output: (any SpaceHubModuleOutput)?) {
         self.output = output
+        highlightSearchEntry = !userDefaults.unifiedSearchDiscovered
     }
     
     func onTapSettings() {
@@ -59,6 +62,10 @@ final class SpaceHubViewModel {
     }
 
     func onSearchTap() {
+        if highlightSearchEntry {
+            highlightSearchEntry = false
+            userDefaults.unifiedSearchDiscovered = true
+        }
         output?.onSelectSearch()
     }
 
