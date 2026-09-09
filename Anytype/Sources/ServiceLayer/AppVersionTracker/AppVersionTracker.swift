@@ -82,6 +82,8 @@ final class AppVersionTracker: AppVersionTrackerProtocol {
         // Do not show tip for new users
         if isFirstAppLaunch {
             ChatCreationTip().invalidate(reason: .displayCountExceeded)
+            // Fresh installs meet unified search as the baseline; only upgraders get the glimmer
+            userDefaults.unifiedSearchDiscovered = true
         }
     }
 }
