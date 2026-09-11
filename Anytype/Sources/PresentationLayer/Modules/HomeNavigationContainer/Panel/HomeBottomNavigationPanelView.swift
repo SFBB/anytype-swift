@@ -52,9 +52,9 @@ private struct HomeBottomNavigationPanelViewInternal: View {
                     }
                 }
             }
-            .padding(.horizontal, 24)
+            .padding(.horizontal, HomeBottomBarMetrics.horizontalInset)
             .padding(.top, 16)
-            .padding(.bottom, 8)
+            .padding(.bottom, HomeBottomBarMetrics.bottomInset)
         }
         .frame(maxWidth: .infinity)
         .background {
@@ -89,7 +89,7 @@ private struct HomeBottomNavigationPanelViewInternal: View {
                 .renderingMode(.template)
                 .foregroundStyle(Color.Control.primary)
         }
-        .frame(width: 48, height: 48)
+        .frame(width: HomeBottomBarMetrics.controlHeight, height: HomeBottomBarMetrics.controlHeight)
         .glassEffectInteractiveIOS26(in: Circle())
     }
 
@@ -180,14 +180,14 @@ private struct HomeBottomNavigationPanelViewInternal: View {
                     .renderingMode(.template)
                     .foregroundStyle(Color.Control.primary)
             }
-            .frame(width: 48, height: 48)
+            .frame(width: HomeBottomBarMetrics.controlHeight, height: HomeBottomBarMetrics.controlHeight)
             .glassEffectInteractiveIOS26(in: Circle())
             .menuOrder(.fixed)
         } else {
             Image(asset: .X32.Island.create)
                 .renderingMode(.template)
                 .foregroundStyle(Color.Control.primary)
-                .frame(width: 48, height: 48)
+                .frame(width: HomeBottomBarMetrics.controlHeight, height: HomeBottomBarMetrics.controlHeight)
                 .contentShape(Circle())
                 .glassEffectInteractiveIOS26(in: Circle())
                 .onTapGesture {

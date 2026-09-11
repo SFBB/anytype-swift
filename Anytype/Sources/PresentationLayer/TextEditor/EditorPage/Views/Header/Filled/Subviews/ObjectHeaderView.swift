@@ -36,32 +36,28 @@ final class ObjectHeaderView: UIView {
         setupView()
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        coverViewCenter = coverView.layer.position
-    }
-
     // MARK: - Internal functions
-    private lazy var coverViewCenter: CGPoint = coverView.layer.position
 
-    func applyCoverTransform(_ transform: CGAffineTransform) {
-        if coverView.transform.isIdentity, !transform.isIdentity {
-            let maxY = coverViewCenter.y + coverView.bounds.height / 2
-            coverView.layer.position = CGPoint(x: coverViewCenter.x, y: maxY)
-            coverView.layer.anchorPoint = CGPoint(x: 0.5, y: 1.0)
-        } else if transform.isIdentity {
-            coverView.layer.position = coverViewCenter
-            coverView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    /// Grows the cover upward by `amount` points, its bottom edge pinned in place.
+    ///
+    /// This is a plain transform about the default center anchor: scale up, then shift up by
+    /// half the growth. Auto Layout owns the cover's `center` and re-applies it on every
+    /// layout pass, so moving the layer's anchor point to the bottom edge instead makes the
+    /// next pass put the bottom edge where the center belongs and the cover jumps up by half
+    /// its height.
+    func setCoverStretch(by amount: CGFloat) {
+        let coverHeight = converViewHeightConstraint?.constant ?? 0
+
+        UIView.performWithoutAnimation {
+            guard amount > 0, coverHeight > 0 else {
+                coverView.transform = .identity
+                return
+            }
+
+            let scale = (coverHeight + amount) / coverHeight
+            coverView.transform = CGAffineTransform(translationX: 0, y: -amount / 2)
+                .scaledBy(x: scale, y: scale)
         }
-
-//         Disable CALayer implicit animations
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-
-        coverView.transform = transform
-
-        CATransaction.commit()
     }
 }
 

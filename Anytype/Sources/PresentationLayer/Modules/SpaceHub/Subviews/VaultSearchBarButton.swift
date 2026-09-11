@@ -31,8 +31,11 @@ struct VaultSearchBottomBar: View {
                     createMenu
                 }
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
+            // Matches the space bottom panel so the compose button does not shift when one
+            // bar replaces the other across a navigation pop
+            .padding(.horizontal, HomeBottomBarMetrics.horizontalInset)
+            .padding(.top, 10)
+            .padding(.bottom, HomeBottomBarMetrics.bottomInset)
         }
         .fitIPadToReadableContentGuide()
     }
@@ -41,10 +44,14 @@ struct VaultSearchBottomBar: View {
         Button {
             onTapQuickCapture()
         } label: {
-            Image(systemName: "square.and.pencil")
+            // Identical to the create button on a space's bottom panel - same icon, size and
+            // glass - so it reads as one button standing still across a navigation pop
+            Image(asset: .X32.Island.create)
+                .renderingMode(.template)
                 .foregroundStyle(Color.Control.primary)
-                .frame(width: 44, height: 44)
-                .barBackground
+                .frame(width: HomeBottomBarMetrics.controlHeight, height: HomeBottomBarMetrics.controlHeight)
+                .contentShape(Circle())
+                .glassEffectInteractiveIOS26(in: Circle())
         }
         .buttonStyle(.plain)
         .accessibilityLabel("QuickCaptureButton")
@@ -57,14 +64,14 @@ struct VaultSearchBottomBar: View {
             HStack(spacing: 8) {
                 Image(asset: .X18.search)
                     // Reduce Motion gets a still cue in place of the glimmer
-                    .foregroundStyle(highlightSearch && reduceMotion ? Color.Control.accent100 : Color.Control.secondary)
+                    .foregroundStyle(highlightSearch && reduceMotion ? Color.Control.accent100 : Color.Control.primary)
                 // Call to action for the unified search entry: it now covers every channel, objects and messages
                 AnytypeText(Loc.UnifiedSearch.placeholder, style: .uxBodyRegular)
                     .foregroundStyle(Color.Text.secondary)
                 Spacer()
             }
-            .padding(.vertical, 11)
             .padding(.horizontal, 12)
+            .frame(height: HomeBottomBarMetrics.controlHeight)
             // Part of the glass content, applied before the glass: anything layered after
             // glassEffect sits outside the glass element and makes the bar's scroll-edge
             // effect fall back to a hard dark band under the toolbar
@@ -105,7 +112,7 @@ struct VaultSearchBottomBar: View {
         } label: {
             Image(systemName: "plus")
                 .foregroundStyle(Color.Control.primary)
-                .frame(width: 44, height: 44)
+                .frame(width: HomeBottomBarMetrics.controlHeight, height: HomeBottomBarMetrics.controlHeight)
                 .glassEffect(.regular.interactive(), in: .circle)
         }
     }

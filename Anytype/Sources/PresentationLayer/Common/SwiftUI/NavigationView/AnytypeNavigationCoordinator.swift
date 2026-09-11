@@ -9,6 +9,7 @@ final class AnytypeNavigationCoordinator: NSObject, UINavigationControllerDelega
     let builder = AnytypeDestinationBuilderHolder()
     var currentViewControllers = [UIHostingController<AnytypeNavigationViewBridge>]()
     var numberOfTransactions: Int = 0
+    var popProgress: AnytypeNavigationPopProgress?
 
     init(path: Binding<[AnyHashable]>, pathChanging: Binding<Bool>) {
         self._path = path
@@ -20,6 +21,7 @@ final class AnytypeNavigationCoordinator: NSObject, UINavigationControllerDelega
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         pathChanging = true
         navigationController.transitionCoordinator?.notifyWhenInteractionChanges { [weak self] transaction in
+            self?.popProgress?.settle(cancelled: transaction.isCancelled, duration: transaction.transitionDuration)
             if transaction.isCancelled {
                 self?.pathChanging = false
             }
@@ -52,6 +54,9 @@ final class AnytypeNavigationCoordinator: NSObject, UINavigationControllerDelega
             }
         }
         
+        // Same synchronous block as the path update above, so the interpolated opacity of any
+        // swipe-tracking chrome hands over to its settled value without a frame in between.
+        popProgress?.reset()
         pathChanging = false
     }
 }

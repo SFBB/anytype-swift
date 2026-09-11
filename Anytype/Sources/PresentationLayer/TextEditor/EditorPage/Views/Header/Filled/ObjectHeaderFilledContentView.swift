@@ -97,20 +97,8 @@ private extension ObjectHeaderFilledContentView  {
         shimmeringView.shimmerSpeed = 120
     }
 
+    // Only a downward pull past the top - a negative offset - stretches the cover.
     func updateCoverTransform(_ offset: CGFloat) {
-        let offset = offset
-
-        guard offset.isLess(than: CGFloat.zero) else {
-            headerView.applyCoverTransform(.identity)
-            return
-        }
-
-        let coverHeight = sizeConfiguration?.coverHeight ?? 0
-        let scaleY = (abs(offset) + coverHeight) / coverHeight
-
-        var t = CGAffineTransform.identity
-        t = t.scaledBy(x: scaleY, y: scaleY)
-
-        headerView.applyCoverTransform(t)
+        headerView.setCoverStretch(by: max(-offset, 0))
     }
 }

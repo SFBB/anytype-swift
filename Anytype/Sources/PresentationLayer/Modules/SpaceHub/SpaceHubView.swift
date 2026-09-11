@@ -67,6 +67,9 @@ struct SpaceHubView: View {
                             onTapCreateGroupChannel: { model.onTapCreateGroupChannel() },
                             onTapJoinViaQrCode: { model.onTapJoinViaQrCode() }
                         )
+                        // Trades places with a space's bottom panel: that one fades out as this
+                        // fades in, both tracking the back swipe rather than snapping at the end
+                        .anytypeNavigationPopRevealFade()
                     }
                     // The hub has no text input of its own, but a keyboard raised in a
                     // presented sheet still insets this hierarchy - the bar would ride up
