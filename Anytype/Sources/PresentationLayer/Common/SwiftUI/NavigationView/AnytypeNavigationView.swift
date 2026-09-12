@@ -20,16 +20,25 @@ struct AnytypeNavigationViewRepresentable: UIViewControllerRepresentable {
     @Binding var pathChanging: Bool
     let moduleSetup: (_ builder: AnytypeDestinationBuilderHolder) -> Void
 
-    func makeUIViewController(context: Context) -> UINavigationController {
+    func makeUIViewController(context: Context) -> FullScreenSwipeNavigationController {
         let controller =  FullScreenSwipeNavigationController()
         controller.setNavigationBarHidden(true, animated: false)
         controller.delegate = context.coordinator
-        
+
+        let popProgress = context.environment.anytypeNavigationPopProgress
+        context.coordinator.popProgress = popProgress
+        controller.onInteractivePopProgress = { [weak popProgress] progress in
+            popProgress?.update(progress)
+        }
+        controller.onInteractivePopAborted = { [weak popProgress] in
+            popProgress?.settle(cancelled: true, duration: Constants.abortedSwipeDuration)
+        }
+
         moduleSetup(context.coordinator.builder)
         return controller
     }
     
-    func updateUIViewController(_ controller: UINavigationController, context: Context) {
+    func updateUIViewController(_ controller: FullScreenSwipeNavigationController, context: Context) {
         let builder = context.coordinator.builder
         var freeViewControllers = context.coordinator.currentViewControllers
         var viewControllers = [UIHostingController<AnytypeNavigationViewBridge>]()
@@ -65,5 +74,11 @@ struct AnytypeNavigationViewRepresentable: UIViewControllerRepresentable {
     
     func makeCoordinator() -> AnytypeNavigationCoordinator {
         return AnytypeNavigationCoordinator(path: _path, pathChanging: _pathChanging)
+    }
+}
+
+private extension AnytypeNavigationViewRepresentable {
+    enum Constants {
+        static let abortedSwipeDuration: TimeInterval = 0.25
     }
 }
